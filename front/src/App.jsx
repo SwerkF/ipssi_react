@@ -1,12 +1,23 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+
+import { Routes, Route } from 'react-router-dom';
+
+import Navbar from './components/Navbar/Navbar';
+import Accueil from './pages/Accueil/Accueil';
+import About from './pages/About/About';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
   return (
     <>
-      <h1>Hello World</h1>
-      <a className="btn btn-primary" href="https://daisyui.com/">DaisyUI</a>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Accueil />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+      <Footer />
     </>
   )
 }
