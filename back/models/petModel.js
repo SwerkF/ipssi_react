@@ -3,7 +3,7 @@ const {DataTypes} = require('sequelize')
 const User = require('./userModel')
 
 const Pet = sequelize.define(
-    'pets',
+    'pet',
     {
         id: {
             type: DataTypes.UUID,
@@ -11,7 +11,7 @@ const Pet = sequelize.define(
             primaryKey: true,
             allowNull: false,
         },
-        nom: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -27,31 +27,25 @@ const Pet = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        type: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        age: {
-            type: DataTypes.INT,
-            allowNull: false,
-        },
         weight: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         height: {
-            type: DataTypes.INT,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         birth_date: {
             type: DataTypes.DATE,
             allowNull: false,
         },
-        owner_id: {
+        id_owner: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
-            primaryKey: true,
             allowNull: false,
+            references: {
+                model: User,
+                key: 'id',
+            },
         },
     },
     {
@@ -59,8 +53,5 @@ const Pet = sequelize.define(
         freezeTableName: true,
     }
 )
-
-User.hasMany(Pet, {foreignKey: 'owner_id'})
-Pet.belongsTo(User)
 
 module.exports = Pet
