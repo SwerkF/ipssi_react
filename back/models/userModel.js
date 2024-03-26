@@ -1,5 +1,5 @@
-const sequelize = require('../bdd/database')
-const {DataTypes} = require('sequelize')
+const sequelize = require("../bdd/database");
+const { DataTypes } = require("sequelize");
 
 const User = sequelize.define(
     'user',

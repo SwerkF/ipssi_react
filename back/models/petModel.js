@@ -27,6 +27,14 @@ const Pet = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         weight: {
             type: DataTypes.INTEGER,
             allowNull: false,
