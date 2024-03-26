@@ -1,14 +1,12 @@
-import { useState } from 'react'
 import './App.css'
+import Connexion from './pages/Connexion/Connexion'
 
 function App() {
-
-  return (
-    <>
-      <h1>Hello World</h1>
-      <a className="btn btn-primary" href="https://daisyui.com/">DaisyUI</a>
-    </>
-  )
+    return (
+        <>
+            <Connexion etat={'inscription'} />
+        </>
+    )
 }
 
 export default App
