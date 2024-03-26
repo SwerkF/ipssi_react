@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import User from './pages/user/User';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
 
   return (
     <>
-      <h1>Hello World</h1>
-      <a className="btn btn-primary" href="https://daisyui.com/">DaisyUI</a>
+      <Routes>
+        <Route path="/" element={<User/>} />
+      </Routes>
     </>
   )
 }

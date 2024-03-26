@@ -1,0 +1,58 @@
+.appointment {
+ .doctor {
+    width: 50%;
+    button {
+        background: #E0773C;
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 28px;
+        text-align: left;
+        color: white;
+        border-radius: 8px;
+        text-align: center;
+    }
+    h6 {
+        color: #E0773C;
+        font-family: Segoe UI;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 31.92px;
+        text-align: left;
+
+    }
+ }
+ .separation {
+    width: 2px !important;
+    height: 60%;
+    background: #782C014A;
+    border-radius: 50px;
+ }
+ .detail {
+    .hour-meeting {
+        background: #E0773C4A;
+        border-radius: 6px;
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 28px;
+     }
+ }
+ .notice {
+  textarea {
+    border: 1px solid #E6E6E6;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background: #F9F9F9;
+    border-radius: 19px;
+    outline: none;
+  }
+
+ }
+ h6 {
+    font-family: Segoe UI;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 26.6px;
+    text-align: center;        
+ }
+}
