@@ -45,9 +45,8 @@ exports.getAllPets = async (req, res) => {
 
 exports.getPetById = async (req, res) => {
     try {
-        const {id} = req.body
         const pet = await Pet.findOne({
-            where: {id: id},
+            where: {id: req.params.id},
         })
         res.status(200).json(pet)
     } catch (error) {
@@ -60,10 +59,7 @@ exports.getPetById = async (req, res) => {
 
 exports.updatePet = async (req, res) => {
     try {
-        const {id} = req.body
-        delete req.body.id
-
-        const pet = await Pet.update(req.body, {where: {id: id}})
+        const pet = await Pet.update(req.body, {where: {id: req.params.id}})
         console.log('Infos pet', pet)
 
         res.status(200).json({message: 'Mise à jour réussie', infos: pet})
@@ -77,9 +73,8 @@ exports.updatePet = async (req, res) => {
 
 exports.deletePet = async (req, res) => {
     try {
-        const {id} = req.body
         const pet = await Pet.destroy({
-            where: {id: id},
+            where: {id: req.params.id},
         })
         res.status(200).json({message: 'Suppression réalisée'})
     } catch (error) {
