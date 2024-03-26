@@ -1,0 +1,43 @@
+.user {
+    background: #FFF6EA;
+    height: 100vh;
+    .mr {
+        margin-right: 15px;;
+    }
+    h3 {
+        font-size: 43px;
+        font-family: Segoe UI;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 42.56px;
+        text-align: center;
+    }
+
+    form {
+        background: white;
+        padding: 20px;
+        width: 35%;
+        border-radius: 30px;
+
+        button  {
+            background: #E0773C;
+            width: 100%;
+            padding: 10px;
+            gap: 4px;
+            border-radius: 8px;
+            opacity: 0px;
+            color: white;
+            font-size: 20px;
+        }
+    }
+    .pets {
+        h3 {
+            font-size: 43px;
+            font-family: Segoe UI;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 42.56px;
+            text-align: center;
+        }
+    }
+}
