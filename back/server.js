@@ -9,14 +9,12 @@ app.use(cors())
 app.use(bodyParser.json())
 
 //----------------  Routes  ------------------//
+const databaseRoute = require('./routes/databaseRoute')
 const userRoute = require('./routes/userRoute')
-const dbRoute = require('./routes/dbRoute')
-const petRoute = require('./routes/petRoute')
 
 //---------------- Export ----------------//
+app.use('/database', databaseRoute)
 app.use('/user', userRoute)
-app.use('/db', dbRoute)
-app.use('/pet', petRoute)
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
