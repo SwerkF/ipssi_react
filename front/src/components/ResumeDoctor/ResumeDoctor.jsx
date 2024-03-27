@@ -1,6 +1,6 @@
 import React from "react";
 import "./ResumeDoctor.scss";
-import Stars from "../stars/Stars";
+import Stars from "../Stars/Stars";
 
 const ResumeDoctor = () => {
   return (

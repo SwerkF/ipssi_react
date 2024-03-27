@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Appointment.scss";
-import Input from "../../components/input/Input";
+import Input from "../../components/Input/Input";
 import CardAppointment from "../../components/CardAppointment/CardAppointment";
+import { api } from "../../services/Api";
+import { useAuth } from "../../services/utils/provider";
 
 const Appointment = () => {
+  const accessToken = useAuth();
+  const [doctorInformation, setDoctorInformation] = useState([]);
   const [search, setSearch] = useState({
     name: "",
     when: "",
   });
+
+  useEffect(() => {
+    api.getAllUser(accessToken).then((data) => setDoctorInformation(data));
+  }, []);
+
+  useEffect(() => {
+    console.log(doctorInformation);
+  }, [doctorInformation]);
   return (
     <div className="bg-orange-200 py-8">
       <div className="flex mx-4">
@@ -30,9 +42,10 @@ const Appointment = () => {
         </div>
       </div>
       {/* <div className="flex"></div> */}
-      <div className="">
-        <CardAppointment />
-      </div>
+      {doctorInformation &&
+        doctorInformation.map((doctor) => (
+          <CardAppointment key={doctor.id} doctor={doctor} />
+        ))}
     </div>
   );
 };
