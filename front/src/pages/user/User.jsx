@@ -51,7 +51,6 @@ export default function User() {
             </form>
             <div className="pets">
               <h3>Vos animaux</h3>
-              {/* Ajoutez ici le contenu pour les animaux */}
             </div>
           </div>
           <div>

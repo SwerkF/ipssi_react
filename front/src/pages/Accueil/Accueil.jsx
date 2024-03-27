@@ -9,7 +9,7 @@ import Input from '../../components/Input/Input';
 export default function Accueil() {
 
     return (
-    <div class="main">
+    <div className="main">
         <div className="hero" style={{backgroundImage: 'url("/landing.jpg")', height: "55vh"}}>
             <div className="hero-overlay bg-opacity-70"></div>
             <div className="hero-content max-w-4xl w-full text-center">

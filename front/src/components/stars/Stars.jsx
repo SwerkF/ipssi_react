@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Stars.scss';
 
-//size: xs, sm, md, lg
 export default function Stars({ notation, size }) {
   const notationInt = Math.round(notation);
   const starClass = `bg-orange-500 mask mask-star-2`;

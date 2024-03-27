@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Appointment.scss"
 import Stars from '../Stars/Stars'
 
-export default function
-    () {
+export default function() {
+    const [notice, setNotice] = useState({
+        rating: null,
+        description: ''
+    })
+    
+    useEffect(() => {
+
+    })
     return (
         <div className='appointment flex w-full'>
             <div className='flex w-1/2 items-center'>
@@ -12,7 +19,7 @@ export default function
                         <img />
                         <div className='flex flex-col'>
                             <h6>Docteur Richtofen E.</h6>
-                            <Stars notation={3.0} size={"md"}/>
+                            <Stars notation={1.4} size={'md'} />
                         </div>
                     </div>
                     <p>83 Rue de la Villette, 75001 PARIS</p>
@@ -47,7 +54,7 @@ export default function
             <div className='notice flex flex-col w-1/2'>
                 <div className='flex mb-5'>
                     <h6 className='mr-3'>Avis</h6>
-                    <Stars notation={3.0} size={"md"}/>
+                    <Stars notation={2.4} size={'md'} />
 
                 </div>
                 <textarea className='p-5' name="" id="" cols="30" rows="10">

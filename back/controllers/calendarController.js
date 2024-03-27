@@ -85,3 +85,23 @@ exports.deleteCalendar = async (req, res) => {
     res.status(500).json({ message: "Error deleting calendar" });
   }
 };
+
+exports.getCalendarByDoctorId = async (req, res) => {
+  const doctorId = req.params.id;
+  console.log(doctorId);
+  try {
+    const calendar = await Calendar.findOne({
+      where: {
+        userId: doctorId
+      }
+    });
+    if (calendar) {
+      res.status(200).json(calendar);
+    } else {
+      res.status(404).json({ message: "Calendar not found" });
+    }
+  } catch (error) {
+    console.error("Error recovering calendar:", error);
+    res.status(500).json({ error: "Error recovering calendar" });
+  }
+};
