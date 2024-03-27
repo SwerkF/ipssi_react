@@ -6,8 +6,9 @@ const User = require("../models/userModel");
 
 exports.register = async (req, res) => {
   try {
-    const { firstname, lastname, email, password } = req.body;
-    
+    const { firstname, lastname, email, password, role, avatar, officeId } =
+      req.body;
+
     // Check if the email is already in use
     const existingUser = await User.findOne({ where: { email: email } });
     if (existingUser) {
@@ -22,6 +23,9 @@ exports.register = async (req, res) => {
       lastname,
       email,
       password: hash,
+      role,
+      avatar,
+      officeId,
     });
 
     // Generate a JWT token
@@ -32,12 +36,9 @@ exports.register = async (req, res) => {
     // Return the JWT token as a response
     res.status(201).json({ token: token });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error during user registration" });
+    res.status(500).json({ message: "Error during user registration" });
   }
 };
-
 
 //--------- Login a user ---------//
 
@@ -48,28 +49,26 @@ exports.login = async (req, res) => {
     // Find the user with the provided email
     const existingUser = await User.findOne({ where: { email: email } });
     if (!existingUser) {
-      return res
-        .status(401)
-        .json({ message: "Incorrect email or password" });
+      return res.status(401).json({ message: "Incorrect email or password" });
     }
 
     // Compare the provided password with the hashed password
     const hash = bcrypt.compareSync(password, existingUser.password);
     if (!hash) {
-      return res
-        .status(401)
-        .json({ message: "Incorrect email or password" });
+      return res.status(401).json({ message: "Incorrect email or password" });
     }
 
-    // Generate a JWT token 
-    const token = jwt.sign({ email:email, id: existingUser.dataValues.id, role: existingUser.role }, process.env.SECRET_KEY, {
-      expiresIn: "1h",
-    });
+    // Generate a JWT token
+    const token = jwt.sign(
+      { email: email, id: existingUser.dataValues.id, role: existingUser.role },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
     res.status(200).json({ token });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error during user authentication" });
+    res.status(500).json({ message: "Error during user authentication" });
   }
 };
 
@@ -80,17 +79,16 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.findAll();
     res.status(200).json(users);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error recovering users" });
+    res.status(500).json({
+      message: "Error recovering users",
+    });
   }
 };
 
 //--------- Get a user by id ---------//
 
 exports.getAllById = async (req, res) => {
-  const userId  = req.params.id;
+  const userId = req.params.id;
   try {
     const user = await User.findByPk(userId);
     if (user) {
@@ -100,9 +98,7 @@ exports.getAllById = async (req, res) => {
     }
   } catch (error) {
     console.error("Error recovering user:", error);
-    res
-      .status(500)
-      .json({ error: "Error recovering user" });
+    res.status(500).json({ error: "Error recovering user" });
   }
 };
 
@@ -110,7 +106,7 @@ exports.getAllById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const userId  = req.params.id; // Supposons que l'ID de l'utilisateur à modifier est transmis dans les paramètres de l'URL
+    const userId = req.params.id; // Supposons que l'ID de l'utilisateur à modifier est transmis dans les paramètres de l'URL
     const { firstname, lastname, email, password } = req.body;
 
     // Check if the user to update exists
@@ -138,13 +134,10 @@ exports.updateUser = async (req, res) => {
     // Save the modification
     await userToUpdate.save();
 
-    res
-      .status(200)
-      .json({ message: "User information updated successfully" });
+    res.status(200).json({ message: "User information updated successfully" });
   } catch (error) {
     res.status(500).json({
-      message:
-        "Error updating user information",
+      message: "Error updating user information",
     });
   }
 };
@@ -153,7 +146,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const userId  = req.params.id; // Supposons que l'ID de l'utilisateur à supprimer est transmis dans les paramètres de l'URL
+    const userId = req.params.id; // Supposons que l'ID de l'utilisateur à supprimer est transmis dans les paramètres de l'URL
 
     // Check if the user to delete exists
     const userToDelete = await User.findByPk(userId);
@@ -166,8 +159,6 @@ exports.deleteUser = async (req, res) => {
 
     res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error deleting user" });
+    res.status(500).json({ message: "Error deleting user" });
   }
 };
