@@ -2,34 +2,21 @@ import React, { useEffect, useState } from 'react';
 import './Stars.scss';
 
 export default function Stars({ notation, size }) {
-    const [rating, setRating] = useState(0);
+  const notationInt = Math.round(notation);
+  const starClass = `bg-orange-500 mask mask-star-2`;
+  const stars = [];
+  
+  for (let i = 0; i < 5; i++) {
+    if (i < notationInt) {
+      stars.push(<input key={i} className={starClass}/>);
+    } else {
+      stars.push(<input key={i} className={`mask mask-star-2 bg-gray-200`}/>);
+    }
+  }
 
-    useEffect(() => {
-        setRating(Math.ceil(notation * 2));
-    }, [notation]);
-
-    const renderStars = () => {
-        const stars = [];
-        stars.push(<input type="radio" name="rating-10" class="rating-hidden" />);
-
-        for (let i = 0; i < 10; i++) {
-            const defaultChecked = i === rating;
-            stars.push(
-                <input
-                    key={`star-${i}`}
-                    type="radio"
-                    name="rating-10"
-                    defaultChecked={defaultChecked}
-                    className={`bg-orange-500 mask mask-star-2 mask-half-${i % 2 === 0 ? '1' : '2'}`}
-                />
-            );
-        }
-        return stars;
-    };
-
-    return (
-        <div className={`rating rating-${size} rating-half`}>
-            {renderStars()}
-        </div>
-    );
+  return (
+    <div className={`flex flex-row justify-center pt-1 rating rating-${size}`}>
+      {stars}
+    </div>
+  );
 }

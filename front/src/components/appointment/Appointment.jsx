@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "./Appointment.scss"
-import Stars from '../stars/Stars'
+import Stars from '../Stars/Stars'
 
 export default function() {
     const [notice, setNotice] = useState({
