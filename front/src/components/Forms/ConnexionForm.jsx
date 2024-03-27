@@ -23,8 +23,8 @@ const ConnexionForm = () => {
                 `Erreur : ${response.status} - ${response.statusText} \n Veuillez réessayer.`
             )
         } else {
-            const token = response.json()
-            localStorage.user = JSON.stringify({token: token})
+            const token = await response.json()
+            localStorage.user = JSON.stringify(token)
             alert('Utilisateur connecté')
             navigate('/')
         }
@@ -32,29 +32,30 @@ const ConnexionForm = () => {
 
     return (
         <div className="w-2/3 flex flex-col items-center">
-            <form onSubmit={handleSumbit}>
-                <h1 className="card-title place-content-center text-2xl font-bold">
-                    Connexion
-                </h1>
-                <Input
-                    label={'Email'}
-                    value={user.email}
-                    onChange={(value) => setUser({...user, email: value})}
-                    placeholder={'youremail@mail.com'}
-                />
-                <Input
-                    label={'Mot de passe'}
-                    type="password"
-                    value={user.password}
-                    onChange={(value) => setUser({...user, password: value})}
-                    placeholder={'***********'}
-                />
-                <div className="card-actions justify-end pt-3">
-                    <button type="sumbit" className="btn btn-primary w-full">
-                        Se connecter
-                    </button>
-                </div>
-            </form>
+            <h1 className="card-title place-content-center text-2xl font-bold">
+                Connexion
+            </h1>
+            <Input
+                label={'Email'}
+                value={user.email}
+                onChange={(value) => setUser({...user, email: value})}
+                placeholder={'youremail@mail.com'}
+            />
+            <Input
+                label={'Mot de passe'}
+                type="password"
+                value={user.password}
+                onChange={(value) => setUser({...user, password: value})}
+                placeholder={'***********'}
+            />
+            <div className="card-actions justify-end pt-3">
+                <button
+                    type="sumbit"
+                    className="btn btn-primary w-full"
+                    onClick={handleSumbit}>
+                    Se connecter
+                </button>
+            </div>
             <a
                 className="link link-primary pt-2"
                 onClick={() =>
