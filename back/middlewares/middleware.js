@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
 
 const getEmailFromToken = (token) => {
   try {
@@ -35,8 +36,11 @@ exports.isAdmin = async (req, res, next) => {
     return res.status(401).json({ error: "Token invalid" });
   }
 
+
   try {
     const result = await User.findOne({ where: { email: email } });
+  
+    console.log(req.headers.authorization)
     if (result.dataValues.role === "admin") {
       next();
     } else {

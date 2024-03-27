@@ -101,16 +101,14 @@ exports.initialized = async (req, res) => {
     CREATE PROCEDURE InsertSchedule(
       IN scheduleId VARCHAR(36),
       IN scheduleDate VARCHAR(255),
-      IN scheduleCity VARCHAR(255),
-      IN scheduleAddress TEXT,
       IN scheduleStatus ENUM('booked', 'canceled', 'finished'),
       IN scheduleDoctorId VARCHAR(36),
       IN scheduleAppointmentTypeId VARCHAR(36),
       IN schedulePetId VARCHAR(36)
     )
     BEGIN
-      INSERT INTO schedule (id, date, city, address, status, doctorId, appointmentTypeId, petId, createdAt, updatedAt)
-      VALUES (scheduleId, scheduleDate, scheduleCity, scheduleAddress, scheduleStatus, scheduleDoctorId, scheduleAppointmentTypeId, schedulePetId, NOW(), NOW());
+      INSERT INTO schedule (id, date, status, doctorId, appointmentTypeId, petId, createdAt, updatedAt)
+      VALUES (scheduleId, scheduleDate, scheduleStatus, scheduleDoctorId, scheduleAppointmentTypeId, schedulePetId, NOW(), NOW());
     END
   `);
   await sequelize.query(
@@ -248,44 +246,41 @@ CALL InsertNotice('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422c', 'Je recommande vivemen
   await sequelize.query(`
 CALL InsertNotice('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422d', 'Personnel attentionné', "Le personnel ici se soucie vraiment des animaux. Ils ont fait tout leur possible pour que mon chien soit à l'aise pendant son séjour.", 4, 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421m');
 `);
+
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422n', '2024-02-16', 'Paris', '12 rue de Rivoli', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422o', '2024-02-17',  'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422o', '2024-02-17', 'Lyon', '5 rue du Vétérinaire', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422p', '2024-02-18', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422p', '2024-02-18', 'Marseille', '30 avenue des Animaux', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422q', '2024-02-19', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422q', '2024-02-19', 'Bordeaux', '8 rue du Chien', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422r', '2024-02-20',  'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422i', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421s')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422r', '2024-02-20', 'Paris', '12 rue de Rivoli', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422i', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421s')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422s', '2024-02-21',  'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421t')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422s', '2024-02-21', 'Lyon', '5 rue du Vétérinaire', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421t')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422t', '2024-02-22', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421u')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422t', '2024-02-22', 'Marseille', '30 avenue des Animaux', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421u')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422w', '2024-02-23', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421v')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422w', '2024-02-23', 'Bordeaux', '8 rue du Chien', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421v')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422y', '2024-02-24', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422y', '2024-02-24', 'Paris', '12 rue de Rivoli', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o')
-`);
-
-  await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422z', '2024-02-25', 'Lyon', '5 rue du Vétérinaire', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422z', '2024-02-25', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
 `);
 
   await sequelize.query(`

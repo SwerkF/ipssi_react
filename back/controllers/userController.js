@@ -58,6 +58,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: "Incorrect email or password" });
     }
 
+
     // Generate a JWT token
     const token = jwt.sign(
       { email: email, id: existingUser.dataValues.id, role: existingUser.role },
@@ -162,3 +163,16 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
+
+exports.getProfile = async(req, res) => {
+  const token = req.headers.authorization;
+  const decoded = jwt.verify(token, process.env.SECRET_KEY);
+  const userId = decoded.id;
+  User.findByPk(userId)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Error recovering user" });
+    });
+}

@@ -29,5 +29,6 @@ router.get(
     middleware.isAdmin,
     UserController.getAllById
 )
+router.get('/me', middleware.authenticator, UserController.getProfile)
 
 module.exports = router
