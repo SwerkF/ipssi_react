@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import './User.scss'
 import Input from '../../components/input/Input'
 import Appointment from '../../components/appointment/Appointment'
+import {api} from "../../services/Api"
 
 export default function User() {
+    const [id, setId] = useState('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i');
+
     const [user, setUser] = useState({
       firstName: '',
       lastName: '',
@@ -11,8 +14,9 @@ export default function User() {
       password: '',
       newPassword: ''
     });
+    
     useEffect(() => {
-        console.log(user)
+      api.getPetsOfUser(id).then(res => console.log(res))
     }, [user])
     return (
       <div className='user page'>
