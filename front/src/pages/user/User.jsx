@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './User.scss'
-import Input from '../../components/input/Input'
-import Appointment from '../../components/appointment/Appointment'
+import Input from '../../components/Input/Input'
+import Appointment from '../../components/Appointment/Appointment'
 import {api} from "../../services/Api"
 
 export default function User() {
