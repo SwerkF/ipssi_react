@@ -17,4 +17,7 @@ router.delete('/delete/:id', appointmentTypeController.deleteAppointmentType);
 // Get a appointment type by ID
 router.get('/one/:id', appointmentTypeController.getAppointmentTypeById);
 
+// Get a appointments by doctorid
+router.get('/doctor/:id', appointmentTypeController.getAppointmentsByDoctorId);
+
 module.exports = router;

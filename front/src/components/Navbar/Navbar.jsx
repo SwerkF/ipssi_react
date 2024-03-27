@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <div class="navbar bg-base-100 border-b-2 border-amber-700">
-        <div class="flex-1">
-            <a href="/"  class="btn btn-ghost text-xl">
-                <img src='/logo.png' alt="Logo" class="w-12" />
+    <div className="navbar bg-base-100 border-b-2 border-amber-700">
+        <div className="flex-1">
+            <a href="/"  className="btn btn-ghost text-xl">
+                <img src='/logo.png' alt="Logo" className="w-12" />
                 Veto'Lib
             </a>
         </div>

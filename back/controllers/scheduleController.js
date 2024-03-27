@@ -2,9 +2,9 @@ const Schedule = require("../models/scheduleModel");
 
 // CREATE - Create a new schedule
 exports.createSchedule = async (req, res) => {
-  const { date, city, address, status, doctorId, appointmentTypeId, petId } = req.body;
+  const { date, city, address, status, doctorId, appointmentTypeId, petId, userId } = req.body;
   try {
-    await Schedule.create({ date, city, address, status, doctorId, appointmentTypeId, petId });
+    await Schedule.create({ date, city, address, status, doctorId, appointmentTypeId, petId, userId });
     res.status(200).json({ message: "New schedule created" });
   } catch (error) {
     res.status(500).json({
@@ -72,6 +72,47 @@ exports.getScheduleById = async (req, res) => {
     res.status(500).json({
       error: "Error retrieving schedule by ID",
       details: error.message,
+    });
+  }
+};
+
+
+exports.getSchedulesOfUser = async (req, res) => {
+  const { date, userId } = req.body;
+  
+  try {
+    const schedules = await Schedule.findAll({
+      where: {
+        userId: userId,
+        date: { [Op.gte]: date }
+      }
+    });
+    res.status(200).json(schedules);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error reading schedules:",
+      error: error.message,
+    });
+  }
+};
+
+
+
+exports.getSchedulesOfDoctor = async (req, res) => {
+  const { date, userId } = req.body;
+  
+  try {
+    const schedules = await Schedule.findAll({
+      where: {
+        doctorId: userId,
+        date: { [Op.gte]: date }
+      }
+    });
+    res.status(200).json(schedules);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error reading schedules:",
+      error: error.message,
     });
   }
 };

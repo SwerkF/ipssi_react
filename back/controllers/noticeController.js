@@ -75,3 +75,28 @@ exports.getNoticeById = async (req, res) => {
     });
   }
 };
+
+// GET ONE - by user and doctor id
+exports.getNoticeByDoctorUserId = async (req, res) => {
+  const userId = req.params.userid;
+  const doctorId = req.params.doctorid;
+
+  try {
+    const notice = await Notice.findOne(
+      {
+        userId: userId,
+        doctorId: doctorId
+      }
+    );
+    if (notice) {
+      res.status(200).json(notice);
+    } else {
+      res.status(404).json({ error: "Notice not found" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "Error retrieving notice by ID",
+      details: error.message,
+    });
+  }
+};
