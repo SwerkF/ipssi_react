@@ -34,6 +34,10 @@ const User = sequelize.define(
       defaultValue: "user",
       allowNull: true,
     },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     officeId: {
       type: DataTypes.UUID,
       allowNull: true,
