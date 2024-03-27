@@ -1,6 +1,7 @@
 import ConnexionForm from '../../components/Forms/ConnexionForm'
 import RegisterForm from '../../components/Forms/RegisterForm'
 import Logo from '../../../public/logo.png'
+import Button from '../../components/Button/Button'
 
 const Connexion = ({form}) => {
     return (
@@ -24,9 +25,7 @@ const Connexion = ({form}) => {
                     </div>
                 </div>
                 <div className="flex flex-col py-2 w-2/3 items-center">
-                    <button className="btn btn-primary w-full">
-                        Créer un compte / S'inscrire
-                    </button>
+                    <Button text="Créer un compte / S'inscrire" />
                     <p className="text-center text-xs text-gray-400 pt-3">
                         Veto'Lib 2024®
                     </p>

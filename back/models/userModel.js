@@ -1,56 +1,57 @@
-const sequelize = require("../bdd/database");
-const { DataTypes } = require("sequelize");
+const sequelize = require('../bdd/database')
+const {DataTypes} = require('sequelize')
 
-const Office = require("./officeModel");
+const Office = require('./officeModel')
 
 const User = sequelize.define(
-  "user",
-  {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-      allowNull: false,
+    'user',
+    {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true,
+            allowNull: false,
+        },
+        firstname: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        lastname: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        email: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        role: {
+            type: DataTypes.ENUM('admin', 'doctor', 'user'),
+            defaultValue: 'user',
+            allowNull: true,
+        },
+        avatar: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            defaultValue: 'utilisateur.png',
+        },
+        officeId: {
+            type: DataTypes.UUID,
+            allowNull: true,
+            references: {
+                model: Office,
+                key: 'id',
+            },
+        },
     },
-    firstname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    role: {
-      type: DataTypes.ENUM("admin", "doctor", "user"),
-      defaultValue: "user",
-      allowNull: true,
-    },
-    avatar: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    officeId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: Office,
-        key: "id",
-      },
-    },
-  },
-  {
-    sequelize,
-    freezeTableName: true,
-  }
-);
+    {
+        sequelize,
+        freezeTableName: true,
+    }
+)
 
-module.exports = User;
+module.exports = User

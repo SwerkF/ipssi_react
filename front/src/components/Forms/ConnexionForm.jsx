@@ -1,14 +1,14 @@
 import {useEffect, useState} from 'react'
-import Input from '../input/Input'
-import {useNavigate} from 'react-router-dom'
+import Input from '../Input/Input'
+import Button from '../Button/Button'
 
 const ConnexionForm = () => {
     const [user, setUser] = useState({
         email: '',
         password: '',
     })
+
     useEffect(() => {}, [user])
-    const navigate = useNavigate()
 
     const handleSumbit = async () => {
         const response = await fetch(`http://localhost:3000/user/login`, {
@@ -24,9 +24,9 @@ const ConnexionForm = () => {
             )
         } else {
             const token = await response.json()
-            localStorage.user = JSON.stringify(token)
+            localStorage.setItem('userToken', JSON.stringify(token))
             alert('Utilisateur connecté')
-            navigate('/')
+            window.location.href = '/'
         }
     }
 
@@ -49,12 +49,7 @@ const ConnexionForm = () => {
                 placeholder={'***********'}
             />
             <div className="card-actions justify-end pt-3">
-                <button
-                    type="sumbit"
-                    className="btn btn-primary w-full"
-                    onClick={handleSumbit}>
-                    Se connecter
-                </button>
+                <Button text="Se connecter" onClick={handleSumbit} />
             </div>
             <a
                 className="link link-primary pt-2"
@@ -80,8 +75,8 @@ const ConnexionForm = () => {
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn">Envoyer</button>
-                            <button className="btn">Close</button>
+                            <Button text="Envoyer" />
+                            <Button text="Fermer" />
                         </form>
                     </div>
                 </div>

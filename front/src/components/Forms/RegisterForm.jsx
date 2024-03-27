@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import Input from '../input/Input'
+import Input from '../Input/Input'
 import {useNavigate} from 'react-router-dom'
 
 const RegisterForm = () => {
@@ -27,7 +27,7 @@ const RegisterForm = () => {
             )
         } else {
             const token = await response.json()
-            localStorage.user = JSON.stringify(token)
+            localStorage.userToken = JSON.stringify(token)
             alert('Utilisateur inscrit')
             navigate('/')
         }
