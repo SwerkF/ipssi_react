@@ -6,7 +6,8 @@ const User = require('../models/userModel')
 
 exports.register = async (req, res) => {
     try {
-        const {firstname, lastname, email, password} = req.body
+        const {firstname, lastname, email, password, role, avatar, officeId} =
+            req.body
 
         // Check if the email is already in use
         const existingUser = await User.findOne({where: {email: email}})
@@ -24,6 +25,9 @@ exports.register = async (req, res) => {
             lastname,
             email,
             password: hash,
+            role,
+            avatar,
+            officeId,
         })
 
         // Generate a JWT token
@@ -47,7 +51,6 @@ exports.login = async (req, res) => {
         // Find the user with the provided email
         const existingUser = await User.findOne({where: {email: email}})
         if (!existingUser) {
-            console.log("Erreur à la recherche de l'utilisateur")
             return res
                 .status(401)
                 .json({message: 'Incorrect email or password'})
@@ -56,7 +59,6 @@ exports.login = async (req, res) => {
         // Compare the provided password with the hashed password
         const hash = bcrypt.compareSync(password, existingUser.password)
         if (!hash) {
-            console.log('Erreur au hash')
             return res
                 .status(401)
                 .json({message: 'Incorrect email or password'})
@@ -74,10 +76,8 @@ exports.login = async (req, res) => {
                 expiresIn: '1h',
             }
         )
-        console.log('Token créé')
         res.status(200).json({token})
     } catch (error) {
-        console.error(error)
         res.status(500).json({message: 'Error during user authentication'})
     }
 }
