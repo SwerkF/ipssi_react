@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Accueil from './pages/Accueil/Accueil';
 import About from './pages/About/About';
 import Footer from './components/Footer/Footer';
+import User from './pages/user/User';
 
 function App() {
 
