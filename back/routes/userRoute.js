@@ -7,8 +7,6 @@ router.post('/register', UserController.register)
 router.post('/login', UserController.login)
 router.get(
     '/all',
-    middleware.authenticator,
-    middleware.isAdmin,
     UserController.getAllUsers
 )
 router.put(
