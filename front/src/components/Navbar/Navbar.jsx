@@ -11,12 +11,12 @@ export default function Navbar() {
                 Veto'Lib
             </a>
         </div>
-        <div className="flex-none">
-            <ul className="menu menu-horizontal px-1">
-            <Link to="/" className="btn btn-ghost">Accueil</Link>
-            <Link to="/rendez-vous" className="btn btn-ghost">Prendre rendez-vous</Link>
-            <Link to="/contact" className="btn btn-ghost">Contact</Link>
-            <Link to="/connexion" className="btn btn-ghost">Connexion</Link>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal px-1">
+            <Link to="/" class="btn btn-ghost">Accueil</Link>
+            <Link to="/appointment" class="btn btn-ghost">Prendre rendez-vous</Link>
+            <Link to="/contact" class="btn btn-ghost">Contact</Link>
+            <Link to="/connexion" class="btn btn-ghost">Connexion</Link>
             </ul>
         </div>
     </div>
