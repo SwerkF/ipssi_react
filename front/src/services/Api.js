@@ -11,13 +11,12 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  //get all pets of a user
-  getAllUser: (accessToken) =>
-    fetch(`${API_BASE_URL}/user/all`, {
+  //get all doctors
+  getAllDoctors: () =>
+    fetch(`${API_BASE_URL}/user/allDoctors`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
       },
     }).then((response) => response.json()),
 
@@ -32,12 +31,11 @@ const api = {
     }).then((response) => response.json()),
 
   //get calendar by a doctor
-  getCalendarByDoctorId: (doctorId, accessToken) =>
+  getCalendarByDoctorId: (doctorId) =>
     fetch(`${API_BASE_URL}/calendar/doctor/${doctorId}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
       },
     }).then((response) => response.json()),
 
@@ -72,6 +70,15 @@ const api = {
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken,
+      },
+    }).then((response) => response.json()),
+
+  //récupérer le bureau d'un docteur
+  getOfficeByDoctor: (officeId) =>
+    fetch(`${API_BASE_URL}/office/one/${officeId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
 };

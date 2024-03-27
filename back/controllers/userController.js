@@ -162,3 +162,36 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
+
+//--------- Delete a user ---------//
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.id; // Supposons que l'ID de l'utilisateur à supprimer est transmis dans les paramètres de l'URL
+
+    // Check if the user to delete exists
+    const userToDelete = await User.findByPk(userId);
+    if (!userToDelete) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Delete the user from database
+    await userToDelete.destroy();
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting user" });
+  }
+};
+
+exports.getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await User.findAll({ where: { role: "doctor" } });
+    if (!doctors) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+    res.status(200).json(doctors);
+  } catch (error) {
+    res.status(500).json({ message: "Error recovering doctors" });
+  }
+};
