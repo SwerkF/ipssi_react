@@ -7,9 +7,8 @@ import Navbar from './components/Navbar/Navbar'
 import Accueil from './pages/Accueil/Accueil'
 import About from './pages/About/About'
 import Footer from './components/Footer/Footer'
-import User from './pages/user/User'
-import Connexion from './pages/Connexion/Connexion'
 import User from './pages/User/User'
+import Connexion from './pages/Connexion/Connexion'
 import Error404 from './pages/404/Error404'
 
 function App() {
