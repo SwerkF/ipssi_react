@@ -1,23 +1,14 @@
 import React from 'react'
 import "./Appointment.scss"
 import Stars from '../stars/Stars'
+import ResumeDoctor from '../ResumeDoctor/ResumeDoctor'
 
 export default function
     () {
     return (
         <div className='appointment flex w-full'>
             <div className='flex w-1/2 items-center'>
-                <div className='doctor flex flex-col h-full justify-around py-10'>
-                    <div className='flex'>
-                        <img />
-                        <div className='flex flex-col'>
-                            <h6>Docteur Richtofen E.</h6>
-                            <Stars notation={3.0} size={"md"}/>
-                        </div>
-                    </div>
-                    <p>83 Rue de la Villette, 75001 PARIS</p>
-                    <button className='p-2'>Prendre un rendez-vous</button>
-                </div>
+                <ResumeDoctor />
                 <div className="separation mx-10"></div>
                 <div className='appointment flex flex-col'>
                     <div className="state flex">
