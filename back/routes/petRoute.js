@@ -8,5 +8,6 @@ router.get('/search/:id', petController.getPetById)
 router.post('/create', petController.createPet)
 router.put('/update/:id', petController.updatePet)
 router.delete('/delete/:id', petController.deletePet)
+router.get('/all/user/:id', petController.getAllPetsOfUser)
 
-module.exports = router
+module.exports = router;

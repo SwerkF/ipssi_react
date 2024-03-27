@@ -17,4 +17,7 @@ router.delete('/delete/:id', noticeController.deleteNotice);
 // Get a notice by ID
 router.get('/one/:id', noticeController.getNoticeById);
 
+// Get a notice by ID
+router.get('/doctor/:doctorid/:userid', noticeController.getNoticeByDoctorUserId);
+
 module.exports = router;

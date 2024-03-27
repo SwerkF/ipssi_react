@@ -14,15 +14,7 @@ const schedule = sequelize.define(
             allowNull: false,
         },
         date: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        city: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        address: {
-            type: DataTypes.TEXT,
+            type: DataTypes.DATE,
             allowNull: false,
         },
         status: {
@@ -50,6 +42,14 @@ const schedule = sequelize.define(
             allowNull: false,
             references: {
                 model: petModel,
+                key: "id",
+            },
+        },
+        userId: {
+            type: DataTypes.UUID,
+            allowNull: false,
+            references: {
+                model: userModel,
                 key: "id",
             },
         },

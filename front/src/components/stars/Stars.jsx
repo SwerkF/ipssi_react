@@ -1,30 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Stars.scss';
 
-//size: xs, sm, md, lg
 export default function Stars({ notation, size }) {
-  const notationInt = Math.round(notation);
+    const [rating, setRating] = useState(0);
 
-  const stars = [];
-  for (let i = 1; i <= 10; i++) {
-    const isChecked = i <= notationInt;
+    useEffect(() => {
+        setRating(Math.ceil(notation * 2));
+    }, [notation]);
 
-    const starClass = `bg-orange-500 mask mask-star-2 mask-half-${i % 2 === 0 ? 2 : 1} ${isChecked ? 'checked' : ''}`;
+    const renderStars = () => {
+        const stars = [];
+        stars.push(<input type="radio" name="rating-10" class="rating-hidden" />);
 
-    stars.push(
-      <input
-        key={i}
-        type="radio"
-        name="rating-10"
-        className={`${starClass}`}
-        checked={isChecked}
-      />
+        for (let i = 0; i < 10; i++) {
+            const defaultChecked = i === rating;
+            stars.push(
+                <input
+                    key={`star-${i}`}
+                    type="radio"
+                    name="rating-10"
+                    defaultChecked={defaultChecked}
+                    className={`bg-orange-500 mask mask-star-2 mask-half-${i % 2 === 0 ? '1' : '2'}`}
+                />
+            );
+        }
+        return stars;
+    };
+
+    return (
+        <div className={`rating rating-${size} rating-half`}>
+            {renderStars()}
+        </div>
     );
-  }
-
-  return (
-    <div className={`rating rating-${size} rating-half`}>
-      {stars}
-    </div>
-  );
 }

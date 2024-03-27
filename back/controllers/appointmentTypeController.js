@@ -75,3 +75,25 @@ exports.getAppointmentTypeById = async (req, res) => {
     });
   }
 };
+
+// GET ONE - Retrieve an appointment type by its ID
+exports.getAppointmentsByDoctorId = async (req, res) => {
+  const doctorId = req.params.id;
+  try {
+    const appointmentType = await AppointmentType.findOne({
+      where: {
+        doctorId: doctorId
+      }
+    });
+    if (appointmentType) {
+      res.status(200).json(appointmentType);
+    } else {
+      res.status(404).json({ error: "Appointment type not found" });
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: "Error retrieving appointment type by ID",
+      details: error.message,
+    });
+  }
+};

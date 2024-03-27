@@ -84,3 +84,20 @@ exports.deletePet = async (req, res) => {
         })
     }
 }
+
+exports.getAllPetsOfUser = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const pets = await Pet.findAll({
+            where: {
+                id_owner: userId
+            }
+        })
+        res.status(200).json(pets)
+    } catch (error) {
+        res.status(500).json({
+            message: 'Erreur à la récupération des animaux',
+            error: error,
+        })
+    }
+}
