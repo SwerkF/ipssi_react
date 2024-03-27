@@ -10,6 +10,7 @@ import Footer from './components/Footer/Footer'
 import User from './pages/User/User'
 import Connexion from './pages/Connexion/Connexion'
 import Error404 from './pages/404/Error404'
+import Appointment from './components/Appointment/Appointment'
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/me" element={<User />} />
                 <Route path="*" element={<Error404 />} />
+                <Route path="/appointment" element={<Appointment />} />
                 <Route
                     path="/login"
                     element={<Connexion form={'connexion'} />}
