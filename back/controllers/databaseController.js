@@ -100,15 +100,15 @@ exports.initialized = async (req, res) => {
   await sequelize.query(`
     CREATE PROCEDURE InsertSchedule(
       IN scheduleId VARCHAR(36),
-      IN scheduleAddress TEXT,
+      IN scheduleDate VARCHAR(255),
       IN scheduleStatus ENUM('booked', 'canceled', 'finished'),
       IN scheduleDoctorId VARCHAR(36),
       IN scheduleAppointmentTypeId VARCHAR(36),
       IN schedulePetId VARCHAR(36),
-      IN schedulerUserId VARCHAR(36),
+      IN scheduleUserId VARCHAR(36)
     )
     BEGIN
-      INSERT INTO schedule (id, address, status, doctorId, appointmentTypeId, petId, userId, createdAt, updatedAt)
+      INSERT INTO schedule (id, date, status, doctorId, appointmentTypeId, petId, userId, createdAt, updatedAt)
       VALUES (scheduleId, scheduleDate, scheduleStatus, scheduleDoctorId, scheduleAppointmentTypeId, schedulePetId, scheduleUserId, NOW(), NOW());
     END
   `);
@@ -248,51 +248,51 @@ CALL InsertNotice('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422c', 'Je recommande vivemen
 CALL InsertNotice('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422d', 'Personnel attentionné', "Le personnel ici se soucie vraiment des animaux. Ils ont fait tout leur possible pour que mon chien soit à l'aise pendant son séjour.", 4, 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421m');
 `);
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422n', '2024-02-16', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422n', '2024-02-16', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422o', '2024-02-17', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422o', '2024-02-17', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422p', '2024-02-18', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422p', '2024-02-18', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422q', '2024-02-19', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422q', '2024-02-19', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421j')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422r', '2024-02-20', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422i', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421s')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422r', '2024-02-20', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422i', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421s', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421j')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422s', '2024-02-21', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421t')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422s', '2024-02-21', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421t', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421m')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422t', '2024-02-22', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421u')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422t', '2024-02-22', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422e', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421u', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421m')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422w', '2024-02-23', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421v')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422w', '2024-02-23', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421v', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421m')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422y', '2024-02-24', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422y', '2024-02-24', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421o', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422z', '2024-02-25', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422z', '2024-02-25', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421p', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526423a', '2024-02-26', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526423a', '2024-02-26', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421q', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i')
 `);
 
   await sequelize.query(`
-CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526423b', '2024-02-27', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r')
+CALL InsertSchedule('dc67f5e9-d1f6-4ba1-9b16-b0eaf526423b', '2024-02-27', 'booked', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526422g', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421r', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421j')
 `);
 
   res.status(200).json("All");

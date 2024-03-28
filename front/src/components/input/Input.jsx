@@ -2,7 +2,16 @@ import React from 'react'
 import './Input.scss'
 import Button from '../Button/Button'
 
-export default function Input({label, value, onChange, placeholder, className, type, shadow, submitButton = null}) {
+export default function Input({
+    label,
+    value,
+    onChange,
+    placeholder,
+    className,
+    type,
+    shadow,
+    submitButton = null,
+}) {
     return (
         <div className="flex flex-col w-full">
           <label>{label ? label : ''}</label>

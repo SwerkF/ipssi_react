@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import "./Appointment.scss"
-import Stars from '../Stars/Stars'
+import React, { useEffect, useState } from "react";
+import "./Appointment.scss";
+import Stars from "../Stars/Stars";
+import ResumeDoctor from "../ResumeDoctor/ResumeDoctor";
 
 const API_BASE_URL = 'http://localhost:3000/images/';
 
@@ -53,16 +54,20 @@ export default function({ user }) {
                     </div>
                 </div>
             </div>
-            <div className='notice flex flex-col w-1/2'>
-                <div className='flex mb-5'>
-                    <h6 className='mr-3'>Avis</h6>
-                    <Stars notation={2.4} size={'md'} />
-
-                </div>
-                <textarea className='p-5' name="" id="" cols="30" rows="10">
-
-                </textarea>
+            <div className="flex flex-col">
+              <h6>Horaires:</h6>
+              <p className="hour-meeting p-2">9:20 - 10:00</p>
             </div>
+          </div>
         </div>
-    )
+      </div>
+      <div className="notice flex flex-col w-1/2">
+        <div className="flex mb-5">
+          <h6 className="mr-3">Avis</h6>
+          <Stars notation={2.4} size={"md"} />
+        </div>
+        <textarea className="p-5" name="" id="" cols="30" rows="10"></textarea>
+      </div>
+    </div>
+  );
 }
