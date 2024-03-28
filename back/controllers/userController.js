@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const Pet = require('../models/petModel')
+const AppointmentType = require('../models/appointmentTypeModel')
 
 //--------- Create a user ---------//
 
@@ -183,12 +184,22 @@ exports.deleteUser = async (req, res) => {
 
 exports.getAllDoctors = async (req, res) => {
   try {
-    const doctors = await User.findAll({ where: { role: "doctor" } });
+    // get appointments and office of the doctor
+    const doctors = await User.findAll({
+      where: { role: 'doctor' },
+      include: [
+        {
+          model: AppointmentType,
+          as: 'appointments',
+        }
+      ],
+    });
     if (!doctors) {
       return res.status(404).json({ message: "Doctor not found" });
     }
     res.status(200).json(doctors);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error recovering doctors" });
   }
 };

@@ -3,7 +3,8 @@ import './UserAdmin.scss';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../../services/Api';
 import UserAdminItem from './UserItem/UserAdminItem';
-export default function UserAdmin() {
+
+export default function UserAdmin(props) {
 
   const navigate = useNavigate();
 
@@ -23,17 +24,6 @@ export default function UserAdmin() {
     });
   }
 
-  const handleDeleteUser = (e) => {
-    api.deleteUser(e.target.id).then(res => {
-      api.getAllUsers().then(res => {
-        setUsers(res);
-      });
-    });
-  }
-
-  const handleUpdate = (e) => {
-  }
-
 
   return (
     <div className="w-full flex flex-col gap-3 p-4">
@@ -44,7 +34,7 @@ export default function UserAdmin() {
             <tr>
               <th>
                 <label>
-                  <input type="checkbox" className="checkbox" onClick={handleCheckAll} />
+                  <input type="checkbox" className="checkbox bg-gray-200" onClick={handleCheckAll} />
                 </label>
               </th>
               <th>Name</th>
@@ -55,15 +45,15 @@ export default function UserAdmin() {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <UserAdminItem key={index} user={user} onDelete={handleDeleteUser} onUpdate={handleUpdate}/>
+              <UserAdminItem key={index} user={user} onDelete={props.onDelete} />
             ))}
           </tbody>
           <tfoot>
             <tr>
               <th></th>
               <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Email</th>
+              <th>Pets</th>
               <th></th>
             </tr>
           </tfoot>

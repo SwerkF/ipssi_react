@@ -115,6 +115,15 @@ const api = {
         "Authorization": token,
       },
     }).then((response) => response.json());
+  },
+  getAllPets() {
+    return fetch(`${API_BASE_URL}/pet/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+    }).then((response) => response.json());
   }
 };
 
