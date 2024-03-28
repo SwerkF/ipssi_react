@@ -12,6 +12,7 @@ import User from './pages/User/User';
 import Error404 from './pages/404/Error404';
 import Connexion from './pages/Connexion/Connexion';
 import Appointment from './pages/Appointment/Appointment';
+import ModalRdv from './components/ModalRdv/ModalRdv';
 
 // Créer un contexte pour stocker l'utilisateur
 const UserContext = createContext(null);
