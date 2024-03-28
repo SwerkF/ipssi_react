@@ -1,3 +1,4 @@
+import {api} from '../../services/Api';
 import Button from '../Button/Button';
 import {useNavigate} from 'react-router-dom';
 
@@ -15,22 +16,21 @@ const StepConfirmation = (props) => {
                 <tbody>
                     <tr>
                         <th>Date et Heure</th>
-                        <td>{props.appointment.date}</td>
+                        <td>{props.schedule.date}</td>
                     </tr>
                     <tr>
                         <th>Votre animal</th>
-                        <td>{props.appointment.pet}</td>
+                        <td>{props.schedule.pet}</td>
                     </tr>
                     <tr>
                         <th>Type de rendez-vous</th>
-                        <td>{props.appointment.type}</td>
+                        <td>{props.schedule.appointmentType}</td>
                     </tr>
                     <tr>
                         <th>Chez</th>
                         <td>
-                            {props.appointment.doctorName} :{' '}
-                            {props.appointment.adrress} -{' '}
-                            {props.appointment.city}
+                            Dr. {props.schedule.doctorLastname} :{' '}
+                            {props.schedule.address} - {props.schedule.city}
                         </td>
                     </tr>
                 </tbody>
@@ -39,7 +39,7 @@ const StepConfirmation = (props) => {
                 <Button
                     text="Valider le rendez-vous"
                     onClick={() => {
-                        //TODO : Ajouter la requete pour ajouter le rendez-vous dans la BDD
+                        api.addSchedule(props.schedule);
                         alert('Votre rendez-vous a été validé');
                         navigate('/');
                     }}

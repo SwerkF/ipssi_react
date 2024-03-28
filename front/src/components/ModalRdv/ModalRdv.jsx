@@ -6,17 +6,18 @@ import StepConfirmation from './StepConfirmation';
 import {useLocation} from 'react-router-dom';
 
 const ModalRdv = (props) => {
-    const [appointment, setAppointment] = useState({
+    const [schedule, setSchedule] = useState({
         step: '',
-        type: '',
-        typeId: '',
+        appointmentType: '',
+        appointmentTypeId: '',
         pet: '',
         petId: '',
-        date: '',
-        city: '',
-        address: '',
-        doctorId: '',
-        doctorName: '',
+        date: '2024-03-28 00:00:00',
+        city: 'Paris',
+        address: '12 rue Cuvelier',
+        doctorId: 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f',
+        doctorLastname: 'Martin',
+        userId: 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i',
     });
 
     return (
@@ -35,36 +36,37 @@ const ModalRdv = (props) => {
                             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
                             text="X"
                             onClick={() => {
-                                setAppointment({
+                                setSchedule({
                                     step: '',
-                                    type: '',
-                                    typeId: '',
+                                    appointmentType: '',
+                                    appointmentTypeId: '',
                                     pet: '',
                                     petId: '',
                                     date: '',
                                     city: '',
                                     address: '',
                                     doctorId: '',
-                                    doctorName: '',
+                                    doctorLastname: '',
+                                    userId: '',
                                 });
                             }}
                         />
                     </form>
                     <div className="flex flex-col py-4 space-y-4 w-full">
-                        {!appointment.step && (
+                        {!schedule.step && (
                             <StepTypeRdv
-                                setAppointment={setAppointment}
-                                appointment={appointment}
+                                setSchedule={setSchedule}
+                                schedule={schedule}
                             />
                         )}
-                        {appointment.step == 'pet' && (
+                        {schedule.step == 'pet' && (
                             <StepTypePetChoice
-                                setAppointment={setAppointment}
-                                appointment={appointment}
+                                setSchedule={setSchedule}
+                                schedule={schedule}
                             />
                         )}
-                        {appointment.step == 'confirm' && (
-                            <StepConfirmation appointment={appointment} />
+                        {schedule.step == 'confirm' && (
+                            <StepConfirmation schedule={schedule} />
                         )}
                     </div>
                     <div className="flex items-center">
@@ -72,25 +74,24 @@ const ModalRdv = (props) => {
                             <li className={`step step-primary`}>Horaire</li>
                             <li
                                 className={`step ${
-                                    !appointment.step |
-                                        (appointment.step == 'pet') |
-                                        (appointment.step == 'confirm') &&
+                                    !schedule.step |
+                                        (schedule.step == 'pet') |
+                                        (schedule.step == 'confirm') &&
                                     'step-primary'
                                 }`}>
                                 Type de RDV
                             </li>
                             <li
                                 className={`step ${
-                                    (appointment.step == 'confirm') |
-                                        (appointment.step == 'pet') &&
+                                    (schedule.step == 'confirm') |
+                                        (schedule.step == 'pet') &&
                                     'step-primary'
                                 }`}>
                                 Choix de l'animal
                             </li>
                             <li
                                 className={`step ${
-                                    appointment.step == 'confirm' &&
-                                    'step-primary'
+                                    schedule.step == 'confirm' && 'step-primary'
                                 }`}>
                                 Confirmation
                             </li>

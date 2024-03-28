@@ -30,13 +30,12 @@ const StepTypePetChoice = (props) => {
                             pet={value}
                             key={index}
                             onClick={() => {
-                                props.setAppointment({
-                                    ...props.appointment,
+                                props.setSchedule({
+                                    ...props.schedule,
                                     step: 'confirm',
                                     petId: value.id,
                                     pet: value.name,
                                 });
-                                console.log('Animal', props.appointment);
                             }}
                         />
                     ))}

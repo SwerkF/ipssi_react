@@ -14,16 +14,15 @@ const StepTypeRdv = (props) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        props.setAppointment({...props.appointment, step: 'pet'});
-        console.log('Appointment', props.appointment);
+        props.setSchedule({...props.schedule, step: 'pet'});
     };
 
     const handleChange = (e) => {
         const data = JSON.parse(e.target.value);
-        props.setAppointment({
-            ...props.appointment,
-            type: data.name,
-            typeId: data.id,
+        props.setSchedule({
+            ...props.schedule,
+            appointmentType: data.name,
+            appointmentTypeId: data.id,
         });
     };
 
