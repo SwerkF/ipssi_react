@@ -4,15 +4,8 @@ const token = localStorage.getItem('token');
 const api = {
     //get all pets of a user
     getPetsOfUser: (userId) =>
-        fetch(`${API_BASE_URL}/pet/all/${userId}`, {
+        fetch(`${API_BASE_URL}/pet/all/user/${userId}`, {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: token,
-            },
-        }).then((response) => response.json()),
-    getUserById: (userId) =>
-        fetch(`${API_BASE_URL}/user/search/${userId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: token,
@@ -89,15 +82,14 @@ const api = {
             },
         }).then((response) => response.json()),
 
-    getUserById(userId) {
-        return fetch(`${API_BASE_URL}/user/${userId}`, {
-            method: 'GET',
+    getUserById: (userId) =>
+        fetch(`${API_BASE_URL}/user/search/${userId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: token,
             },
-        }).then((response) => response.json());
-    },
+        }).then((response) => response.json()),
+
     getAllUsers() {
         return fetch(`${API_BASE_URL}/user/all`, {
             method: 'GET',
@@ -114,6 +106,17 @@ const api = {
                 'Content-Type': 'application/json',
                 Authorization: token,
             },
+        }).then((response) => response.json());
+    },
+
+    addSchedule(schedule) {
+        return fetch(`${API_BASE_URL}/schedule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+            body: JSON.stringify(schedule),
         }).then((response) => response.json());
     },
 };
