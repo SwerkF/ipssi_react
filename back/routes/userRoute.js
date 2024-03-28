@@ -25,8 +25,6 @@ router.delete(
 )
 router.get(
     '/search/:id',
-    middleware.authenticator,
-    middleware.isAdmin,
     UserController.getAllById
 )
 

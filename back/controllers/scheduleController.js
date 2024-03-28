@@ -1,4 +1,7 @@
-const Schedule = require("../models/scheduleModel");
+const Schedule = require('../models/scheduleModel'); // Assurez-vous que le chemin vers votre modèle Schedule est correct
+const User = require('../models/userModel'); // Supposons que vous avez un modèle pour les utilisateurs
+const Pet = require('../models/petModel'); // Supposons que vous avez un modèle pour les animaux
+const AppointmentType = require('../models/appointmentTypeModel'); // Supposons que vous avez un modèle pour les types de rendez-vous
 
 // CREATE - Create a new schedule
 exports.createSchedule = async (req, res) => {
@@ -96,6 +99,26 @@ exports.getSchedulesOfUser = async (req, res) => {
   }
 };
 
+exports.getAllSchedulesOfUser = async (req, res) => {
+  const userId = req.params.id;
+  console.log(userId)
+  try {
+    const schedules = await Schedule.findAll({
+      where: {
+        userId: userId,
+      }
+    });
+
+    console.log(schedules);
+    res.status(200).json(schedules);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error reading schedules:",
+      error: error.message,
+    });
+  }
+};
+
 
 
 exports.getSchedulesOfDoctor = async (req, res) => {
@@ -116,3 +139,4 @@ exports.getSchedulesOfDoctor = async (req, res) => {
     });
   }
 };
+

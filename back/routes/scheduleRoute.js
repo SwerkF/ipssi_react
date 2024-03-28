@@ -17,6 +17,8 @@ router.delete('/delete/:id', scheduleController.deleteSchedule);
 // Get a schedule by ID
 router.get('/one/:id', scheduleController.getScheduleById);
 
+router.get('/all/user/:id', scheduleController.getAllSchedulesOfUser);
+
 router.post('/user', scheduleController.getSchedulesOfUser);
 
 router.post('/doctor', scheduleController.getSchedulesOfDoctor);

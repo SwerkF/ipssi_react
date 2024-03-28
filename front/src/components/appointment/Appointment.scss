@@ -1,6 +1,12 @@
 .appointment {
  .doctor {
     width: 50%;
+    img {
+      border-radius: 100%;
+      width: 67px;
+      height: 67px;
+      object-fit: cover;
+    }
     button {
         background: #E0773C;
         font-family: Segoe UI;

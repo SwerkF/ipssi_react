@@ -1,9 +1,15 @@
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://localhost:3000';
 
 const api = {
   //get all pets of a user
-  getPetsOfUser: (userId, accessToken) => fetch(`${API_BASE_URL}/pet/all/${userId}`, {
-    method: 'GET',
+  getPetsOfUser: (userId, accessToken) => fetch(`${API_BASE_URL}/pet/all/user/${userId}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': accessToken,
+    },
+  }).then(response => response.json()),
+
+  getUserById: (userId, accessToken) => fetch(`${API_BASE_URL}/user/search/${userId}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': accessToken,
