@@ -8,8 +8,8 @@ export default function User() {
     const [id, setId] = useState('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i');
 
     const [user, setUser] = useState({
-      firstName: '',
-      lastName: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       newPassword: ''
