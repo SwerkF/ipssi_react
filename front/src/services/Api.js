@@ -50,22 +50,23 @@ const api = {
   //body date et doctorId
   //récupérer les rdv d'un user
   getSchedulesOfUser: (body, accessToken) =>
-    fetch(`${API_BASE_URL}/schedule/user/${doctorId}`, {
+    fetch(`${API_BASE_URL}/schedule/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
+        // Authorization: accessToken,
       },
-      body: JSON.stringify(buy),
+      body: JSON.stringify(body),
     }).then((response) => response.json()),
 
   //body date et doctorId
   //récupérer les rdv d'un user
-  getSchedulesOfDoctor: (doctorId) =>
-    fetch(`${API_BASE_URL}/schedule/doctor/${doctorId}`, {
-      method: "GET",
+  getSchedulesOfDoctor: (body, accessToken) =>
+    fetch(`${API_BASE_URL}/schedule/doctor`, {
+      method: "POST",
       headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
+        //   Authorization: accessToken,
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
@@ -88,16 +89,6 @@ const api = {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
-
-  getUserById(userId, accessToken) {
-    return fetch(`${API_BASE_URL}/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: accessToken,
-      },
-    }).then((response) => response.json());
-  },
 };
 
 export { api };

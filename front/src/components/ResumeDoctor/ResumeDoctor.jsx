@@ -3,6 +3,8 @@ import "./ResumeDoctor.scss";
 import Stars from "../Stars/Stars";
 import { api } from "../../services/Api";
 
+const API_BASE_URL = "http://localhost:3000/images/";
+
 const ResumeDoctor = ({ doctor }) => {
   const [office, setOffice] = useState("");
 
@@ -16,7 +18,7 @@ const ResumeDoctor = ({ doctor }) => {
     <>
       <div className="doctor flex flex-col h-full justify-around">
         <div className="flex">
-          <img />
+          <img src={`${API_BASE_URL}${doctor.avatar}`} />
           <div className="flex flex-col">
             <h6>
               Docteur {doctor.firstname} {doctor.lastname}
@@ -24,7 +26,13 @@ const ResumeDoctor = ({ doctor }) => {
             <Stars notation={3.0} size={"md"} />
           </div>
         </div>
-        {office ? <p>{office.address}</p> : <p></p>}
+        {office ? (
+          <p>
+            {office.address}, {office.city}
+          </p>
+        ) : (
+          <p></p>
+        )}
         <button className="p-2">Prendre un rendez-vous</button>
       </div>
     </>
