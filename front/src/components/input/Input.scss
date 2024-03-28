@@ -1,105 +1,101 @@
 input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    background: transparent;
+  height: 100%;
+  width: 100%;
+  border: none;
+  background: transparent;
 }
 
 .input-component {
-    background: #f9f9f9;
-    border: 1px solid #e6e6e6;
-    width: 100%;
-    height: 48px;
-    padding: 0px 20px 0px 20px;
-    border-radius: 19px;
-    border: 1px 0px 0px 0px;
+  background: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  width: 100%;
+  height: 48px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 19px;
+  border: 1px 0px 0px 0px;
 }
 .input-component-left {
-    background: #f9f9f9;
-    border: 1px solid #e6e6e6;
-    width: 100%;
-    height: 48px;
-    padding: 0px 20px 0px 20px;
-    border-radius: 19px 0px 0px 19px;
-    border: 1px 0px 0px 0px;
+  background: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  width: 100%;
+  height: 48px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 19px 0px 0px 19px;
+  border: 1px 0px 0px 0px;
 }
 .input-component-right {
-    background: #f9f9f9;
-    border: 1px solid #e6e6e6;
-    width: 100%;
-    height: 48px;
-    padding: 0px 20px 0px 20px;
-    border-radius: 0px 19px 19px 0px;
-    border: 1px 0px 0px 0px;
+  background: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  width: 100%;
+  height: 48px;
+  padding: 0px 20px 0px 20px;
+  border-radius: 0px 19px 19px 0px;
+  border: 1px 0px 0px 0px;
 }
 
 .input-component,
 .input-component-left,
 .input-component-right {
-    label {
-        font-family: Roboto;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 24px;
-        text-align: left;
-        color: #1f2937;
-    }
+  label {
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #1f2937;
+  }
 
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 
-    input {
-        height: 100%;
-        width: 100%;
-        border: none;
-<<<<<<< HEAD
-        background: transparent;    }
-=======
-        background: transparent;
-    }
->>>>>>> 1a78af98f09b161e81ddca4b913c36d83d812bcf
+  input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
 
-    input:focus {
-        outline: none;
-    }
+  input:focus {
+    outline: none;
+  }
 }
 
 .btn-custom {
-    display: inline-flex;
-    height: 3rem;
-    min-height: 3rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0, 19px, 19px, 0;
-    border-color: transparent;
-    border-color: oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity));
-    padding-left: 1rem;
-    padding-right: 1rem;
-    text-align: center;
-    font-size: 0.875rem;
-    line-height: 1em;
-    gap: 0.5rem;
-    font-weight: 600;
-    text-decoration-line: none;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
-    border-width: var(--border-btn, 1px);
-    animation: button-pop var(--animation-btn, 0.25s) ease-out;
-    transition-property: color, background-color, border-color, opacity,
-        box-shadow, transform;
-    --tw-text-opacity: 1;
-    color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
-    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-    outline-color: var(--fallback-bc, oklch(var(--bc) / 1));
-    background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity));
-    --tw-bg-opacity: 1;
-    --tw-border-opacity: 1;
+  display: inline-flex;
+  height: 3rem;
+  min-height: 3rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0, 19px, 19px, 0;
+  border-color: transparent;
+  border-color: oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 1em;
+  gap: 0.5rem;
+  font-weight: 600;
+  text-decoration-line: none;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  border-width: var(--border-btn, 1px);
+  animation: button-pop var(--animation-btn, 0.25s) ease-out;
+  transition-property: color, background-color, border-color, opacity,
+    box-shadow, transform;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  outline-color: var(--fallback-bc, oklch(var(--bc) / 1));
+  background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity));
+  --tw-bg-opacity: 1;
+  --tw-border-opacity: 1;
 }
