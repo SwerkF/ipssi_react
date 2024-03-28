@@ -11,6 +11,7 @@ import User from './pages/User/User'
 import Connexion from './pages/Connexion/Connexion'
 import Error404 from './pages/404/Error404'
 import Appointment from './components/Appointment/Appointment'
+import ModalRdv from './components/ModalRdv/ModalRdv'
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                     path="/register"
                     element={<Connexion form={'register'} />}
                 />
+                <Route path="/test" element={<ModalRdv />} />
             </Routes>
             <Footer />
         </>
