@@ -1,19 +1,23 @@
-import {useState} from 'react'
-import Button from '../Button/Button'
-import StepTypePetChoice from './StepTypePetChoice'
-import StepTypeRdv from './StepTypeRdv'
-import StepConfirmation from './StepConfirmation'
-import {useLocation} from 'react-router-dom'
+import {useState} from 'react';
+import Button from '../Button/Button';
+import StepTypePetChoice from './StepTypePetChoice';
+import StepTypeRdv from './StepTypeRdv';
+import StepConfirmation from './StepConfirmation';
+import {useLocation} from 'react-router-dom';
 
 const ModalRdv = (props) => {
     const [appointment, setAppointment] = useState({
         step: '',
-        rdvType: '',
-        idRdvType: '',
+        type: '',
+        typeId: '',
         pet: '',
-        idPet: '',
-        time: '',
-    })
+        petId: '',
+        date: '',
+        city: '',
+        address: '',
+        doctorId: '',
+        doctorName: '',
+    });
 
     return (
         <>
@@ -33,12 +37,16 @@ const ModalRdv = (props) => {
                             onClick={() => {
                                 setAppointment({
                                     step: '',
-                                    rdvType: '',
-                                    idRdvType: '',
+                                    type: '',
+                                    typeId: '',
                                     pet: '',
-                                    idPet: '',
-                                    time: '',
-                                })
+                                    petId: '',
+                                    date: '',
+                                    city: '',
+                                    address: '',
+                                    doctorId: '',
+                                    doctorName: '',
+                                });
                             }}
                         />
                     </form>
@@ -91,7 +99,7 @@ const ModalRdv = (props) => {
                 </div>
             </dialog>
         </>
-    )
-}
+    );
+};
 
-export default ModalRdv
+export default ModalRdv;

@@ -1,8 +1,8 @@
-import Button from '../Button/Button'
-import {useNavigate} from 'react-router-dom'
+import Button from '../Button/Button';
+import {useNavigate} from 'react-router-dom';
 
 const StepConfirmation = (props) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     return (
         <>
             <h3 className="font-bold text-lg">
@@ -14,8 +14,8 @@ const StepConfirmation = (props) => {
             <table className="table">
                 <tbody>
                     <tr>
-                        <th>Heure</th>
-                        <td>{props.appointment.time}</td>
+                        <th>Date et Heure</th>
+                        <td>{props.appointment.date}</td>
                     </tr>
                     <tr>
                         <th>Votre animal</th>
@@ -23,7 +23,15 @@ const StepConfirmation = (props) => {
                     </tr>
                     <tr>
                         <th>Type de rendez-vous</th>
-                        <td>{props.appointment.rdvType}</td>
+                        <td>{props.appointment.type}</td>
+                    </tr>
+                    <tr>
+                        <th>Chez</th>
+                        <td>
+                            {props.appointment.doctorName} :{' '}
+                            {props.appointment.adrress} -{' '}
+                            {props.appointment.city}
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -32,13 +40,13 @@ const StepConfirmation = (props) => {
                     text="Valider le rendez-vous"
                     onClick={() => {
                         //TODO : Ajouter la requete pour ajouter le rendez-vous dans la BDD
-                        alert('Votre rendez-vous a été validé')
-                        navigate('/')
+                        alert('Votre rendez-vous a été validé');
+                        navigate('/');
                     }}
                 />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default StepConfirmation
+export default StepConfirmation;

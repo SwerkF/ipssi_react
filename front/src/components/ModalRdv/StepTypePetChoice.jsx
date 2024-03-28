@@ -1,21 +1,21 @@
-import {useEffect, useState} from 'react'
-import Logo from '/logo.png'
-import {api} from '../../services/Api'
-import Button from '../Button/Button'
-import CardAnimal from '../Card/CardAnimal/CardAnimal'
+import {useEffect, useState} from 'react';
+import Logo from '/logo.png';
+import {api} from '../../services/Api';
+import Button from '../Button/Button';
+import CardAnimal from '../Card/CardAnimal/CardAnimal';
 
 const StepTypePetChoice = (props) => {
     //Datas test
-    const userId_test = 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i'
-    const accessToken_test = ''
+    const userId_test = 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i';
+    const accessToken_test = '';
 
-    const [petsUser, setPetsUser] = useState(null)
+    const [petsUser, setPetsUser] = useState(null);
 
     useEffect(() => {
         api.getPetsOfUser(userId_test, accessToken_test).then((data) => {
-            setPetsUser(data)
-        })
-    }, [])
+            setPetsUser(data);
+        });
+    }, []);
 
     return (
         <>
@@ -33,16 +33,16 @@ const StepTypePetChoice = (props) => {
                                 props.setAppointment({
                                     ...props.appointment,
                                     step: 'confirm',
-                                    idPet: value.id,
+                                    petId: value.id,
                                     pet: value.name,
-                                })
-                                console.log('Animal', props.appointment)
+                                });
+                                console.log('Animal', props.appointment);
                             }}
                         />
                     ))}
             </div>
         </>
-    )
-}
+    );
+};
 
-export default StepTypePetChoice
+export default StepTypePetChoice;
