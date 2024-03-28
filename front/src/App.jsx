@@ -35,6 +35,7 @@ function App() {
           return;
         } else {
           setUser(res);
+          console.log(res)
         }
       })
     } else {

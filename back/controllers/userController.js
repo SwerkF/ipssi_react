@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
+const Pet = require('../models/petModel')
 
 //--------- Create a user ---------//
 
@@ -47,7 +48,6 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         const {email, password} = req.body
-
         // Find the user with the provided email
         const existingUser = await User.findOne({where: {email: email}})
         if (!existingUser) {
@@ -86,7 +86,16 @@ exports.login = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await User.findAll()
+        // get all users with their pets, however doctors dont have pets
+        const users = await User.findAll({
+            include: [
+                {
+                    model: Pet,
+                    as: 'pets',
+                },
+            ],
+        })
+        
         res.status(200).json(users)
     } catch (error) {
         res.status(500).json({
@@ -164,12 +173,12 @@ exports.deleteUser = async (req, res) => {
             return res.status(404).json({message: 'User not found'})
         }
 
-        // Delete the user from database
-        await userToDelete.destroy()
-    res.status(200).json({ message: "User deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Error deleting user" });
-  }
+        // Delete the user from database && handle error
+        await userToDelete.destroy().catch((error) => {console.log(error)});
+         res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting user" });
+    }
 };
 
 exports.getAllDoctors = async (req, res) => {

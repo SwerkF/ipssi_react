@@ -1,8 +1,9 @@
 const sequelize = require('../bdd/database');
 const { DataTypes } = require('sequelize');
 const appointmentTypeModel = require('./appointmentTypeModel');
-const userModel = require('./userModel');
+const User = require('./userModel');
 const petModel = require('./petModel');
+
 
 const schedule = sequelize.define(
     'schedule',
@@ -21,43 +22,17 @@ const schedule = sequelize.define(
             type: DataTypes.ENUM("booked", "canceled", "finished"),
             allowNull: false,
         },
-        doctorId: {
-            type: DataTypes.UUID,
-            allowNull: true,
-            references: {
-                model: userModel,
-                key: "id",
-            },
-        },
-        appointmentTypeId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: appointmentTypeModel,
-                key: "id",
-            },
-        },
-        petId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: petModel,
-                key: "id",
-            },
-        },
-        userId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: userModel,
-                key: "id",
-            },
-        },
     },
     {
         sequelize,
         freezeTableName: true,
     }
 )
+
+schedule.belongsTo(User, { foreignKey: 'userId' });
+schedule.belongsTo(User, { foreignKey: 'doctorId' });
+schedule.belongsTo(appointmentTypeModel, { foreignKey: 'appointmentTypeId' });
+schedule.belongsTo(petModel, { foreignKey: 'petId' });
+
 
 module.exports = schedule;

@@ -90,7 +90,7 @@ exports.initialized = async (req, res) => {
       IN noticeDescription TEXT,
       IN noticeRating INT,
       IN noticeDoctorId VARCHAR(36),
-      IN noticeUserId VARCHAR(36),
+      IN noticeUserId VARCHAR(36)
     )
     BEGIN
       INSERT INTO notice (id, name, description, rating, doctorId, userId, createdAt, updatedAt)
