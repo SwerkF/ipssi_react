@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-const API_BASE_URL = 'http://localhost:3000';
-
-const api = {
-  //get all pets of a user
-  getPetsOfUser: (userId, accessToken) => fetch(`${API_BASE_URL}/pet/all/user/${userId}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': accessToken,
-    },
-  }).then(response => response.json()),
-
-  getUserById: (userId, accessToken) => fetch(`${API_BASE_URL}/user/search/${userId}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': accessToken,
-    },
-  }).then(response => response.json()),
-=======
 const API_BASE_URL = "http://localhost:3000";
 
 const api = {
@@ -38,7 +19,6 @@ const api = {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
->>>>>>> 1a78af98f09b161e81ddca4b913c36d83d812bcf
 
   //get note of a doctor
   getNoticeUserDoctor: (userId, doctorId, accessToken) =>
@@ -101,6 +81,17 @@ const api = {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
+
+  getUserById(userId, accessToken) {
+    return fetch(`${API_BASE_URL}/user/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: accessToken,
+      },
+    }).then((response) => response.json());
+  }
 };
+
 
 export { api };
