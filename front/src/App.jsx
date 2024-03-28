@@ -32,7 +32,7 @@ function App() {
           setUser(null);
           return;
         } else {
-          setUser(res); // Mettre à jour l'utilisateur dans le contexte
+          setUser(res);
         }
       })
     } else {

@@ -67,16 +67,16 @@ export default function UserAdmin() {
                     </div>
                     <div>
                       <div className="font-bold">{user.firstname} {user.lastname}</div>
-                      <div className="text-sm opacity-50">{user.role}</div>
+                      <div className="text-sm opacity-50 uppercase">{user.role}</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  Zemlak, Daniel and Leannon
-                  <br/>
-                  <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                  {user.email}
                 </td>
-                <td>Purple</td>
+                <td>
+                  
+                </td>
                 <th>
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
