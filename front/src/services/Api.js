@@ -53,12 +53,11 @@ const api = {
 
   //body date et doctorId
   //récupérer les rdv d'un user
-  getSchedulesOfDoctor: (body, accessToken) =>
+  getSchedulesOfDoctor: (doctorId) =>
     fetch(`${API_BASE_URL}/schedule/doctor/${doctorId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: accessToken,
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
