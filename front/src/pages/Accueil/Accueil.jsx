@@ -5,6 +5,7 @@ import Stats from '../../components/Stats/Stats';
 import CardReview from '../../components/Card/CardReview/CardReview';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import { Link } from 'react-router-dom';
 
 export default function Accueil() {
 

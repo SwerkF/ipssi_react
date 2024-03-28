@@ -1,4 +1,33 @@
 .appointment {
+ .doctor {
+    width: 50%;
+    img {
+      border-radius: 100%;
+      width: 67px;
+      height: 67px;
+      object-fit: cover;
+    }
+    button {
+        background: #E0773C;
+        font-family: Segoe UI;
+        font-size: 20px;
+        font-weight: 900;
+        line-height: 28px;
+        text-align: left;
+        color: white;
+        border-radius: 8px;
+        text-align: center;
+    }
+    h6 {
+        color: #E0773C;
+        font-family: Segoe UI;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 31.92px;
+        text-align: left;
+
+    }
+ }
  .separation {
     width: 2px !important;
     height: 60%;

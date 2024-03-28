@@ -28,6 +28,9 @@ app.use("/database", databaseRoute);
 app.use("/pet", petRoute);
 app.use("/calendar", calendarRoute);
 
+app.use('/Images', express.static('./Images'))
+
+
 //server run
 app.listen(port, () => {
   console.log(`Backend runing on http://localhost:${port}`);
