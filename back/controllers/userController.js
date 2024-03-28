@@ -183,3 +183,16 @@ exports.getAllDoctors = async (req, res) => {
     res.status(500).json({ message: "Error recovering doctors" });
   }
 };
+
+exports.getProfile = async(req, res) => {
+  const token = req.headers.authorization;
+  const decoded = jwt.verify(token, process.env.SECRET_KEY);
+  const userId = decoded.id;
+  User.findByPk(userId)
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Error recovering user" });
+    });
+}

@@ -1,6 +1,7 @@
 .user {
     background: #FFF6EA;
     height: 100vh;
+    padding: 20px 50px;
     .mr {
         margin-right: 15px;;
     }
@@ -11,6 +12,7 @@
         font-weight: 700;
         line-height: 42.56px;
         text-align: center;
+        margin-bottom: 15px;
     }
 
     form {
@@ -31,13 +33,16 @@
         }
     }
     .pets {
-        h3 {
-            font-size: 43px;
-            font-family: Segoe UI;
-            font-size: 32px;
-            font-weight: 700;
-            line-height: 42.56px;
-            text-align: center;
-        }
+        width: 55%;
+        background: white;
+        box-shadow: 4px 4px 0px 0px #00000040;
+        padding: 20px;
+        border-radius: 20px;
+    }
+    .appointments {
+        background: white;
+        box-shadow: 4px 4px 0px 0px #00000040;
+        padding: 20px;
+        border-radius: 20px;
     }
 }

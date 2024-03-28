@@ -1,9 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import './Navbar.scss'
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+
+import {UserContext} from '../../App'
 
 export default function Navbar() {
     const [userToken, setUserToken] = useState(null)
+    const user = useContext(UserContext)
     const lStorageUser = () => {
         if (typeof window !== 'undefined' && window.localStorage) {
             let token = JSON.parse(localStorage.getItem('userToken'))
@@ -31,12 +34,19 @@ export default function Navbar() {
                     <Link to="/" className="btn btn-ghost">
                         Accueil
                     </Link>
-                    <Link to="/rendez-vous" className="btn btn-ghost">
+                    <Link to="/appointment" className="btn btn-ghost">
                         Prendre rendez-vous
                     </Link>
                     <Link to="/contact" className="btn btn-ghost">
                         Contact
                     </Link>
+                    {user && user.role === 'admin' ? (
+                        <Link to="/admin" className="btn btn-ghost">
+                            Admin
+                        </Link>
+                    ) : (
+                        <></>
+                    )}
                     {userToken ? (
                         <Link
                             to="/login"

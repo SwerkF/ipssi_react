@@ -11,6 +11,14 @@ const api = {
             },
         }).then((response) => response.json()),
 
+    getUserById: (userId, accessToken) =>
+        fetch(`${API_BASE_URL}/user/search/${userId}`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: accessToken,
+            },
+        }).then((response) => response.json()),
+
     //get all doctors
     getAllDoctors: () =>
         fetch(`${API_BASE_URL}/user/allDoctors`, {
@@ -53,12 +61,11 @@ const api = {
 
     //body date et doctorId
     //récupérer les rdv d'un user
-    getSchedulesOfDoctor: (body, accessToken) =>
+    getSchedulesOfDoctor: (doctorId) =>
         fetch(`${API_BASE_URL}/schedule/doctor/${doctorId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: accessToken,
             },
             body: JSON.stringify(body),
         }).then((response) => response.json()),
@@ -81,6 +88,16 @@ const api = {
                 'Content-Type': 'application/json',
             },
         }).then((response) => response.json()),
+
+    getUserById(userId, accessToken) {
+        return fetch(`${API_BASE_URL}/user/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: accessToken,
+            },
+        }).then((response) => response.json())
+    },
 }
 
 export {api}

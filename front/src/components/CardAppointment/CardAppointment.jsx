@@ -5,14 +5,17 @@ import { api } from "../../services/Api";
 
 const CardAppointment = ({ doctor }) => {
   const [calendar, setCalendar] = useState([]);
-  const [hour, setHour] = useState([{}]);
+  const [schedule, setSchedule] = useState([]);
+  const currentDate = new Date();
 
   useEffect(() => {
     api.getCalendarByDoctorId(doctor.id).then((data) => {
       setCalendar(data);
-      
     });
+    api.getSchedulesOfDoctor(doctor.id).then((data) => setSchedule(data));
   }, []);
+
+  console.log(schedule);
 
   return (
     <>

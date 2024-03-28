@@ -23,7 +23,7 @@ const schedule = sequelize.define(
         },
         doctorId: {
             type: DataTypes.UUID,
-            allowNull: false,
+            allowNull: true,
             references: {
                 model: userModel,
                 key: "id",

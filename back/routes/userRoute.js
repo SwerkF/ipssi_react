@@ -19,10 +19,9 @@ router.delete(
   UserController.deleteUser
 );
 router.get(
-  "/search/:id",
-  middleware.authenticator,
-  middleware.isAdmin,
-  UserController.getAllById
-);
+    '/search/:id',
+    UserController.getAllById
+)
+router.get('/me', middleware.authenticator, UserController.getProfile)
 router.get("/allDoctors", UserController.getAllDoctors);
 module.exports = router;
