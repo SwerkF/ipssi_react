@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:3000";
 const api = {
   //get all pets of a user
   getPetsOfUser: (userId, accessToken) =>
-    fetch(`${API_BASE_URL}/pet/all/${userId}`, {
+    fetch(`${API_BASE_URL}/pet/all/user/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const api = {
         "Content-Type": "application/json",
         Authorization: accessToken,
       },
-      body: JSON.stringify(buy),
+      body: JSON.stringify(body),
     }).then((response) => response.json()),
 
   //body date et doctorId
@@ -89,15 +89,27 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  getUserById(userId, accessToken) {
-    return fetch(`${API_BASE_URL}/user/${userId}`, {
-      method: "GET",
+  createNewPet: (body, accessToken) =>
+    fetch(`${API_BASE_URL}/pet/create`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken,
       },
-    }).then((response) => response.json());
-  },
+      body: JSON.stringify(body),
+    }).then((response) => response.json()),
+
+    getAllScheduleByUser(userId, accessToken) {
+      return fetch(`${API_BASE_URL}/schedule/all/user/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: accessToken,
+        },
+      }).then((response) => response.json());
+    },
 };
+
+
 
 export { api };

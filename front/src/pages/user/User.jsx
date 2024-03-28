@@ -10,6 +10,7 @@ export default function User() {
   const [id, setId] = useState('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i');
   const [pets, setPets] = useState([]);
   const [schedules, setSchedules] = useState([]);
+  const [cardNewPetIsActive, setCardNewPetIsActive] = useState(false);
 
   const [user, setUser] = useState({
     firstname: '',
@@ -18,22 +19,32 @@ export default function User() {
     password: '',
     newPassword: ''
   });
+
   
 
   useEffect(() => {
     api.getPetsOfUser(id).then(res => {
       setPets(res);
-      console.log(res);
-    });
-    api.getUserById(id).then(res => {
-      console.log(res)
-      setUser(res)
     });
 
+    api.getUserById(id).then(res => {
+      setUser(res);
+      console.log('user', res)
+    })
+    
+
+    api.getAllScheduleByUser(id).then(res => {
+      console.log('schedules ->',res)
+      setSchedules(res);
+    })
+    
+
   }, [])
+
+
   return (
     <div className='user page'>
-        <NewPet />
+      {cardNewPetIsActive &&  <NewPet ownerId={id} hideCardNewAnimal={setCardNewPetIsActive}/>}
         <div className='flex justify-between'>
           <form>
             <h3>Vos informations</h3>
@@ -73,7 +84,7 @@ export default function User() {
                 <CardAnimal key={index} pet={pet} />
               ))}
               <div>
-                <div className="card-plus flex justify-center items-center">
+                <div className="card-plus flex justify-center items-center" onClick={e => setCardNewPetIsActive(true)}>
                   <i className='bx bx-plus'></i>
                 </div>
               </div>
@@ -83,7 +94,7 @@ export default function User() {
         <div className='appointments mt-10'>
           <h3>Vos rendez vous</h3>
           <div className="appointments">
-            <Appointment user={user} />
+            <Appointment doctor={user} />
           </div>
         </div>
     </div>

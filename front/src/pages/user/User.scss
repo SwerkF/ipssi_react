@@ -38,6 +38,17 @@
         box-shadow: 4px 4px 0px 0px #00000040;
         padding: 20px;
         border-radius: 20px;
+
+        .animals {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: start;
+            justify-content: space-between; /* Alignement à gauche */
+            
+            .card-animal {
+                margin-bottom: 15px;
+            }
+        }
     }
     .appointments {
         background: white;

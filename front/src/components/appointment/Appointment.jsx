@@ -2,24 +2,22 @@ import React, { useEffect, useState } from "react";
 import "./Appointment.scss";
 import Stars from "../Stars/Stars";
 import ResumeDoctor from "../ResumeDoctor/ResumeDoctor";
+import { api } from "../../services/Api";
 
 const API_BASE_URL = 'http://localhost:3000/images/';
 
-export default function({ user }) {
+export default function({ doctor }) {
     const [notice, setNotice] = useState({
         rating: null,
         description: ''
     })
     
-    useEffect(() => {
-
-    }, [])
     return (
         <div className='appointment flex w-full'>
             <div className='flex w-1/2 items-center'>
                 <div className='doctor flex flex-col h-full justify-around py-10'>
                     <div className='flex'>
-                        <img src={`${API_BASE_URL}${user.avatar}`}/>
+                        <img src={`${API_BASE_URL}${doctor.avatar}`}/>
                         <div className='flex flex-col'>
                             <h6>Docteur Richtofen E.</h6>
                             <Stars notation={1.4} size={'md'} />
@@ -28,6 +26,10 @@ export default function({ user }) {
                     <p>83 Rue de la Villette, 75001 PARIS</p>
                     <button className='p-2'>Prendre un rendez-vous</button>
                 </div>
+                
+                <ResumeDoctor doctor={doctor} />
+                    
+
                 <div className="separation mx-10"></div>
                 <div className='appointment flex flex-col'>
                     <div className="state flex">
