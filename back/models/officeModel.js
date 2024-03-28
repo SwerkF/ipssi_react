@@ -29,4 +29,5 @@ const office = sequelize.define(
     }
 )
 
+
 module.exports = office;

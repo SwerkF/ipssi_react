@@ -14,7 +14,7 @@ export default function Admin() {
     useEffect(() => {
         console.log(user);
         if(!user) {
-            window.location.href = '/login';
+            setLoaded(false)
         } else {
             setLoaded(true);
         }
