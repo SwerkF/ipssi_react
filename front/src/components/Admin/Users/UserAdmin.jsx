@@ -54,7 +54,7 @@ export default function UserAdmin(props) {
               <th>Name</th>
               <th>Email</th>
               <th>Pets</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </tfoot>
           

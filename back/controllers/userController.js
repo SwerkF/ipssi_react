@@ -56,7 +56,6 @@ exports.login = async (req, res) => {
                 .status(401)
                 .json({message: 'Incorrect email or password'})
         }
-
         // Compare the provided password with the hashed password
         const hash = bcrypt.compareSync(password, existingUser.password)
         if (!hash) {
@@ -79,6 +78,7 @@ exports.login = async (req, res) => {
         )
         res.status(200).json({token})
     } catch (error) {
+        console.log(error)
         res.status(500).json({message: 'Error during user authentication'})
     }
 }
@@ -188,10 +188,7 @@ exports.getAllDoctors = async (req, res) => {
     const doctors = await User.findAll({
       where: { role: 'doctor' },
       include: [
-        {
-          model: AppointmentType,
-          as: 'appointments',
-        }
+        { model: AppointmentType, as: 'doctorAppointments' }, // Include doctor appointments
       ],
     });
     if (!doctors) {

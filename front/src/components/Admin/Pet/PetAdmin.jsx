@@ -50,7 +50,7 @@ export default function PetAdmin(props) {
               <th>Name</th>
               <th>Genre</th>
               <th>Owner</th>
-              <th></th>
+              <th>Actions</th>
             </tr>
           </tfoot>
           

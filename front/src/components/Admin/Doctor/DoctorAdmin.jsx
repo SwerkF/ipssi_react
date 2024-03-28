@@ -39,7 +39,7 @@ export default function UserAdmin(props) {
               </th>
               <th>Name</th>
               <th>Email</th>
-              <th>Pets</th>
+              <th>Appointments</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -53,8 +53,8 @@ export default function UserAdmin(props) {
               <th></th>
               <th>Name</th>
               <th>Email</th>
-              <th>Pets</th>
-              <th></th>
+              <th>Appointments</th>
+              <th>Actions</th>
             </tr>
           </tfoot>
           
