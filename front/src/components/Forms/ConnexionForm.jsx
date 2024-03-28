@@ -24,7 +24,7 @@ const ConnexionForm = () => {
             )
         } else {
             const token = await response.json()
-            localStorage.setItem('userToken', JSON.stringify(token))
+            localStorage.setItem('token', (token.token))
             alert('Utilisateur connecté')
             window.location.href = '/'
         }

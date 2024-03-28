@@ -9,7 +9,7 @@ export default function Navbar() {
     const user = useContext(UserContext)
     const lStorageUser = () => {
         if (typeof window !== 'undefined' && window.localStorage) {
-            let token = JSON.parse(localStorage.getItem('userToken'))
+            let token = localStorage.getItem('token');
             setUserToken(token)
         }
     }

@@ -2,6 +2,7 @@ const sequelize = require('../bdd/database')
 const {DataTypes} = require('sequelize')
 
 const Office = require('./officeModel')
+const Pet = require('./petModel')
 
 const User = sequelize.define(
     'user',
@@ -39,19 +40,28 @@ const User = sequelize.define(
             allowNull: true,
             defaultValue: 'utilisateur.png',
         },
-        officeId: {
-            type: DataTypes.UUID,
-            allowNull: true,
-            references: {
-                model: Office,
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,
         freezeTableName: true,
     }
 )
+
+User.belongsTo(Office, {
+    foreignKey: {
+        name: 'officeId',
+        allowNull: true,
+    },
+    as: 'office',
+    onDelete: 'CASCADE',
+})
+
+User.hasMany(Pet, {
+    foreignKey: 'id_owner',
+    as: 'pets',
+    onDelete: 'CASCADE',
+})
+
+
 
 module.exports = User
