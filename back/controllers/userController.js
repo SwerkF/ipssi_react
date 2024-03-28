@@ -166,9 +166,20 @@ exports.deleteUser = async (req, res) => {
 
         // Delete the user from database
         await userToDelete.destroy()
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting user" });
+  }
+};
 
-        res.status(200).json({message: 'User deleted successfully'})
-    } catch (error) {
-        res.status(500).json({message: 'Error deleting user'})
+exports.getAllDoctors = async (req, res) => {
+  try {
+    const doctors = await User.findAll({ where: { role: "doctor" } });
+    if (!doctors) {
+      return res.status(404).json({ message: "Doctor not found" });
     }
-}
+    res.status(200).json(doctors);
+  } catch (error) {
+    res.status(500).json({ message: "Error recovering doctors" });
+  }
+};

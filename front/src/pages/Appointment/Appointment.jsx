@@ -3,10 +3,8 @@ import "./Appointment.scss";
 import Input from "../../components/Input/Input";
 import CardAppointment from "../../components/CardAppointment/CardAppointment";
 import { api } from "../../services/Api";
-import { useAuth } from "../../services/utils/provider";
 
 const Appointment = () => {
-  const accessToken = useAuth();
   const [doctorInformation, setDoctorInformation] = useState([]);
   const [search, setSearch] = useState({
     name: "",
@@ -14,12 +12,9 @@ const Appointment = () => {
   });
 
   useEffect(() => {
-    api.getAllUser(accessToken).then((data) => setDoctorInformation(data));
+    api.getAllDoctors().then((data) => setDoctorInformation(data));
   }, []);
 
-  useEffect(() => {
-    console.log(doctorInformation);
-  }, [doctorInformation]);
   return (
     <div className="bg-orange-200 py-8">
       <div className="flex mx-4">
