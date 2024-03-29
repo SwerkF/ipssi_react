@@ -20,9 +20,6 @@ export default function Footer() {
                 <Link to="appointment" className="link link-hover">
                     Prendre rendez-vous
                 </Link>
-                <Link to="contact" className="link link-hover">
-                    Contact
-                </Link>
                 <Link to="connexion" className="link link-hover">
                     Connexion
                 </Link>
@@ -31,9 +28,6 @@ export default function Footer() {
                 <h6 className="footer-title">Notre entreprise</h6>
                 <Link to="about" className="link link-hover">
                     A propos
-                </Link>
-                <Link to="contact" className="link link-hover">
-                    Contact
                 </Link>
                 <Link to="recrutement" className="link link-hover">
                     Recrutement
