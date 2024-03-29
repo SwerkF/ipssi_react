@@ -16,9 +16,11 @@ import ModalRdv from './components/ModalRdv/ModalRdv';
 
 // Créer un contexte pour stocker l'utilisateur
 const UserContext = createContext(null);
+const UpdateUserContext = createContext(null)
 
 function App() {
     const [user, setUser] = useState(null); // État pour stocker l'utilisateur
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -37,7 +39,7 @@ function App() {
                         return;
                     } else {
                         setUser(res);
-                        console.log("Res", res);
+                        //console.log("Res", res);
                     }
                 });
         } else {
@@ -47,31 +49,32 @@ function App() {
 
     return (
         <>
-            <UserContext.Provider value={user}>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Accueil />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/me" element={<User />} />
-                    <Route path="*" element={<Error404 />} />
-                    <Route path="/appointment" element={<Appointment />} />
-                    <Route path="/admin" element={<Admin />} />
-                    <Route
-                        path="/login"
-                        element={<Connexion form={'connexion'} />}
-                    />
-                    <Route
-                        path="/register"
-                        element={<Connexion form={'register'} />}
-                    />
-                    <Route path="/test" element={<ModalRdv />} />
-                </Routes>
-                <Footer />
-            </UserContext.Provider>
+                <UserContext.Provider value={user}>
+                    <Navbar />
+                    <Routes>
+                        <Route path="/" element={<Accueil />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/me" element={<User />} />
+                        <Route path="*" element={<Error404 />} />
+                        <Route path="/appointment" element={<Appointment />} />
+                        <Route path="/admin" element={<Admin />} />
+                        <Route
+                            path="/login"
+                            element={<Connexion form={'connexion'} />}
+                        />
+                        <Route
+                            path="/register"
+                            element={<Connexion form={'register'} />}
+                        />
+                        <Route path="/test" element={<ModalRdv />} />
+                    </Routes>
+                    <Footer />
+                </UserContext.Provider>
         </>
     );
 }
 
 export {UserContext}; // Exportez UserContext
+export {UpdateUserContext}; // Exportez UpdateUserContext
 
 export default App;

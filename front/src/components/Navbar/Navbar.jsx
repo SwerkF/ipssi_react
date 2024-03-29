@@ -23,9 +23,9 @@ export default function Navbar() {
 
     return (
         <div className="navbar bg-base-100 border-b-2 border-amber-700">
-            <div class="md:hidden dropdown dropdown-bottom">
-                <div tabindex="0" role="button" class="btn m-1"><i class='bx bx-menu'></i></div>
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <div className="md:hidden dropdown dropdown-bottom">
+                <div tabindex="0" role="button" className="btn m-1"><i className='bx bx-menu'></i></div>
+                <ul tabindex="0" className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <Link to="/" className="btn btn-ghost">
                         Accueil
                     </Link>
@@ -43,12 +43,19 @@ export default function Navbar() {
                         <></>
                     )}
                     {userToken ? (
+                        <>
+                        <Link
+                            to="/me"
+                            className="btn btn-ghost">
+                            Profile
+                        </Link>
                         <Link
                             to="/login"
                             className="btn btn-ghost"
                             onClick={handleClickLogout}>
                             Déconnexion
                         </Link>
+                        </>
                     ) : (
                         <Link to="/login" className="btn btn-ghost">
                             Connexion
@@ -81,12 +88,19 @@ export default function Navbar() {
                         <></>
                     )}
                     {userToken ? (
+                        <>
+                        <Link
+                            to="/me"
+                            className="btn btn-ghost">
+                            Profile
+                        </Link>
                         <Link
                             to="/login"
                             className="btn btn-ghost"
                             onClick={handleClickLogout}>
                             Déconnexion
                         </Link>
+                        </>
                     ) : (
                         <Link to="/login" className="btn btn-ghost">
                             Connexion
