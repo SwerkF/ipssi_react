@@ -18,7 +18,6 @@ export default function Navbar() {
     const handleClickLogout = () => {
         localStorage.removeItem('userToken')
         setUserToken(null)
-        alert('Déconnexion effectuée')
     }
 
     return (

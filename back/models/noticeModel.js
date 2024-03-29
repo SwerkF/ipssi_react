@@ -30,5 +30,4 @@ const notice = sequelize.define(
     }
 );
 
-
 module.exports = notice;
