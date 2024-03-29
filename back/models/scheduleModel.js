@@ -29,8 +29,6 @@ const schedule = sequelize.define(
     }
 );
 
-schedule.belongsTo(User, {foreignKey: 'userId'});
-schedule.belongsTo(User, {foreignKey: 'doctorId'});
 schedule.belongsTo(appointmentTypeModel, {foreignKey: 'appointmentTypeId'});
 schedule.belongsTo(petModel, {foreignKey: 'petId'});
 

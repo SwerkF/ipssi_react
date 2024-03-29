@@ -37,6 +37,7 @@ function App() {
                         return;
                     } else {
                         setUser(res);
+                        console.log("Res", res);
                     }
                 });
         } else {

@@ -70,6 +70,5 @@ const Calendar = sequelize.define(
   }
 );
 
-Calendar.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = Calendar;

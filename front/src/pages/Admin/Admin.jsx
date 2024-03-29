@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./Admin.scss";
-import { UserContext } from "../../App";
-import { api } from "../../services/Api";
-import UserAdmin from "../../components/Admin/Users/UserAdmin";
-import PetAdmin from "../../components/Admin/Pet/PetAdmin";
-import DoctorAdmin from "../../components/Admin/Doctor/DoctorAdmin";
-import Swal from "sweetalert2";
+import React, { useState, useEffect, useContext } from 'react';
+import './Admin.scss';
+import { UserContext } from '../../App';
+import { api } from '../../services/Api';
+
+import UserAdmin from '../../components/Admin/Users/UserAdmin';
+import PetAdmin from '../../components/Admin/Pet/PetAdmin';
+import DoctorAdmin from '../../components/Admin/Doctor/DoctorAdmin';
+import Swal from 'sweetalert2'
 
 export default function Admin() {
   const [page, setPage] = useState("user");
