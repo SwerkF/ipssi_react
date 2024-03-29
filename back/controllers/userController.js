@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const Pet = require('../models/petModel')
 const AppointmentType = require('../models/appointmentTypeModel')
+const schedule = require('../models/scheduleModel')
+const Calendar = require('../models/calendarModel')
 
 //--------- Create a user ---------//
 
@@ -94,8 +96,10 @@ exports.getAllUsers = async (req, res) => {
                     model: Pet,
                     as: 'pets',
                 },
+
             ],
         })
+        
         
         res.status(200).json(users)
     } catch (error) {
@@ -205,11 +209,24 @@ exports.getProfile = async(req, res) => {
   const token = req.headers.authorization;
   const decoded = jwt.verify(token, process.env.SECRET_KEY);
   const userId = decoded.id;
-  User.findByPk(userId)
-    .then((user) => {
-      res.status(200).json(user);
-    })
-    .catch((error) => {
-      res.status(500).json({ error: "Error recovering user" });
-    });
+  // join pets, appointments, schedules 
+    try {
+        const user = await User.findByPk(userId, {
+        include: [
+            { model: Pet, as: 'pets' },
+            { model: schedule, as: 'userSchedules' },
+            { model: schedule, as: 'doctorSchedules' },
+            { model: AppointmentType, as: 'doctorAppointments' },
+            { model: AppointmentType, as: 'userAppointments' },
+            { model: Calendar, as: 'doctorCalendar'}
+        ],
+        });
+        if (!user) {
+        return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ message: "Error recovering user" });
+    }
 }
