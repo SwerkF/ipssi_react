@@ -40,11 +40,11 @@ export default function Footer() {
 
         {userToken ? (
           <Link to="login" className="link link-hover">
-            Connexion
+            Déconnexion
           </Link>
         ) : (
           <Link to="login" className="link link-hover" onClick={handleClickLogout}>
-            Déconnexion
+            Connexion
           </Link>
         )}
       </nav>

@@ -23,9 +23,7 @@ const RegisterForm = () => {
             body: JSON.stringify(user),
         })
         if (!response.ok) {
-            alert(
-                `Erreur : ${response.status} - ${response.statusText} \n Veuillez réessayer.`
-            )
+            
         } else {
             const token = await response.json()
             localStorage.userToken = JSON.stringify(token)
@@ -43,24 +41,30 @@ const RegisterForm = () => {
                     label={'Nom'}
                     value={user.lastname}
                     onChange={(value) => setUser({...user, lastname: value})}
+                    placeholder={'Doe'}
                 />
                 <Input
                     label={'Prénom'}
                     value={user.firstname}
                     onChange={(value) => setUser({...user, firstname: value})}
+                    placeholder={'John'}
                 />
             </div>
             <Input
                 label={'Email'}
                 value={user.email}
                 onChange={(value) => setUser({...user, email: value})}
+                type={'email'}
+                placeholder={'youremail@mail.com'}
             />
             <Input
                 label={'Mot de passe'}
                 value={user.password}
                 onChange={(value) => setUser({...user, password: value})}
+                type={'password'}
+                placeholder={'***********'}
             />
-            <div className="card-actions justify-end pt-3">
+            <div className="card-actions justify-center pt-3 w-full">
                 <Button text={`S'inscrire`} onClick={handleSumbit} />
             </div>
         </div>

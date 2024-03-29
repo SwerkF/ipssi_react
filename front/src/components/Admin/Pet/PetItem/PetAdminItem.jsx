@@ -26,11 +26,11 @@ export default function PetAdminItem(props) {
             </td>
             <td>
                 {props.pet.gender === "male" ? (
-                    <div class="badge bg-blue-100 gap-2">
+                    <div className="badge bg-blue-100 gap-2">
                         M.
                     </div>
                 ) : (
-                    <div class="badge bg-pink-100 gap-2">
+                    <div className="badge bg-pink-100 gap-2">
                         F.
                     </div>
                 )}

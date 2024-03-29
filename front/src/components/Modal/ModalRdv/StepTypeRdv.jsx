@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
-import {api} from '../../services/Api';
-import Button from '../Button/Button';
+import {api} from '../../../services/Api';
+import Button from '../../Button/Button';
 import {useNavigate} from 'react-router-dom';
 
 const StepTypeRdv = (props) => {

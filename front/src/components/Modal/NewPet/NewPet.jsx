@@ -17,7 +17,7 @@ export default function NewPet({ ownerId, hideCardNewAnimal }) {
     });
 
     const createPet = () => {
-        api.createNewPet(newPet).then(res => console.log(res));
+        api.createNewPet(newPet);
     }
 
     const handleGenderChange = (event) => {

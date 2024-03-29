@@ -12,7 +12,6 @@ import User from './pages/User/User'
 import Error404 from './pages/404/Error404'
 import Connexion from './pages/Connexion/Connexion'
 import Appointment from './pages/Appointment/Appointment'
-import ModalRdv from './components/ModalRdv/ModalRdv'
 import Cgu from './pages/Legal/Cgu'
 import Confidentiality from './pages/Legal/Confidentiality'
 import Legal from './pages/Legal/Legal'
@@ -40,7 +39,7 @@ function App() {
                         setUser(null)
                         return
                     } else {
-                        setUser(res)
+                        setUser(res);
                     }
                 })
         } else {
@@ -68,7 +67,6 @@ function App() {
                         path="/register"
                         element={<Connexion form={'register'} />}
                     />
-                    <Route path="/test" element={<ModalRdv />} />
                     <Route path="/legal">
                         <Route path="cgu" element={<Legal page={'cgu'} />} />
                         <Route

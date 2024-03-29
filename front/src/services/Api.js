@@ -12,45 +12,26 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  //get all pets of a user
-  getAllPetInformationById: (petId) =>
-    fetch(`${API_BASE_URL}/pet/search/${petId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    }).then((response) => response.json()),
-
-  getUserById: (userId) =>
-    fetch(`${API_BASE_URL}/user/search/${userId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    }).then((response) => response.json()),
-
-  //get all of a user
-  getAllOfUser: (userId) =>
-    fetch(`${API_BASE_URL}/user/search/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json()),
-
   //get all doctors
-  getAllDoctors: () =>
-    fetch(`${API_BASE_URL}/user/allDoctors`, {
+  getAllDoctors: (name) =>
+    fetch(`${API_BASE_URL}/user/allDoctors?name=${name ? name : ""}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
-
   //get note of a doctor
   getNoticeUserDoctor: (userId, doctorId) =>
     fetch(`${API_BASE_URL}/notice/doctor/${doctorId}/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => response.json()),
+
+  //get all pets of a user
+  getAllPetInformationById: (petId) =>
+    fetch(`${API_BASE_URL}/pet/search/${petId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -81,12 +62,12 @@ const api = {
 
   //body date et doctorId
   //récupérer les rdv d'un user
-  getSchedulesOfDoctor: (body, accessToken) =>
-    fetch(`${API_BASE_URL}/schedule/doctor`, {
-      method: "POST",
+  getSchedulesOfDoctor: (body, doctorId) =>
+    fetch(`${API_BASE_URL}/schedule/doctor/${doctorId}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
-        //   Authorization: accessToken,
+        Authorization: token,
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
@@ -103,8 +84,19 @@ const api = {
   },
 
   //récupérer les rdv d'un docteur
-  getAppointmentsYpeByDoctor: (doctorId) =>
+  getAppointmentsYpeByDoctor: (body, doctorId) =>
     fetch(`${API_BASE_URL}/appointment/doctor/${doctorId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    }).then((response) => response.json()),
+
+  //get all of a user
+  getAllOfUser: (userId) =>
+    fetch(`${API_BASE_URL}/user/search/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -118,8 +110,60 @@ const api = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: token,
       },
     }).then((response) => response.json()),
+
+  getUserById(userId) {
+    return fetch(`${API_BASE_URL}/user/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+
+  getAllUsers() {
+    return fetch(`${API_BASE_URL}/user/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+
+  deleteUser(userId) {
+    return fetch(`${API_BASE_URL}/user/delete/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+
+  getAllPets() {
+    return fetch(`${API_BASE_URL}/pet/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+
+  handleUpdateStatus(scheduleId, status) {
+    return fetch(`${API_BASE_URL}/schedule/update/${scheduleId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ status }),
+    }).then((response) => console.log("udpated"));
+  },
 
   createNewPet: (body) =>
     fetch(`${API_BASE_URL}/pet/create`, {
@@ -130,43 +174,6 @@ const api = {
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
-
-  getAllScheduleByUser(userId, accessToken) {
-    return fetch(`${API_BASE_URL}/schedule/all/user/${userId}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: accessToken,
-      },
-    }).then((response) => response.json());
-  },
-  getAllUsers() {
-    return fetch(`${API_BASE_URL}/user/all`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    }).then((response) => response.json());
-  },
-  deleteUser(userId) {
-    return fetch(`${API_BASE_URL}/user/delete/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    }).then((response) => response.json());
-  },
-  getAllPets() {
-    return fetch(`${API_BASE_URL}/pet/all`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-      },
-    }).then((response) => response.json());
-  },
 };
 
 export { api };

@@ -3,9 +3,11 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const Pet = require("../models/petModel");
 const AppointmentType = require("../models/appointmentTypeModel");
-const schedule = require("../models/scheduleModel");
+const Schedule = require("../models/scheduleModel");
 const Calendar = require("../models/calendarModel");
 const Notice = require("../models/noticeModel");
+const Office = require('../models/officeModel')
+const {Op} = require("sequelize")
 
 //--------- Create a user ---------//
 
@@ -180,49 +182,78 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
-
 exports.getAllDoctors = async (req, res) => {
-  try {
-    // get appointments and office of the doctor
-    const doctors = await User.findAll({
-      where: { role: "doctor" },
-      include: [
-        { model: AppointmentType, as: "doctorAppointments" }, // Include doctor appointments
-      ],
-    });
-    if (!doctors) {
-      return res.status(404).json({ message: "Doctor not found" });
+  
+    // name in params
+    const name = req.params.name || req.query.name;
+    console.log(name)
+
+    // where conditions
+    const where = { role: 'doctor'};
+    if (name) {
+        // where lastname like in lowercase or firstname like lowercase
+        where[Op.or] = [
+            {
+                lastname: {
+                    [Op.like]: `%${name.toLowerCase()}%`,
+                },
+            },
+            {
+                firstname: {
+                    [Op.like]: `%${name.toLowerCase()}%`,
+                },
+            },
+        ]; 
+    };
+
+    // Like query
+    try {
+        const doctors = await User.findAll({
+            where: where,
+            include: [
+                {
+                    model: AppointmentType,
+                    as: 'doctorAppointments',
+                },
+                {
+                    model: Office,
+                    as: 'office',
+                },
+            ],
+        });
+        res.status(200).json(doctors);
+    } catch (error) {
+        res.status(500).json({ message: "Error recovering doctors" });
     }
-    res.status(200).json(doctors);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error recovering doctors" });
-  }
+
+   
 };
 
 exports.getProfile = async (req, res) => {
-  const token = req.headers.authorization;
-  const decoded = jwt.verify(token, process.env.SECRET_KEY);
-  const userId = decoded.id;
-  // join pets, appointments, schedules
-  try {
-    const user = await User.findByPk(userId, {
-      include: [
-        { model: Pet, as: "pets" },
-        { model: schedule, as: "userSchedules" },
-        { model: schedule, as: "doctorSchedules" },
-        { model: AppointmentType, as: "doctorAppointments" },
-        { model: AppointmentType, as: "userAppointments" },
-        { model: Calendar, as: "doctorCalendar" },
-        { model: Notice, as: "doctorNotice" },
-      ],
-    });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+    const token = req.headers.authorization;
+    try {
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      const userId = decoded.id;
+  
+      const user = await User.findByPk(userId, {
+        include: [
+          { model: Pet, as: 'pets' },
+          { model: Schedule, as: 'userSchedules' },
+          { model: Schedule, as: 'doctorSchedules' },
+          { model: AppointmentType, as: 'doctorAppointments' },
+          { model: AppointmentType, as: 'userAppointments' },
+          { model: Calendar, as: 'doctorCalendar' },
+          { model: Notice, as: 'doctorNotice' }
+        ]
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error recovering user" });
     }
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error recovering user" });
-  }
-};
+  };

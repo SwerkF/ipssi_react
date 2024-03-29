@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Accueil.scss';
 import CardService from '../../components/Card/CardService/CardService';
 import Stats from '../../components/Stats/Stats';
 import CardReview from '../../components/Card/CardReview/CardReview';
-import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import { Link } from 'react-router-dom';
+import { api } from '../../services/Api';
 
 export default function Accueil() {
+    const [doctorOptions, setDoctorOptions] = useState([]);
+    const [search, setSearch] = useState('');
+
+
+    // useEffect(() => {
+    //     api.getAllDoctors(search).then(res => {
+    //         setDoctorOptions(res)
+    //         console.log(res)
+    //     });
+    // }, [search])
 
     return (
     <div className="main">
