@@ -1,37 +1,36 @@
-import {useEffect, useState} from 'react'
-import {api} from '../../services/Api'
-import Button from '../Button/Button'
-import {useNavigate} from 'react-router-dom'
+import {useEffect, useState} from 'react';
+import {api} from '../../services/Api';
+import Button from '../Button/Button';
+import {useNavigate} from 'react-router-dom';
 
 const StepTypeRdv = (props) => {
     //Datas de test
-    const dId_test = 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f'
+    const dId_test = 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f';
     const token_test =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjFmODg3MWZjLTRhYTAtNDMyZi1iNzhhLTAwZTI0ZGVmZDgwMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzExNjE3NTI3LCJleHAiOjE3MTE2MjExMjd9.MGRu2MGgLeZlCF_t0Fpoj0OM6FgCdqNHEMZDByKxKXY'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6IjFmODg3MWZjLTRhYTAtNDMyZi1iNzhhLTAwZTI0ZGVmZDgwMiIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzExNjE3NTI3LCJleHAiOjE3MTE2MjExMjd9.MGRu2MGgLeZlCF_t0Fpoj0OM6FgCdqNHEMZDByKxKXY';
 
-    const [rdvType, setRdvType] = useState(null)
+    const [rdvType, setRdvType] = useState(null);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleClick = () => {
-        props.setAppointment({...props.appointment, step: 'pet'})
-        console.log('Appointment', props.appointment)
-    }
+        props.setSchedule({...props.schedule, step: 'pet'});
+    };
 
     const handleChange = (e) => {
-        const data = JSON.parse(e.target.value)
-        props.setAppointment({
-            ...props.appointment,
-            rdvType: data.name,
-            idRdvType: data.id,
-        })
-    }
+        const data = JSON.parse(e.target.value);
+        props.setSchedule({
+            ...props.schedule,
+            appointmentType: data.name,
+            appointmentTypeId: data.id,
+        });
+    };
 
     useEffect(() => {
         api.getAppointmentsYpeByDoctor(dId_test, token_test).then((data) => {
-            setRdvType(data)
-        })
-    }, [])
+            setRdvType(data);
+        });
+    }, []);
 
     return (
         <>
@@ -66,6 +65,6 @@ const StepTypeRdv = (props) => {
                 <Button text="Valider" onClick={handleClick} />
             </div>
         </>
-    )
-}
-export default StepTypeRdv
+    );
+};
+export default StepTypeRdv;

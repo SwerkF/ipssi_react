@@ -4,18 +4,38 @@ const token = localStorage.getItem("token");
 const api = {
   //get all pets of a user
   getPetsOfUser: (userId) =>
-    fetch(`${API_BASE_URL}/pet/all/${userId}`, {
+    fetch(`${API_BASE_URL}/pet/all/user/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json()),
+
+  //get all pets of a user
+  getAllPetInformationById: (petId) =>
+    fetch(`${API_BASE_URL}/pet/search/${petId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json()),
+
   getUserById: (userId) =>
     fetch(`${API_BASE_URL}/user/search/${userId}`, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
+      },
+    }).then((response) => response.json()),
+
+  //get all of a user
+  getAllOfUser: (userId) =>
+    fetch(`${API_BASE_URL}/user/search/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
       },
     }).then((response) => response.json()),
 
@@ -34,7 +54,7 @@ const api = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json()),
 
@@ -54,10 +74,11 @@ const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
-      body: JSON.stringify(buy),
+      body: JSON.stringify(body),
     }).then((response) => response.json()),
+
 
   //body date et doctorId
   //récupérer les rdv d'un user
@@ -70,13 +91,24 @@ const api = {
       body: JSON.stringify(body),
     }).then((response) => response.json()),
 
+    addSchedule(appointment) {
+        return fetch(`${API_BASE_URL}/schedule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+            body: JSON.stringify(appointment),
+        }).then((response) => response.json())
+    },
+
   //récupérer les rdv d'un docteur
   getAppointmentsYpeByDoctor: (doctorId) =>
     fetch(`${API_BASE_URL}/appointment/doctor/${doctorId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json()),
 
@@ -89,12 +121,22 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  getUserById(userId) {
-    return fetch(`${API_BASE_URL}/user/${userId}`, {
+  createNewPet: (body) =>
+    fetch(`${API_BASE_URL}/pet/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    }).then((response) => response.json()),
+
+  getAllScheduleByUser(userId, accessToken) {
+    return fetch(`${API_BASE_URL}/schedule/all/user/${userId}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: accessToken,
       },
     }).then((response) => response.json());
   },
@@ -103,7 +145,7 @@ const api = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json());
   },
@@ -112,7 +154,7 @@ const api = {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json());
   },
@@ -121,10 +163,10 @@ const api = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": token,
+        Authorization: token,
       },
     }).then((response) => response.json());
-  }
+  },
 };
 
 export { api };
