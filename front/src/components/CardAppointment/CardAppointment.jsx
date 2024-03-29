@@ -15,8 +15,6 @@ const CardAppointment = ({ doctor }) => {
     api.getSchedulesOfDoctor(doctor.id).then((data) => setSchedule(data));
   }, []);
 
-  console.log(schedule);
-
   return (
     <>
       <div className="appointment flex w-45 mx-5 mt-5 bg-white rounded-lg shadow-lg">

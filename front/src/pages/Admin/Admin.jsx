@@ -14,7 +14,6 @@ export default function Admin() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    console.log(user);
     if (!user) {
       setLoaded(false);
     } else {
@@ -31,13 +30,9 @@ export default function Admin() {
     }).then((result) => {
       if (result.isConfirmed) {
         if (page === "user" || page === "doctor") {
-          api.deleteUser(e.target.id).then((res) => {
-            console.log(res);
-          });
+          api.deleteUser(e.target.id).then((res) => {});
         } else if (page === "pet") {
-          api.deletePet(e.target.id).then((res) => {
-            console.log(res);
-          });
+          api.deletePet(e.target.id).then((res) => {});
         }
       } else if (result.isDenied) {
         Swal.fire("Suppression annulée", "", "info");
