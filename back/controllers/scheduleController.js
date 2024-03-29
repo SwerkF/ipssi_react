@@ -118,16 +118,14 @@ exports.getSchedulesOfUser = async (req, res) => {
 };
 
 exports.getAllSchedulesOfUser = async (req, res) => {
-  const userId = req.params.id;
-  console.log(userId);
-  try {
-    const schedules = await Schedule.findAll({
-      where: {
-        userId: userId,
-      },
-    });
+    const userId = req.params.id;
+    try {
+        const schedules = await Schedule.findAll({
+            where: {
+                userId: userId,
+            },
+        });
 
-        console.log(schedules);
         res.status(200).json(schedules);
     } catch (error) {
         res.status(500).json({

@@ -6,20 +6,9 @@ import { api } from "../../services/Api";
 const API_BASE_URL = "http://localhost:3000/images/";
 
 const ResumeDoctor = ({ doctor }) => {
-  const [office, setOffice] = useState(null); // Initialize office as null
-
   useEffect(() => {
-    const fetchOffice = async () => {
-      try {
-        const data = await api.getOfficeByDoctor(doctor.officeId);
-        setOffice(data);
-      } catch (error) {
-        console.error("Error fetching office data:", error);
-      }
-    };
-    fetchOffice();
-  }, [doctor]);
-
+    console.log(doctor)
+  }, [doctor])
   return (
     <div className="doctor flex flex-col h-full">
       <div className="flex items-center">
@@ -37,9 +26,9 @@ const ResumeDoctor = ({ doctor }) => {
           <Stars notation={3.0} size={"md"} />
         </div>
       </div>
-      {office && ( // Conditional rendering
+      {doctor && doctor.office && ( // Conditional rendering
         <p>
-          {office.address}, {office.city}
+          {doctor.office.address}, {doctor.office.city}
         </p>
       )}
       <button className="p-2 w-full cursor-default">Prendre un rendez-vous</button>

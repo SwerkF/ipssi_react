@@ -40,7 +40,7 @@ exports.getAllById = async (req, res) => {
       res.status(404).json({ message: "Calendar not found" });
     }
   } catch (error) {
-    console.error("Error recovering calendar:", error);
+    //console.error("Error recovering calendar:", error);
     res.status(500).json({ error: "Error recovering calendar" });
   }
 };

@@ -42,12 +42,19 @@ export default function Navbar() {
                         <></>
                     )}
                     {userToken ? (
+                        <>
+                        <Link
+                            to="/me"
+                            className="btn btn-ghost">
+                            Profile
+                        </Link>
                         <Link
                             to="/login"
                             className="btn btn-ghost"
                             onClick={handleClickLogout}>
                             Déconnexion
                         </Link>
+                        </>
                     ) : (
                         <Link to="/login" className="btn btn-ghost">
                             Connexion
@@ -80,12 +87,19 @@ export default function Navbar() {
                         <></>
                     )}
                     {userToken ? (
+                        <>
+                        <Link
+                            to="/me"
+                            className="btn btn-ghost">
+                            Profile
+                        </Link>
                         <Link
                             to="/login"
                             className="btn btn-ghost"
                             onClick={handleClickLogout}>
                             Déconnexion
                         </Link>
+                        </>
                     ) : (
                         <Link to="/login" className="btn btn-ghost">
                             Connexion

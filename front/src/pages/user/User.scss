@@ -1,6 +1,7 @@
 .user {
   background: #fff6ea;
   padding: 20px 50px;
+  min-height: 100vh;
   .mr {
     margin-right: 15px;
   }
@@ -51,7 +52,6 @@
   }
   .appointments {
     background: white;
-    box-shadow: 4px 4px 0px 0px #00000040;
     padding: 20px;
     border-radius: 20px;
   }

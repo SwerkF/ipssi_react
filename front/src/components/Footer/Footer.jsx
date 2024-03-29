@@ -14,13 +14,13 @@ export default function Footer() {
             </aside>
             <nav>
                 <h6 className="footer-title">Pages</h6>
-                <Link to="accueil" className="link link-hover">
+                <Link to="/" className="link link-hover">
                     Accueil
                 </Link>
                 <Link to="appointment" className="link link-hover">
                     Prendre rendez-vous
                 </Link>
-                <Link to="connexion" className="link link-hover">
+                <Link to="login" className="link link-hover">
                     Connexion
                 </Link>
             </nav>
@@ -29,7 +29,7 @@ export default function Footer() {
                 <Link to="about" className="link link-hover">
                     A propos
                 </Link>
-                <Link to="recrutement" className="link link-hover">
+                <Link to="jobs" className="link link-hover">
                     Recrutement
                 </Link>
             </nav>

@@ -1,12 +1,12 @@
 const sequelize = require("../bdd/database");
 const { DataTypes } = require("sequelize");
 
-const Office = require("./officeModel");
-const Pet = require("./petModel");
-const AppointmentType = require("./appointmentTypeModel");
-const Schedule = require("./scheduleModel");
-const Calendar = require("./calendarModel");
-const Notice = require("./noticeModel");
+const Office = require('./officeModel')
+const Pet = require('./petModel')
+const AppointmentType = require('./appointmentTypeModel')
+const Schedule = require('./scheduleModel')
+const Calendar = require('./calendarModel')
+const Notice = require('./noticeModel')
 
 const User = sequelize.define(
   "user",
@@ -134,30 +134,40 @@ Calendar.belongsTo(User, {
 });
 
 // User can have many notice for single doctor,
-// doctor can have many
+// doctor can have many 
 
 User.hasMany(Notice, {
-  foreignKey: "userId",
-  as: "doctorNotice",
-  onDelete: "CASCADE",
+    foreignKey: 'userId',
+    as: 'doctorNotice',
+    onDelete: 'CASCADE',
 });
 
 Notice.belongsTo(User, {
-  foreignKey: "userId",
-  as: "doctor",
-  onDelete: "CASCADE",
+    foreignKey: 'userId',
+    as: 'doctor',
+    onDelete: 'CASCADE',
 });
 
 User.hasMany(Notice, {
-  foreignKey: "doctorId",
-  as: "userNotice",
-  onDelete: "CASCADE",
+    foreignKey: 'doctorId',
+    as: 'userNotice',
+    onDelete: 'CASCADE',
 });
 
 Notice.belongsTo(User, {
-  foreignKey: "doctorId",
-  as: "user",
-  onDelete: "CASCADE",
+    foreignKey: 'doctorId',
+    as: 'user',
+    onDelete: 'CASCADE',
 });
+
+
+
+
+
+
+
+
+
+module.exports = User
 
 module.exports = User;

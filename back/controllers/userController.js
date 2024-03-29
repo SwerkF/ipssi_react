@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const Pet = require("../models/petModel");
 const AppointmentType = require("../models/appointmentTypeModel");
-const schedule = require("../models/scheduleModel");
+const Schedule = require("../models/scheduleModel");
 const Calendar = require("../models/calendarModel");
 const Notice = require("../models/noticeModel");
 const Office = require('../models/officeModel')
@@ -229,30 +229,31 @@ exports.getAllDoctors = async (req, res) => {
    
 };
 
-
-exports.getProfile = async(req, res) => {
-  const token = req.headers.authorization;
-  const decoded = jwt.verify(token, process.env.SECRET_KEY);
-  const userId = decoded.id;
-  // join pets, appointments, schedules
-  try {
-    const user = await User.findByPk(userId, {
-      include: [
-        { model: Pet, as: "pets" },
-        { model: schedule, as: "userSchedules" },
-        { model: schedule, as: "doctorSchedules" },
-        { model: AppointmentType, as: "doctorAppointments" },
-        { model: AppointmentType, as: "userAppointments" },
-        { model: Calendar, as: "doctorCalendar" },
-        { model: Notice, as: "doctorNotice" },
-      ],
-    });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
+exports.getProfile = async (req, res) => {
+    const token = req.headers.authorization;
+    try {
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
+      const userId = decoded.id;
+  
+      const user = await User.findByPk(userId, {
+        include: [
+          { model: Pet, as: 'pets' },
+          { model: Schedule, as: 'userSchedules' },
+          { model: Schedule, as: 'doctorSchedules' },
+          { model: AppointmentType, as: 'doctorAppointments' },
+          { model: AppointmentType, as: 'userAppointments' },
+          { model: Calendar, as: 'doctorCalendar' },
+          { model: Notice, as: 'doctorNotice' }
+        ]
+      });
+  
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      res.status(200).json(user);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: "Error recovering user" });
     }
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ message: "Error recovering user" });
-  }
-};
+  };

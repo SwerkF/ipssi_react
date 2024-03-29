@@ -154,16 +154,25 @@ const api = {
       },
     }).then((response) => response.json())
   },
-  addSchedule(appointment) {
-    return fetch(`${API_BASE_URL}/schedule`, {
-      method: 'POST',
+  handleUpdateStatus(scheduleId, status) {
+    return fetch(`${API_BASE_URL}/schedule/update/${scheduleId}`, {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: token,
       },
-      body: JSON.stringify(appointment),
-    }).then((response) => response.json())
+      body: JSON.stringify({ status }),
+    }).then((response) => console.log("udpated"));
   },
-}
+  createNewPet: (body) =>
+    fetch(`${API_BASE_URL}/pet/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    }).then((response) => response.json()),
+};
 
 export { api }
