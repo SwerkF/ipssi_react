@@ -3,6 +3,8 @@ import Button from '../../../Button/Button';
 
 export default function UserAdminItem(props) {
 
+    console.log(props.user)
+
     return (
         <tr>
             <th>
@@ -27,20 +29,15 @@ export default function UserAdminItem(props) {
                 {props.user.email}
             </td>
             <td>
-                {props.user.pets ? (              
-                    <div className="avatar-group -space-x-4 rtl:space-x-reverse">
-                        {props.user.pets.map((pet, index) => (
-                            <div key={index} className="avatar w-8 h-8">
-                                <div className="mask mask-squircle">
-                                    <img src={`http://localhost:3000/images/${pet.avatar}`} alt="avatar" />
-                                </div>
-                            </div>
-                        
-                        ))}
+                {props.user.doctorAppointments.length > 0 ? (
+                    <div className="text-center">
+                        <span className="badge badge-success">{props.user.doctorAppointments.length}</span>
                     </div>
                 ) : (
-                    <div className="text-sm opacity-50">No pets</div>
-
+                    <div className="text-center">
+                        <span className="badge badge-error">0</span>
+                    </div>
+                
                 )}
             </td>
             <th>
