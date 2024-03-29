@@ -4,10 +4,6 @@ import Button from '../../../Button/Button';
 
 export default function PetAdminItem(props) {
 
-    useEffect(() => {
-        console.log(props.pet)
-    }, [])
-
     return (
         <tr>
             <th>

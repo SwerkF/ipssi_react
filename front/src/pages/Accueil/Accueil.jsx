@@ -26,13 +26,8 @@ export default function Accueil() {
                 <div className="text-left w-full flex flex-col justify-center items-left">
                     <h1 className="mb-5 text-4xl font-semibold text-white">Prenez soin de vos animaux <br/> Trouvez un <span className='light-primary'>vétérinaire</span></h1>
                     <div className="flex flex-row">
-                        <Input type="text" placeholder="Nom, ville..." className="input-component-left w-full" shadow={'false'} onChange={setSearch} value={search}/>
-                        {/* <datalist id="doctorOptions">
-                            {doctorOptions.map((option, index) => (
-                                <option key={index} value={option}>{option}</option>
-                            ))}
-                        </datalist> */}
-                        <Input type="text" placeholder="Quand" className="input-component-right w-full" shadow={'false'} submitButton={() => { alert('Test') }}/>
+                        <Input type="text" placeholder="Nom, ville..." className="input-component-left w-full" shadow={'false'}/>
+                        <Input type="date" placeholder="Quand" className="input-component-right w-full" shadow={'false'} submitButton={() => { alert('Test') }}/>
                     </div>
                 </div>
             </div>

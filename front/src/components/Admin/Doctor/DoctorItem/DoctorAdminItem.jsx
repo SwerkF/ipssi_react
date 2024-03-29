@@ -3,8 +3,6 @@ import Button from '../../../Button/Button';
 
 export default function UserAdminItem(props) {
 
-    console.log(props.user)
-
     return (
         <tr>
             <th>

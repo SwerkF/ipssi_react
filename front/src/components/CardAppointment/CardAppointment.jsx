@@ -147,7 +147,6 @@ const CardAppointment = ({ doctor , setModalActive, inputDate }) => {
     return days;
   };
 
-
   return (
     <>
       <div className="appointment flex mx-5 mt-5 bg-white rounded-lg shadow-lg">

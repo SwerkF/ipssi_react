@@ -1,5 +1,5 @@
-const API_BASE_URL = 'http://localhost:3000'
-const token = localStorage.getItem('token')
+const API_BASE_URL = "http://localhost:3000";
+const token = localStorage.getItem("token");
 
 const api = {
   //get all pets of a user
@@ -26,6 +26,16 @@ const api = {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+      },
+}).then((response) => response.json()),
+
+
+  //get all pets of a user
+  getAllPetInformationById: (petId) =>
+    fetch(`${API_BASE_URL}/pet/search/${petId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
         Authorization: token,
       },
     }).then((response) => response.json()),
@@ -63,11 +73,47 @@ const api = {
     }).then((response) => response.json()),
 
   //récupérer les rdv d'un docteur
-  getAppointmentsYpeByDoctor: (doctorId) =>
+  getAppointmentsYpeByDoctor: (body, doctorId) =>
     fetch(`${API_BASE_URL}/appointment/doctor/${doctorId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    }).then((response) => response.json()),
+
+  getUserById: (userId) =>
+    fetch(`${API_BASE_URL}/user/search/${userId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json()),
+
+  //get all of a user
+  getAllOfUser: (userId) =>
+    fetch(`${API_BASE_URL}/user/search/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => response.json()),
+
+  //get all doctors
+  getAllDoctors: () =>
+    fetch(`${API_BASE_URL}/user/allDoctors`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => response.json()),
+
+  //get note of a doctor
+  getNoticeUserDoctor: (userId, doctorId) =>
+    fetch(`${API_BASE_URL}/notice/doctor/${doctorId}/${userId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
         Authorization: token,
       },
     }).then((response) => response.json()),

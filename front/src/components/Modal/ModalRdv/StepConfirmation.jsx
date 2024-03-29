@@ -40,7 +40,7 @@ const StepConfirmation = (props) => {
                     text="Valider le rendez-vous"
                     onClick={() => {
                         api.addSchedule(props.schedule)
-                        //navigate('/');
+                        navigate('/me');
                     }}
                 />
             </div>
@@ -48,4 +48,4 @@ const StepConfirmation = (props) => {
     )
 }
 
-export default StepConfirmation
+export default StepConfirmation;
