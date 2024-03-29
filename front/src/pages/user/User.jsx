@@ -8,7 +8,6 @@ export default function User() {
   const [user, setUser] = useState(null);
   useEffect(() => {
     setUser(userContext);
-    console.log(userContext);
   }, [userContext]);
   return user && <UserPage user={user} />;
 }

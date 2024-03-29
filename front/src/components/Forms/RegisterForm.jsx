@@ -29,7 +29,6 @@ const RegisterForm = () => {
         } else {
             const token = await response.json()
             localStorage.userToken = JSON.stringify(token)
-            alert('Utilisateur inscrit')
             navigate('/')
         }
     }

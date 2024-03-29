@@ -53,11 +53,13 @@ const UserPage = ({ user }) => {
           <Input
             label={"Mot de passe"}
             value={user.password}
+            type={"password"}
             onChange={(value) => setNewUser({ ...user, password: value })}
           />
           <Input
             label={"Nouveau mot de passe"}
             value={user.newPassword}
+            type={"password"}
             onChange={(value) => setNewUser({ ...user, newPassword: value })}
           />
           <button>Sauvegarder les informations</button>
