@@ -15,8 +15,34 @@
         align-items: center;
         .new-pet {
             background: white;
-            padding: 20px;
+            padding: 30px 20px;
             border-radius: 15px;
+            position: relative;
+
+            .radio {
+                border: solid 1px black
+            }
+            i {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                font-size: 30px;
+                cursor: pointer;
+            }
+        }
+
+        input[type="date"] {
+            height: 48px;
+            border-radius: 19px;
+            background: #f9f9f9;
+            padding: 0px 20px 0px 20px;
+            outline: none;
+        }
+        .gender {
+            height: 48px;
+        }
+        .input-img {
+            height: 100px;
         }
     }
 }
