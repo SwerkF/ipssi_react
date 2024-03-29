@@ -16,10 +16,6 @@ export default function NewPet({ ownerId, hideCardNewAnimal }) {
         avatar: ''
     });
 
-    useEffect(() => {
-        console.log(newPet)
-    }, [newPet])
-
     const createPet = () => {
         api.createNewPet(newPet).then(res => console.log(res));
     }

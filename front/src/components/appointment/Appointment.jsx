@@ -15,7 +15,6 @@ export default function Appointment({ schedule }) {
   const [pet, setPet] = useState("");
 
   useEffect(() => {
-    console.log(schedule);
     api.getAllOfUser(schedule.doctorId).then((data) => setDoctor(data));
     api.getAllPetInformationById(schedule.petId).then((data) => setPet(data));
   }, []);
