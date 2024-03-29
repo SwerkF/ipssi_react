@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import Logo from '/logo.png';
-import {api} from '../../services/Api';
-import Button from '../Button/Button';
-import CardAnimal from '../Card/CardAnimal/CardAnimal';
+import {api} from '../../../services/Api';
+import Button from '../../Button/Button';
+import CardAnimal from '../../Card/CardAnimal/CardAnimal';
 
 const StepTypePetChoice = (props) => {
     //Datas test
