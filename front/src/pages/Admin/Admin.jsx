@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Admin.scss';
 import { UserContext } from '../../App';
+import { api } from '../../services/Api';
 
 import UserAdmin from '../../components/Admin/Users/UserAdmin';
 import PetAdmin from '../../components/Admin/Pet/PetAdmin';
