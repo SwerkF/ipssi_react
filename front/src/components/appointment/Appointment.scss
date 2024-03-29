@@ -1,6 +1,6 @@
 .appointment {
  .doctor {
-    width: 50%;
+   padding-right: 30px;
     img {
       border-radius: 100%;
       width: 67px;
@@ -17,6 +17,7 @@
         color: white;
         border-radius: 8px;
         text-align: center;
+        margin-right: 20px;
     }
     h6 {
         color: #E0773C;
@@ -26,6 +27,11 @@
         line-height: 31.92px;
         text-align: left;
 
+    }
+    
+    
+    img {
+        margin-right: 15px;
     }
  }
  .separation {

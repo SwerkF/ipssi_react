@@ -5,4 +5,13 @@
     background: #782c014a;
     border-radius: 50px;
   }
+  i {
+    font-size: 45px;
+    cursor: pointer;
+  }
+  .arrow-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
+

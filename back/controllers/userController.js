@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
+const { Op } = require('sequelize')
 
 //--------- Create a user ---------//
 
@@ -183,6 +184,47 @@ exports.getAllDoctors = async (req, res) => {
     res.status(500).json({ message: "Error recovering doctors" });
   }
 };
+
+
+
+// exports.getAllDoctors = async (req, res) => {
+//     try {
+//         const name = req.params.name;
+//         let doctors;
+
+//         if (typeof name !== 'undefined' && name.trim() !== '') {
+//             doctors = await User.findAll({
+//                 where: {
+//                     role: "doctor",
+//                     [Op.or]: [
+//                         {
+//                             firstname: {
+//                                 [Op.like]: `%${name}%`
+//                             }
+//                         },
+//                         {
+//                             lastname: {
+//                                 [Op.like]: `%${name}%`
+//                             }
+//                         }
+//                     ]
+//                 }
+//             });
+//         } else {
+//             doctors = await User.findAll({ where: { role: "doctor" } });
+//         }
+
+//         if (!doctors || doctors.length === 0) {
+//             return res.status(404).json([]);
+//         }
+
+//         res.status(200).json(doctors);
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
+//     }
+// };
+
 
 exports.getProfile = async(req, res) => {
   const token = req.headers.authorization;

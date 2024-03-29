@@ -15,27 +15,27 @@ const ResumeDoctor = ({ doctor }) => {
   }, []);
 
   return (
-    <>
-      <div className="doctor flex flex-col h-full justify-around">
+    
+      <div className="doctor flex flex-col w-full justify-around">
         <div className="flex">
           <img src={`${API_BASE_URL}${doctor.avatar}`} />
-          <div className="flex flex-col">
-            <h6>
+          <div className="flex flex-col items-start">
+            <h6 cl>
               Docteur {doctor.firstname} {doctor.lastname}
             </h6>
             <Stars notation={3.0} size={"md"} />
           </div>
         </div>
         {office ? (
-          <p>
+          <p className="my-5">
             {office.address}, {office.city}
           </p>
         ) : (
           <p></p>
         )}
-        <button className="p-2">Prendre un rendez-vous</button>
+        <button className="p-2 w-full">Prendre un rendez-vous</button>
       </div>
-    </>
+    
   );
 };
 

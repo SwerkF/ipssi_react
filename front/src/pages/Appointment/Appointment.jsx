@@ -15,6 +15,11 @@ const Appointment = () => {
     api.getAllDoctors().then((data) => setDoctorInformation(data));
   }, []);
 
+  const searchDoctor = (value) => {
+    api.getAllDoctors(value).then((data) => setDoctorInformation(data));
+    setSearch({ ...search, name: value })
+  }
+
   return (
     <div className="bg-orange-200 py-8">
       <div className="flex mx-4">
@@ -22,7 +27,7 @@ const Appointment = () => {
           <Input
             value={search.name}
             placeholder={"Nom"}
-            onChange={(value) => setSearch({ ...search, name: value })}
+            onChange={(value) => searchDoctor(value)}
           />
         </div>
         <div className="w-1/2">

@@ -20,8 +20,8 @@ const api = {
     }).then((response) => response.json()),
 
   //get all doctors
-  getAllDoctors: () =>
-    fetch(`${API_BASE_URL}/user/allDoctors`, {
+  getAllDoctors: (name) =>
+    fetch(`${API_BASE_URL}/user/allDoctors/${name}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
