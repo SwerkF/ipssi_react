@@ -4,6 +4,8 @@ const {DataTypes} = require('sequelize')
 const Office = require('./officeModel')
 const Pet = require('./petModel')
 const AppointmentType = require('./appointmentTypeModel')
+const Schedule = require('./scheduleModel')
+const Calendar = require('./calendarModel')
 
 
 const User = sequelize.define(
@@ -93,6 +95,44 @@ AppointmentType.belongsTo(User, {
     as: 'user', // Alias for the user association
     onDelete: 'CASCADE',
 });
+
+User.hasMany(Schedule, {
+    foreignKey: 'userId',
+    as: 'userSchedules', // Unique alias for user schedules
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(Schedule, {
+    foreignKey: 'doctorId',
+    as: 'doctorSchedules', // Unique alias for doctor schedules
+    onDelete: 'CASCADE',
+});
+
+Schedule.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user', // Alias for the user association
+    onDelete: 'CASCADE',
+});
+
+Schedule.belongsTo(User, {
+    foreignKey: 'doctorId',
+    as: 'doctor', // Alias for the doctor association
+    onDelete: 'CASCADE',
+});
+
+// user have one calendar
+User.hasOne(Calendar, {
+    foreignKey: 'userId',
+    as: 'doctorCalendar', // Unique alias for doctor calendar
+    onDelete: 'CASCADE',
+});
+
+Calendar.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'doctor', // Alias for the doctor association
+    onDelete: 'CASCADE',
+});
+
 
 
 
