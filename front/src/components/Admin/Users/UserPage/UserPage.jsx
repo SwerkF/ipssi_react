@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NewPet from "../../../Modal/NewPet/NewPet";
 import DisplayPet from "../../../Modal/DisplayPet/DisplayPet";
 import CardAnimal from "../../../Card/CardAnimal/CardAnimal";
 import Appointment from "../../../Appointment/Appointment";
 import Input from "../../../Input/Input";
+import { api } from "../../../../services/Api";
 
 const UserPage = ({ user }) => {
   const [cardNewPetIsActive, setCardNewPetIsActive] = useState(false);
   const [cardDisplayPetIsActive, setCardDisplayPetIsActive] = useState(false);
   const [selectedPet, setSelectedPet] = useState(null);
+  const [schedules, setSchedules] = useState([])
   const [newUser, setNewUser] = useState({
     firstname: user.firstname,
     lastname: user.lastname,
@@ -17,8 +19,9 @@ const UserPage = ({ user }) => {
     newPassword: user.password,
   });
 
-  console.log('user', user)
-
+useEffect(() => {
+  const schedules = api.getAllSchedulesOfUser(user.id).then(res => setSchedules(res));
+}, [user])
 
   return (
     <div className="user page">
@@ -90,16 +93,14 @@ const UserPage = ({ user }) => {
           </div>
         </div>
       </div>
-      {user.userSchedules && (
         <div className="appointments mt-10">
           <h3>Vos rendez vous</h3>
           <div className="appointments">
-            {user.userSchedules.map((schedule, indice) => (
+            {schedules.map((schedule, indice) => (
               <Appointment key={indice} schedule={schedule} />
             ))}
           </div>
         </div>
-      )}
     </div>
   );
 };

@@ -3,6 +3,7 @@ const { Op } = require("sequelize");
 const User = require("../models/userModel"); // Supposons que vous avez un modèle pour les utilisateurs
 const Pet = require("../models/petModel"); // Supposons que vous avez un modèle pour les animaux
 const AppointmentType = require("../models/appointmentTypeModel"); // Supposons que vous avez un modèle pour les types de rendez-vous
+const Office = require("../models/officeModel"); // Supposons que vous avez un modèle pour les types de rendez-vous
 
 // CREATE - Create a new schedule
 exports.createSchedule = async (req, res) => {
@@ -127,6 +128,36 @@ exports.getAllSchedulesOfUser = async (req, res) => {
             where: {
                 userId: userId,
             },
+            include: [
+              {
+                  model: AppointmentType,
+                  as: 'appointmentType',
+              },
+              {
+                  model: User,
+                  as: 'user',
+                  include: [
+                    {
+                        model: Pet,
+                        as: 'pets',
+                    },
+                ],
+              },
+              {
+                model: User,
+                as: 'doctor',
+                include: [
+                  {
+                      model: Office,
+                      as: 'office',
+                  },
+              ],
+            },
+              {
+                  model: Pet,
+                  as: 'pet',
+              }
+          ],
         });
 
         res.status(200).json(schedules);

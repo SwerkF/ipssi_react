@@ -1,4 +1,7 @@
 .appointment {
+   margin-bottom: 10px;
+   border-bottom: solid 1px #782C014A;
+
    .doctor {
       padding-right: 30px;
 
@@ -85,5 +88,24 @@
             object-fit: cover;
          }
       }
+   }
+   h6 {
+      font-family: Segoe UI;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 26.6px;
+      text-align: center;
+
+   }
+   textarea {
+      border: 1px solid #E6E6E6;
+      background: #F9F9F9;
+      box-shadow: 0px 4px 4px 0px #00000040;
+      border-radius: 20px;
+      outline: none;
+   }
+   .hour-meeting {
+      background: #E0773C4A;
+      border-radius: 15px;
    }
 }

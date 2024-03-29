@@ -174,6 +174,17 @@ const api = {
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
+
+    getAllSchedulesOfUser: (userId) =>  {
+      return fetch(`${API_BASE_URL}/schedule/all/user/${userId}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
+      }).then((response) => response.json());
+    },
+    
 };
 
 export { api };
