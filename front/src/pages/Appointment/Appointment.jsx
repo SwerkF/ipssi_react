@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import "./Appointment.scss";
 import Input from "../../components/Input/Input";
 import CardAppointment from "../../components/CardAppointment/CardAppointment";
