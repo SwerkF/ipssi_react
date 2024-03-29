@@ -90,6 +90,6 @@ function App() {
     )
 }
 
-export {UserContext} // Exportez UserContext
+export {UserContext}
 
 export default App

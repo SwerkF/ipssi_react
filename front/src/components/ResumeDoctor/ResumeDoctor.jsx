@@ -12,14 +12,14 @@ const ResumeDoctor = ({ doctor }) => {
   return (
     <div className="doctor flex flex-col h-full">
       <div className="flex items-center">
-        <div className="img-content">
+        <div className="img-content mr-5">
           <img
             src={`${API_BASE_URL}${doctor.avatar}`}
             className="rounded-full w-20"
             alt={`Avatar of Dr. ${doctor.firstname} ${doctor.lastname}`} // Add alt text
           />
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col items-start">
           <h6>
             Docteur {doctor.firstname} {doctor.lastname}
           </h6>
@@ -27,7 +27,7 @@ const ResumeDoctor = ({ doctor }) => {
         </div>
       </div>
       {doctor && doctor.office && ( // Conditional rendering
-        <p>
+        <p className="my-5">
           {doctor.office.address}, {doctor.office.city}
         </p>
       )}

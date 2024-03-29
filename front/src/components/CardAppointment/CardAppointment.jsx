@@ -4,7 +4,7 @@ import ResumeDoctor from "../ResumeDoctor/ResumeDoctor";
 import { api } from "../../services/Api";
 import CardSchedule from "../Card/CardSchedule/CardSchedule";
 
-const CardAppointment = ({ doctor , setModalActive, inputDate }) => {
+const CardAppointment = ({ doctor , setModalActive, inputDate, loadModal }) => {
   const [calendar, setCalendar] = useState([]);
   const [daysOfWeek, setDaysOfWeek] = useState([]);
   const [showAll, setShowAll] = useState(false);  
@@ -26,17 +26,7 @@ const CardAppointment = ({ doctor , setModalActive, inputDate }) => {
 
 
   useEffect(() => {
-    api
-      .getSchedulesOfDoctor({
-        date: `${currentDate.getFullYear()}-${String(
-          currentDate.getMonth() + 1
-        ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(
-          2,
-          "0"
-        )} 00:00:00`,
-        userId: doctor.id,
-      })
-      .then((data) => console.log(data));
+
     api.getCalendarByDoctorId(doctor.id).then((data) => {
       setCalendar(data);
       setDaysOfWeek(getDaysOfWeek(data)); // Initialiser les jours de la semaine ici

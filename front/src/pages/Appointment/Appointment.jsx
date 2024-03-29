@@ -5,23 +5,34 @@ import CardAppointment from "../../components/CardAppointment/CardAppointment";
 import { api } from "../../services/Api";
 import ModalRdv from "../../components/Modal/ModalRdv/ModalRdv";
 import { UserContext } from '../../App';
+import { useNavigate } from "react-router-dom";
 
 const Appointment = () => {
+  const user = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [doctorInformation, setDoctorInformation] = useState([]);
   const [search, setSearch] = useState({
     name: "",
     when: "",
   });
   const [currentDoctor, setCurrentDoctor] = useState(null);
-  const user = useContext(UserContext);
   const [dateSelected, setDateSelected] = useState(null);
 
   const [isActiveModalAppointment, setIsActiveModalAppointment] = useState(false);
 
+  useEffect(() => {
+    console.log(doctorInformation)
+  }, [doctorInformation])
+
   const loadModal = (doctor, date) => {
-    setIsActiveModalAppointment(true)
-    setCurrentDoctor(doctor)
-    setDateSelected(date)
+    if(user) {
+      setIsActiveModalAppointment(true)
+      setCurrentDoctor(doctor)
+      setDateSelected(date)
+    } else {
+      navigate('/login')
+    }
   }
 
   useEffect(() => {

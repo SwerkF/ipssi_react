@@ -184,29 +184,27 @@ exports.deleteUser = async (req, res) => {
 };
 exports.getAllDoctors = async (req, res) => {
   
-    // name in params
+    // Nom dans les paramètres
     const name = req.params.name || req.query.name;
-    console.log(name)
-
-    // where conditions
-    const where = { role: 'doctor'};
+    // Conditions de recherche
+    const where = { role: 'doctor' };
     if (name) {
         // where lastname like in lowercase or firstname like lowercase
         where[Op.or] = [
             {
                 lastname: {
-                    [Op.like]: `%${name.toLowerCase()}%`,
+                    [Op.iLike]: `%${name.toLowerCase()}%`, // Utilisation de Op.iLike pour la recherche insensible à la casse
                 },
             },
             {
                 firstname: {
-                    [Op.like]: `%${name.toLowerCase()}%`,
+                    [Op.iLike]: `%${name.toLowerCase()}%`, // Utilisation de Op.iLike pour la recherche insensible à la casse
                 },
             },
         ]; 
     };
 
-    // Like query
+    // Requête de type Like
     try {
         const doctors = await User.findAll({
             where: where,
@@ -218,15 +216,14 @@ exports.getAllDoctors = async (req, res) => {
                 {
                     model: Office,
                     as: 'office',
-                },
+                }
             ],
         });
+        console.log('Doctors ->', doctors)
         res.status(200).json(doctors);
     } catch (error) {
-        res.status(500).json({ message: "Error recovering doctors" });
+        res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
     }
-
-   
 };
 
 exports.getProfile = async (req, res) => {

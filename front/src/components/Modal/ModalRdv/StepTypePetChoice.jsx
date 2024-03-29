@@ -5,17 +5,22 @@ import Button from '../../Button/Button';
 import CardAnimal from '../../Card/CardAnimal/CardAnimal';
 
 const StepTypePetChoice = (props) => {
-    //Datas test
-    const userId_test = 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i';
-    const accessToken_test = '';
 
-    const [petsUser, setPetsUser] = useState(null);
-
+    const [pets, setPets] = useState([]);
     useEffect(() => {
-        api.getPetsOfUser(userId_test, accessToken_test).then((data) => {
-            setPetsUser(data);
+        setPets(props.user.pets)
+        console.log('Pets ->', props.user.pet)
+    },[props.user])
+
+    const clickCardPet = (pet) => {
+        console.log('click')
+        props.setSchedule({
+            ...props.schedule,
+            step: 'confirm',
+            petId: pet.id,
+            pet: pet.name,
         });
-    }, []);
+    }
 
     return (
         <>
@@ -24,19 +29,12 @@ const StepTypePetChoice = (props) => {
                 Veuillez choisir l'animal qui se présentera à la consultation
             </p>
             <div className="grid grid-cols-3 gap-4">
-                {petsUser &&
-                    petsUser.map((value, index) => (
+                {pets &&
+                    pets.map((pet, index) => (
                         <CardAnimal
-                            pet={value}
+                            pet={pet}
                             key={index}
-                            onClick={() => {
-                                props.setSchedule({
-                                    ...props.schedule,
-                                    step: 'confirm',
-                                    petId: value.id,
-                                    pet: value.name,
-                                });
-                            }}
+                            onClick={clickCardPet(pet)}
                         />
                     ))}
             </div>

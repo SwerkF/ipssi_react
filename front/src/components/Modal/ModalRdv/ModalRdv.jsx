@@ -21,6 +21,9 @@ const ModalRdv = ({ isActive, setDisabled, doctorInfo, user, date}) => {
         userId: 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i',
     });
     
+    useEffect(() => {
+        console.log(schedule)
+    }, [schedule])
     
     useEffect(() => {
         if (doctorInfo) {
@@ -91,12 +94,15 @@ const ModalRdv = ({ isActive, setDisabled, doctorInfo, user, date}) => {
                             <StepTypeRdv
                                 setSchedule={setSchedule}
                                 schedule={schedule}
+                                doctor={doctorInfo}
+                                user={user}
                             />
                         )}
                         {schedule.step == 'pet' && (
                             <StepTypePetChoice
                                 setSchedule={setSchedule}
                                 schedule={schedule}
+                                user={user}
                             />
                         )}
                         {schedule.step == 'confirm' && (

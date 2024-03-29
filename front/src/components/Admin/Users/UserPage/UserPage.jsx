@@ -17,7 +17,8 @@ const UserPage = ({ user }) => {
     newPassword: user.password,
   });
 
-  //console.log(user);
+  console.log('user', user)
+
 
   return (
     <div className="user page">

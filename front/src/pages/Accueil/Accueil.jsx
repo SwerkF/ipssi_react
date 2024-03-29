@@ -10,14 +10,6 @@ export default function Accueil() {
     const [doctorOptions, setDoctorOptions] = useState([]);
     const [search, setSearch] = useState('');
 
-
-    // useEffect(() => {
-    //     api.getAllDoctors(search).then(res => {
-    //         setDoctorOptions(res)
-    //         console.log(res)
-    //     });
-    // }, [search])
-
     return (
     <div className="main">
         <div className="hero" style={{backgroundImage: 'url("/landing.jpg")', height: "55vh"}}>

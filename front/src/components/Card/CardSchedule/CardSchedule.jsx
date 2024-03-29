@@ -24,3 +24,5 @@ export default function CardSchedule({ daysOfWeek, showAll, setModalActive, doct
         </div>
     );
 }
+
+

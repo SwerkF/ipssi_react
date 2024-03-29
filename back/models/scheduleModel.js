@@ -1,7 +1,7 @@
 const sequelize = require('../bdd/database');
 const {DataTypes} = require('sequelize');
 const appointmentTypeModel = require('./appointmentTypeModel');
-const User = require('./userModel');
+const userModel = require('./userModel');
 const petModel = require('./petModel');
 
 const schedule = sequelize.define(
@@ -31,5 +31,7 @@ const schedule = sequelize.define(
 
 schedule.belongsTo(appointmentTypeModel, {foreignKey: 'appointmentTypeId'});
 schedule.belongsTo(petModel, {foreignKey: 'petId'});
+//schedule.belongsTo(userModel, {foreignKey: 'doctorId'});
+//schedule.belongsTo(userModel, {foreignKey: 'userId'});
 
 module.exports = schedule;
