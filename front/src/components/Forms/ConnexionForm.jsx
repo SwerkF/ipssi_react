@@ -24,7 +24,7 @@ const ConnexionForm = () => {
             )
         } else {
             const token = await response.json()
-            localStorage.setItem('token', (token.token))
+            localStorage.setItem('token', token.token)
             window.location.href = '/'
         }
     }
@@ -42,12 +42,12 @@ const ConnexionForm = () => {
             />
             <Input
                 label={'Mot de passe'}
-                type="password"
+                type={'password'}
                 value={user.password}
                 onChange={(value) => setUser({...user, password: value})}
                 placeholder={'***********'}
             />
-            <div className="card-actions justify-end pt-3">
+            <div className="card-actions justify-center pt-3 w-full">
                 <Button text="Se connecter" onClick={handleSumbit} />
             </div>
             <a
@@ -63,7 +63,8 @@ const ConnexionForm = () => {
                 <div className="modal-box">
                     <h3 className="font-bold text-lg">Mot de passe oublié</h3>
                     <p className="py-4">
-                        Veuillez saisir l'adresse mail associée à votre compte :
+                        Veuillez saisir l&apos;adresse mail associée à votre
+                        compte :
                     </p>
                     <Input
                         label={'Email'}
