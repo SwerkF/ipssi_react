@@ -30,7 +30,4 @@ const notice = sequelize.define(
     }
 );
 
-notice.belongsTo(User, { foreignKey: 'userId' });
-notice.belongsTo(User, { foreignKey: 'doctorId' });
-
 module.exports = notice;
