@@ -126,6 +126,16 @@ const api = {
             },
         }).then((response) => response.json())
     },
+    addSchedule(appointment) {
+        return fetch(`${API_BASE_URL}/schedule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+            body: JSON.stringify(appointment),
+        }).then((response) => response.json())
+    },
 }
 
 export {api}
