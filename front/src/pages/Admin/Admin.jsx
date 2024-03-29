@@ -5,6 +5,7 @@ import { UserContext } from '../../App';
 import UserAdmin from '../../components/Admin/Users/UserAdmin';
 import PetAdmin from '../../components/Admin/Pet/PetAdmin';
 import DoctorAdmin from '../../components/Admin/Doctor/DoctorAdmin';
+import Swal from 'sweetalert2'
 
 export default function Admin() {
     const [page, setPage] = useState('user');
@@ -14,11 +15,41 @@ export default function Admin() {
     useEffect(() => {
         console.log(user);
         if(!user) {
-            window.location.href = '/login';
+            setLoaded(false)
         } else {
             setLoaded(true);
         }
     }, [user]);
+
+    
+    const handleDelete = (e) => {
+        Swal.fire({
+            title: 'Êtes-vous sur de votre suppression ?',
+            showDenyButton: true,
+            confirmButtonText: `Supprimer`,
+            denyButtonText: `Annuler`,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if(page === 'user' || page === 'doctor') {
+                        api.deleteUser(e.target.id).then(res => {
+                            console.log(res);
+                        });
+                    } else if(page === 'pet') {
+                        api.deletePet(e.target.id).then(res => {
+                            console.log(res);
+                        });
+                    }
+
+                } else if (result.isDenied) {
+                    Swal.fire('Suppression annulée', '', 'info')
+                }
+            }
+        )
+    }
+
+    const handleUpdate = (e) => {
+    }
+
 
     return (
        <>
@@ -33,9 +64,9 @@ export default function Admin() {
                                     <button onClick={() => setPage('doctor')} className={`btn ${page === 'doctor' ? 'btn-active' : ''}`}>Vétérinaires</button>
                                 </div>
                                 <div className="card w-full bg-base-100 shadow-xl p-3">
-                                    {page === 'user' && <UserAdmin />}
-                                    {page === 'pet' && <PetAdmin />}
-                                    {page === 'doctor' && <DoctorAdmin />}
+                                    {page === 'user' && <UserAdmin onDelete={handleDelete} />}
+                                    {page === 'pet' && <PetAdmin onDelete={handleDelete}/>}
+                                    {page === 'doctor' && <DoctorAdmin onDelete={handleDelete}/>}
                                 </div>
                             </div>
                         </div>

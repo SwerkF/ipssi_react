@@ -12,7 +12,10 @@ const Appointment = () => {
   });
 
   useEffect(() => {
-    api.getAllDoctors().then((data) => setDoctorInformation(data));
+    api.getAllDoctors().then((data) => {
+      setDoctorInformation(data)
+      console.log(data)
+    });
   }, []);
 
   const searchDoctor = (value) => {

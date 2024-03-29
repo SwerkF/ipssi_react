@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 const { Op } = require('sequelize')
+const Pet = require('../models/petModel')
+const AppointmentType = require('../models/appointmentTypeModel')
 
 //--------- Create a user ---------//
 
@@ -48,7 +50,6 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     try {
         const {email, password} = req.body
-
         // Find the user with the provided email
         const existingUser = await User.findOne({where: {email: email}})
         if (!existingUser) {
@@ -56,7 +57,6 @@ exports.login = async (req, res) => {
                 .status(401)
                 .json({message: 'Incorrect email or password'})
         }
-
         // Compare the provided password with the hashed password
         const hash = bcrypt.compareSync(password, existingUser.password)
         if (!hash) {
@@ -79,6 +79,7 @@ exports.login = async (req, res) => {
         )
         res.status(200).json({token})
     } catch (error) {
+        console.log(error)
         res.status(500).json({message: 'Error during user authentication'})
     }
 }
@@ -87,7 +88,16 @@ exports.login = async (req, res) => {
 
 exports.getAllUsers = async (req, res) => {
     try {
-        const users = await User.findAll()
+        // get all users with their pets, however doctors dont have pets
+        const users = await User.findAll({
+            include: [
+                {
+                    model: Pet,
+                    as: 'pets',
+                },
+            ],
+        })
+        
         res.status(200).json(users)
     } catch (error) {
         res.status(500).json({
@@ -165,22 +175,29 @@ exports.deleteUser = async (req, res) => {
             return res.status(404).json({message: 'User not found'})
         }
 
-        // Delete the user from database
-        await userToDelete.destroy()
-    res.status(200).json({ message: "User deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: "Error deleting user" });
-  }
+        // Delete the user from database && handle error
+        await userToDelete.destroy().catch((error) => {console.log(error)});
+         res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting user" });
+    }
 };
 
 exports.getAllDoctors = async (req, res) => {
   try {
-    const doctors = await User.findAll({ where: { role: "doctor" } });
+    // get appointments and office of the doctor
+    const doctors = await User.findAll({
+      where: { role: 'doctor' },
+      include: [
+        { model: AppointmentType, as: 'doctorAppointments' }, // Include doctor appointments
+      ],
+    });
     if (!doctors) {
       return res.status(404).json({ message: "Doctor not found" });
     }
     res.status(200).json(doctors);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: "Error recovering doctors" });
   }
 };
