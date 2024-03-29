@@ -26,8 +26,8 @@ export default function Input({
                 {submitButton && (
                     <Button
                         onClick={submitButton}
-                        className={'btn btn-primary btn-sm w-1/8'}
-                        icon={'/avion-en-papier.svg'}
+                        className={'btn btn-primary btn-sm w-1/8 text-white'}
+                        icon={'bx bx-search-alt-2'}
                     />
                 )}
               </div>

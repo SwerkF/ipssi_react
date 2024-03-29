@@ -78,7 +78,10 @@ exports.deleteSchedule = async (req, res) => {
       res.status(404).json("Schedule not found or already deleted.");
     }
   } catch (error) {
-    res.status(500).json("Error deleting schedule:", error);
+    res.status(500).json({
+      error: "Error retrieving schedule by ID",
+      details: error.message,
+    });
   }
 };
 
@@ -121,6 +124,24 @@ exports.getSchedulesOfUser = async (req, res) => {
 
 exports.getAllSchedulesOfUser = async (req, res) => {
   const userId = req.params.id;
+  try {
+    const schedules = await Schedule.findAll({
+      where: {
+        userId: userId,
+        date: { [Op.gte]: date },
+      },
+    });
+    res.status(200).json(schedules);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error reading schedules:",
+      error: error.message,
+    });
+  }
+};
+
+exports.getAllSchedulesOfUser = async (req, res) => {
+  const userId = req.params.id;
   console.log(userId);
   try {
     const schedules = await Schedule.findAll({
@@ -128,7 +149,6 @@ exports.getAllSchedulesOfUser = async (req, res) => {
         userId: userId,
       },
     });
-
     console.log(schedules);
     res.status(200).json(schedules);
   } catch (error) {
@@ -141,7 +161,6 @@ exports.getAllSchedulesOfUser = async (req, res) => {
 
 exports.getSchedulesOfDoctor = async (req, res) => {
   const { date, userId } = req.body;
-
   try {
     const schedules = await Schedule.findAll({
       where: {

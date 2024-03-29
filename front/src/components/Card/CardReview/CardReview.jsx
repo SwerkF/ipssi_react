@@ -4,10 +4,8 @@ import Stars from '../../Stars/Stars';
 
 export default function CardReview(props) {
 
-    // props: image, name, review, note
-    console.log(props)
     return (
-        <div className="card card-compact w-96 bg-base-100 shadow-box-card p-4">
+        <div className="card card-compact md:w-96 w-72 bg-base-100 shadow-box-card p-4">
             <div className="flex flex-row gap-2">
                 {props.image ? (<img src={props.image} alt="icon" className="w-16 rounded-full"/>)
                 :

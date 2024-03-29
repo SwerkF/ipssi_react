@@ -12,8 +12,9 @@ const getEmailFromToken = (token) => {
 
 exports.authenticator = (req, res, next) => {
   // Vérifier le token
-  const token = req.params.token ? req.params.token : req.headers.authorization;
+  const token = req.params.token ? req.params.token : req.headers.authorization ? req.headers.authorization : req.headers.authorization.split(" ")[1];
   // Décoder le token
+  console.log(token)
   if (token && process.env.SECRET_KEY) {
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
       if (err) {
@@ -28,7 +29,7 @@ exports.authenticator = (req, res, next) => {
 };
 
 exports.isAdmin = async (req, res, next) => {
-  const token = req.query.token || req.headers.authorization;
+  const token = req.params.token ? req.params.token : req.headers.authorization ? req.headers.authorization : req.headers.authorization.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Access denied" });
 
   const email = getEmailFromToken(token);
@@ -52,7 +53,7 @@ exports.isAdmin = async (req, res, next) => {
 };
 
 exports.isDoctor = async (req, res, next) => {
-  const token = req.query.token || req.headers.authorization;
+  const token = req.params.token ? req.params.token : req.headers.authorization ? req.headers.authorization : req.headers.authorization.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Access denied" });
 
   const email = getEmailFromToken(token);

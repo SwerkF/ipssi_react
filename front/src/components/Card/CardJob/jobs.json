@@ -1,0 +1,92 @@
+[
+    {
+        "place": "Paris",
+        "contractType": "CDI",
+        "start": "Dès que possible",
+        "poste": "Développeur web"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDD",
+        "start": "À partir du 15 avril 2024",
+        "poste": "Assistant administratif"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Stage",
+        "start": "Septembre 2024",
+        "poste": "Stagiaire marketing digital"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Freelance",
+        "start": "Immédiatement",
+        "poste": "Graphiste"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Temps partiel",
+        "start": "Dès que possible",
+        "poste": "Assistant de direction"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDI",
+        "start": "À partir de juin 2024",
+        "poste": "Ingénieur logiciel"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDD",
+        "start": "À partir du 1er mai 2024",
+        "poste": "Chef de projet marketing"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Stage",
+        "start": "Mai 2024",
+        "poste": "Stagiaire en communication"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDI",
+        "start": "Dès que possible",
+        "poste": "Consultant en gestion des ressources humaines"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Temps partiel",
+        "start": "À partir de juillet 2024",
+        "poste": "Traducteur freelance"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDD",
+        "start": "À partir du 15 juin 2024",
+        "poste": "Assistant juridique"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDI",
+        "start": "Dès que possible",
+        "poste": "Développeur mobile"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Freelance",
+        "start": "Immédiatement",
+        "poste": "Designer UX/UI"
+    },
+    {
+        "place": "Paris",
+        "contractType": "Stage",
+        "start": "Septembre 2024",
+        "poste": "Stagiaire en développement commercial"
+    },
+    {
+        "place": "Paris",
+        "contractType": "CDI",
+        "start": "Dès que possible",
+        "poste": "Analyste financier"
+    }
+]

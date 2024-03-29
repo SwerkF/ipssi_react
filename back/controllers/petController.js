@@ -1,4 +1,5 @@
 const Pet = require('../models/petModel')
+const User = require('../models/userModel')
 
 exports.createPet = async (req, res) => {
     try {
@@ -11,7 +12,20 @@ exports.createPet = async (req, res) => {
             height,
             birth_date,
             id_owner,
+            avatar
         } = req.body
+       
+        console.log(
+            name,
+            gender,
+            color,
+            specie,
+            weight,
+            height,
+            birth_date,
+            id_owner,
+            avatar
+        )
         const pet = await Pet.create({
             name,
             gender,
@@ -21,6 +35,7 @@ exports.createPet = async (req, res) => {
             height,
             birth_date,
             id_owner,
+            avatar
         })
         res.status(200).json(pet)
     } catch (error) {
@@ -33,7 +48,15 @@ exports.createPet = async (req, res) => {
 
 exports.getAllPets = async (req, res) => {
     try {
-        const pets = await Pet.findAll()
+        const pets = await Pet.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'owner',
+                    attributes: ['firstname', 'lastname', 'avatar','role'],
+                },
+            ],
+        })
         res.status(200).json(pets)
     } catch (error) {
         res.status(500).json({

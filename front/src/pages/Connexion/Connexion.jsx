@@ -2,8 +2,25 @@ import ConnexionForm from '../../components/Forms/ConnexionForm'
 import RegisterForm from '../../components/Forms/RegisterForm'
 import Logo from '../../../public/logo.png'
 import Button from '../../components/Button/Button'
+import {useNavigate, useLocation} from 'react-router-dom'
 
 const Connexion = ({form}) => {
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    let textButton = ''
+    location.pathname == '/register' && (textButton = `Déjà un compte ?`)
+    location.pathname == '/login' && (textButton = `S'inscrire`)
+
+    const handleClick = () => {
+        if (location.pathname == '/register') {
+            navigate('/login')
+        }
+        if (location.pathname == '/login') {
+            navigate('/register')
+        }
+    }
+
     return (
         <div
             className="hero min-h-screen"
@@ -25,7 +42,7 @@ const Connexion = ({form}) => {
                     </div>
                 </div>
                 <div className="flex flex-col py-2 w-2/3 items-center">
-                    <Button text="Créer un compte / S'inscrire" />
+                    <Button text={textButton} onClick={handleClick} />
                     <p className="text-center text-xs text-gray-400 pt-3">
                         Veto'Lib 2024®
                     </p>

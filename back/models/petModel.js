@@ -43,14 +43,7 @@ const Pet = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    id_owner: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      references: {
-        model: User,
-        key: "id",
-      },
-    },
+    
   },
   {
     sequelize,

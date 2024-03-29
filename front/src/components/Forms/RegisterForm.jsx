@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import Input from '../Input/Input'
 import {useNavigate} from 'react-router-dom'
+import Button from '../Button/Button'
 
 const RegisterForm = () => {
     const [user, setUser] = useState({
@@ -28,7 +29,6 @@ const RegisterForm = () => {
         } else {
             const token = await response.json()
             localStorage.userToken = JSON.stringify(token)
-            alert('Utilisateur inscrit')
             navigate('/')
         }
     }
@@ -61,11 +61,7 @@ const RegisterForm = () => {
                 onChange={(value) => setUser({...user, password: value})}
             />
             <div className="card-actions justify-end pt-3">
-                <button
-                    className="btn btn-primary w-full"
-                    onClick={handleSumbit}>
-                    S'inscrire
-                </button>
+                <Button text={`S'inscrire`} onClick={handleSumbit} />
             </div>
         </div>
     )

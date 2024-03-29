@@ -1,6 +1,6 @@
 const sequelize = require('../bdd/database');
 const { DataTypes } = require('sequelize');
-const userModel = require('./userModel');
+const User = require('./userModel');
 
 const notice = sequelize.define(
     'notice',
@@ -23,27 +23,11 @@ const notice = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        doctorId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: userModel,
-                key: "id",
-            },
-        },
-        userId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-                model: userModel,
-                key: "id",
-            },
-        },
     },
     {
         sequelize,
         freezeTableName: true,
     }
-)
+);
 
 module.exports = notice;

@@ -12,13 +12,18 @@ const ResumeDoctor = ({ doctor }) => {
     api.getOfficeByDoctor(doctor.officeId).then((data) => {
       setOffice(data);
     });
-  }, []);
+  }, [doctor]);
 
   return (
     <>
-      <div className="doctor flex flex-col h-full justify-around">
-        <div className="flex">
-          <img src={`${API_BASE_URL}${doctor.avatar}`} />
+      <div className="doctor flex flex-col h-full">
+        <div className="flex items-center">
+          <div className="img-content">
+            <img
+              src={`${API_BASE_URL}${doctor.avatar}`}
+              className="rounded-full"
+            />
+          </div>
           <div className="flex flex-col">
             <h6>
               Docteur {doctor.firstname} {doctor.lastname}
