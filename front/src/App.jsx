@@ -1,24 +1,27 @@
-import React, {useEffect, useState, useContext, createContext} from 'react';
-import './App.css';
+import React, {useEffect, useState, useContext, createContext} from 'react'
+import './App.css'
 
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom'
 
-import Navbar from './components/Navbar/Navbar';
-import Accueil from './pages/Accueil/Accueil';
-import About from './pages/About/About';
-import Admin from './pages/Admin/Admin';
-import Footer from './components/Footer/Footer';
-import User from './pages/User/User';
-import Error404 from './pages/404/Error404';
-import Connexion from './pages/Connexion/Connexion';
-import Appointment from './pages/Appointment/Appointment';
-import ModalRdv from './components/ModalRdv/ModalRdv';
+import Navbar from './components/Navbar/Navbar'
+import Accueil from './pages/Accueil/Accueil'
+import About from './pages/About/About'
+import Admin from './pages/Admin/Admin'
+import Footer from './components/Footer/Footer'
+import User from './pages/User/User'
+import Error404 from './pages/404/Error404'
+import Connexion from './pages/Connexion/Connexion'
+import Appointment from './pages/Appointment/Appointment'
+import ModalRdv from './components/ModalRdv/ModalRdv'
+import Cgu from './pages/Legal/Cgu'
+import Confidentiality from './pages/Legal/Confidentiality'
+import Legal from './pages/Legal/Legal'
 
 // Créer un contexte pour stocker l'utilisateur
-const UserContext = createContext(null);
+const UserContext = createContext(null)
 
 function App() {
-    const [user, setUser] = useState(null); // État pour stocker l'utilisateur
+    const [user, setUser] = useState(null) // État pour stocker l'utilisateur
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -32,18 +35,17 @@ function App() {
                 .then((res) => res.json())
                 .then((res) => {
                     if (res.erreur) {
-                        localStorage.removeItem('token');
-                        setUser(null);
-                        return;
+                        localStorage.removeItem('token')
+                        setUser(null)
+                        return
                     } else {
-                        setUser(res);
-                        console.log("Res", res);
+                        setUser(res)
                     }
-                });
+                })
         } else {
-            setUser(null);
+            setUser(null)
         }
-    }, []);
+    }, [])
 
     return (
         <>
@@ -65,13 +67,29 @@ function App() {
                         element={<Connexion form={'register'} />}
                     />
                     <Route path="/test" element={<ModalRdv />} />
+                    <Route path="/legal">
+                        <Route path="cgu" element={<Legal page={'cgu'} />} />
+                        <Route
+                            path="confidentiality"
+                            element={<Legal page={'confidentiality'} />}
+                        />
+                        <Route
+                            path="cookies"
+                            element={<Legal page={'cookies'} />}
+                        />
+                        <Route
+                            path="legal-mentions"
+                            element={<Legal page={'mentions'} />}
+                        />
+                    </Route>
                 </Routes>
+
                 <Footer />
             </UserContext.Provider>
         </>
-    );
+    )
 }
 
-export {UserContext}; // Exportez UserContext
+export {UserContext} // Exportez UserContext
 
-export default App;
+export default App
