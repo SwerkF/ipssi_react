@@ -3,6 +3,8 @@ const {DataTypes} = require('sequelize')
 
 const Office = require('./officeModel')
 const Pet = require('./petModel')
+const AppointmentType = require('./appointmentTypeModel')
+
 
 const User = sequelize.define(
     'user',
@@ -61,6 +63,37 @@ User.hasMany(Pet, {
     as: 'pets',
     onDelete: 'CASCADE',
 })
+
+Pet.belongsTo(User, {
+    foreignKey: 'id_owner',
+    as: 'owner',
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(AppointmentType, {
+    foreignKey: 'doctorId',
+    as: 'doctorAppointments', // Unique alias for doctor appointments
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(AppointmentType, {
+    foreignKey: 'userId',
+    as: 'userAppointments', // Unique alias for user appointments
+    onDelete: 'CASCADE',
+});
+
+AppointmentType.belongsTo(User, {
+    foreignKey: 'doctorId',
+    as: 'doctor', // Alias for the doctor association
+    onDelete: 'CASCADE',
+});
+
+AppointmentType.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user', // Alias for the user association
+    onDelete: 'CASCADE',
+});
+
 
 
 

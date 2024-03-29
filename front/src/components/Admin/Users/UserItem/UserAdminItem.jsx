@@ -6,7 +6,7 @@ export default function UserAdminItem(props) {
     <tr>
       <th>
         <label>
-          <input type="checkbox" className="checkbox" />
+          <input type="checkbox" className="checkbox bg-gray-200" />
         </label>
       </th>
       <td>
@@ -50,12 +50,6 @@ export default function UserAdminItem(props) {
       </td>
       <th>
         <div className="d-flex flex-row gap-5">
-          <Button
-            onClick={props.onUpdate}
-            id={props.user.id}
-            className="btn btn-secondary text-white m-0.5"
-            icon="bx bx-edit-alt"
-          />
           <Button
             onClick={props.onDelete}
             id={props.user.id}

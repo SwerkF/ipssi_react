@@ -11,7 +11,7 @@ const api = {
         Authorization: token,
       },
     }).then((response) => response.json()),
-  
+
   //get all pets of a user
   getAllPetInformationById: (petId) =>
     fetch(`${API_BASE_URL}/pet/search/${petId}`, {
@@ -109,7 +109,7 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  createNewPet: (body, accessToken) =>
+  createNewPet: (body) =>
     fetch(`${API_BASE_URL}/pet/create`, {
       method: "POST",
       headers: {
@@ -125,6 +125,33 @@ const api = {
       headers: {
         "Content-Type": "application/json",
         Authorization: accessToken,
+      },
+    }).then((response) => response.json());
+  },
+  getAllUsers() {
+    return fetch(`${API_BASE_URL}/user/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+  deleteUser(userId) {
+    return fetch(`${API_BASE_URL}/user/delete/${userId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+    }).then((response) => response.json());
+  },
+  getAllPets() {
+    return fetch(`${API_BASE_URL}/pet/all`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
       },
     }).then((response) => response.json());
   },
