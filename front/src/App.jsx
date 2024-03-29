@@ -16,6 +16,7 @@ import ModalRdv from './components/ModalRdv/ModalRdv'
 import Cgu from './pages/Legal/Cgu'
 import Confidentiality from './pages/Legal/Confidentiality'
 import Legal from './pages/Legal/Legal'
+import Jobs from './pages/Jobs/Jobs'
 
 // Créer un contexte pour stocker l'utilisateur
 const UserContext = createContext(null)
@@ -58,6 +59,7 @@ function App() {
                     <Route path="*" element={<Error404 />} />
                     <Route path="/appointment" element={<Appointment />} />
                     <Route path="/admin" element={<Admin />} />
+                    <Route path="/jobs" element={<Jobs />} />
                     <Route
                         path="/login"
                         element={<Connexion form={'connexion'} />}
