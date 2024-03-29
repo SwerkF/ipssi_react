@@ -30,6 +30,5 @@ const AppointmentType = sequelize.define(
     }
 )
 
-AppointmentType.belongsTo(User, { foreignKey: 'doctorId' });
 
 module.exports = AppointmentType;
