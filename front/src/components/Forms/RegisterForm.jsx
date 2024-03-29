@@ -23,13 +23,10 @@ const RegisterForm = () => {
             body: JSON.stringify(user),
         })
         if (!response.ok) {
-            alert(
-                `Erreur : ${response.status} - ${response.statusText} \n Veuillez réessayer.`
-            )
+            
         } else {
             const token = await response.json()
             localStorage.userToken = JSON.stringify(token)
-            alert('Utilisateur inscrit')
             navigate('/')
         }
     }

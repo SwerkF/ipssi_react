@@ -1,7 +1,7 @@
 .card-schedule {
     ul {
         li {
-         
+
             gap: 4px;
             border-radius: 8px;
             opacity: 0px;
@@ -9,34 +9,55 @@
             cursor: pointer;
         }
     }
+
     h3 {
         font-family: Segoe UI;
         font-size: 20px;
         font-weight: 600;
         line-height: 26.6px;
         text-align: center;
-        
+
     }
+
     h2 {
         font-family: Segoe UI;
-font-size: 16px;
-font-weight: 600;
-line-height: 21.28px;
-text-align: center;
-color: #878787;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 21.28px;
+        text-align: center;
+        color: #878787;
 
 
     }
 }
-.card-schedule{
+
+.card-schedule {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-  }
-  
-  .day-column {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (min-width: 768px) {
+    .card-schedule {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .card-schedule {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .card-schedule {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.day-column {
     padding: 10px;
-  }
-  
-  .day-column h3 {
+}
+
+.day-column h3 {
     margin-top: 0;
-  }
+}

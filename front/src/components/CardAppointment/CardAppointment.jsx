@@ -4,16 +4,25 @@ import ResumeDoctor from "../ResumeDoctor/ResumeDoctor";
 import { api } from "../../services/Api";
 import CardSchedule from "../Card/CardSchedule/CardSchedule";
 
-const CardAppointment = ({ doctor }) => {
+const CardAppointment = ({ doctor , setModalActive, inputDate }) => {
   const [calendar, setCalendar] = useState([]);
   const [daysOfWeek, setDaysOfWeek] = useState([]);
-  const [showAll, setShowAll] = useState(false);
-
+  const [showAll, setShowAll] = useState(false);  
   const [schedule, setSchedule] = useState([]);
   const currentDate = new Date();
   const [startDay, setStartDay] = useState(
     new Date(),
   );
+
+  useEffect(() => {
+    const newDate = new Date(inputDate);
+    newDate.setDate(newDate.getDate() - 1);
+
+    const today = new Date(); // Obtenir la date actuelle
+    if (newDate > today) {
+      setStartDay(newDate);
+    } 
+}, [inputDate]);
 
 
   useEffect(() => {
@@ -57,10 +66,16 @@ const CardAppointment = ({ doctor }) => {
 
   const generateDayOfWork = (day, calendar) => {
     const slots = [];
-    const workStart = new Date(`2024-03-27T${calendar.startWorkAt}`);
-    const workEnd = new Date(`2024-03-27T${calendar.endWorkAt}`);
-    const lunchStart = new Date(`2024-03-27T${calendar.lunchBreakStartedAt}`);
-    const lunchEnd = new Date(`2024-03-27T${calendar.lunchBreakEndedAt}`);
+    
+    const year = day.getFullYear();
+    const month = day.getMonth() + 1;
+    const date = day.getDate();
+    const formattedDate = `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}T`;
+
+    const workStart = new Date(`${formattedDate}${calendar.startWorkAt}`);
+    const workEnd = new Date(`${formattedDate}${calendar.endWorkAt}`);
+    const lunchStart = new Date(`${formattedDate}${calendar.lunchBreakStartedAt}`);
+    const lunchEnd = new Date(`${formattedDate}${calendar.lunchBreakEndedAt}`);
 
     const startTime = (day >= 1 && day <= 5 && workStart < lunchStart) ? lunchEnd : workStart;
     let currentTime = new Date(startTime);
@@ -136,13 +151,13 @@ const CardAppointment = ({ doctor }) => {
   return (
     <>
       <div className="appointment flex mx-5 mt-5 bg-white rounded-lg shadow-lg">
-        <div className="flex justify-around w-2/3 mx-10 items-center">
+        <div className="flex card-doctor justify-around w-2/3 mx-10 items-center">
           <div className="resume-container w-full">
             <ResumeDoctor doctor={doctor} />
           </div>
           <div className="separation"></div>
         </div>
-        <div className="w-full m-10 item-center justify-center flex flex-col">
+        <div className="w-full container-sechedule m-10 item-center justify-center flex flex-col">
 
           <div className="flex items-center w-full ">
             <i
@@ -150,7 +165,7 @@ const CardAppointment = ({ doctor }) => {
               onClick={prevWeek}
             ></i>
 
-            <CardSchedule daysOfWeek={daysOfWeek} showAll={showAll} setShowAll={setShowAll} />
+            <CardSchedule daysOfWeek={daysOfWeek} showAll={showAll} setShowAll={setShowAll} setModalActive={setModalActive} doctor={doctor} />
             <i className='bx bx-right-arrow-alt ml-3' onClick={nextWeek}></i>
           </div>
           <button onClick={() => setShowAll(!showAll)}>

@@ -4,6 +4,7 @@ const User = require('../models/userModel')
 const { Op } = require('sequelize')
 const Pet = require('../models/petModel')
 const AppointmentType = require('../models/appointmentTypeModel')
+const Office = require('../models/officeModel')
 
 //--------- Create a user ---------//
 
@@ -182,65 +183,52 @@ exports.deleteUser = async (req, res) => {
         res.status(500).json({ message: "Error deleting user" });
     }
 };
-
 exports.getAllDoctors = async (req, res) => {
-  try {
-    // get appointments and office of the doctor
-    const doctors = await User.findAll({
-      where: { role: 'doctor' },
-      include: [
-        { model: AppointmentType, as: 'doctorAppointments' }, // Include doctor appointments
-      ],
-    });
-    if (!doctors) {
-      return res.status(404).json({ message: "Doctor not found" });
+  
+    // name in params
+    const name = req.params.name || req.query.name;
+    console.log(name)
+
+    // where conditions
+    const where = { role: 'doctor'};
+    if (name) {
+        // where lastname like in lowercase or firstname like lowercase
+        where[Op.or] = [
+            {
+                lastname: {
+                    [Op.like]: `%${name.toLowerCase()}%`,
+                },
+            },
+            {
+                firstname: {
+                    [Op.like]: `%${name.toLowerCase()}%`,
+                },
+            },
+        ]; 
+    };
+
+    // Like query
+    try {
+        const doctors = await User.findAll({
+            where: where,
+            include: [
+                {
+                    model: AppointmentType,
+                    as: 'doctorAppointments',
+                },
+                {
+                    model: Office,
+                    as: 'office',
+                },
+            ],
+        });
+        res.status(200).json(doctors);
+    } catch (error) {
+        res.status(500).json({ message: "Error recovering doctors" });
     }
-    res.status(200).json(doctors);
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ message: "Error recovering doctors" });
-  }
+
+   
 };
-
-
-
-// exports.getAllDoctors = async (req, res) => {
-//     try {
-//         const name = req.params.name;
-//         let doctors;
-
-//         if (typeof name !== 'undefined' && name.trim() !== '') {
-//             doctors = await User.findAll({
-//                 where: {
-//                     role: "doctor",
-//                     [Op.or]: [
-//                         {
-//                             firstname: {
-//                                 [Op.like]: `%${name}%`
-//                             }
-//                         },
-//                         {
-//                             lastname: {
-//                                 [Op.like]: `%${name}%`
-//                             }
-//                         }
-//                     ]
-//                 }
-//             });
-//         } else {
-//             doctors = await User.findAll({ where: { role: "doctor" } });
-//         }
-
-//         if (!doctors || doctors.length === 0) {
-//             return res.status(404).json([]);
-//         }
-
-//         res.status(200).json(doctors);
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
-//     }
-// };
 
 
 exports.getProfile = async(req, res) => {

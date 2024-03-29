@@ -23,5 +23,5 @@ router.get(
     UserController.getAllById
 )
 router.get('/me', middleware.authenticator, UserController.getProfile)
-router.get("/allDoctors/:name", UserController.getAllDoctors);
+router.get("/allDoctors", UserController.getAllDoctors);
 module.exports = router;

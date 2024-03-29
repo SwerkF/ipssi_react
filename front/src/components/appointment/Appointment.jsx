@@ -16,7 +16,7 @@ export default function({ user }) {
     }, [])
     return (
         <div className='appointment flex w-full'>
-            <div className='flex w-1/2 items-center'>
+            <div className='flex card-doctor w-1/2 items-center'>
                 <div className='doctor flex flex-col h-full justify-around py-10'>
                     <div className='flex'>
                         <img src={`${API_BASE_URL}${user.avatar}`}/>

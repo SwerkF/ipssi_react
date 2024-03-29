@@ -19,13 +19,10 @@ const ConnexionForm = () => {
             body: JSON.stringify(user),
         })
         if (!response.ok) {
-            alert(
-                `Erreur : ${response.status} - ${response.statusText} \n Veuillez réessayer.`
-            )
+            
         } else {
             const token = await response.json()
             localStorage.setItem('token', (token.token))
-            alert('Utilisateur connecté')
             window.location.href = '/'
         }
     }

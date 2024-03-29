@@ -33,7 +33,7 @@ const ResumeDoctor = ({ doctor }) => {
         ) : (
           <p></p>
         )}
-        <button className="p-2 w-full">Prendre un rendez-vous</button>
+        <button className="p-2 w-full cursor-default">Prendre un rendez-vous</button>
       </div>
     
   );
