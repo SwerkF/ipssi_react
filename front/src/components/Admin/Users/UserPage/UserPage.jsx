@@ -17,8 +17,8 @@ const UserPage = ({ user }) => {
     newPassword: user.password,
   });
 
-    console.log(user);
-    
+  console.log(user);
+
   return (
     <div className="user page">
       {cardNewPetIsActive && (
@@ -65,7 +65,7 @@ const UserPage = ({ user }) => {
         <div className="pets">
           <h3>Vos animaux</h3>
           <div className="animals">
-            {pets.map((pet, index) => (
+            {user.pets.map((pet, index) => (
               <div
                 key={index}
                 onClick={(e) => {
@@ -87,11 +87,11 @@ const UserPage = ({ user }) => {
           </div>
         </div>
       </div>
-      {schedules && (
+      {user.userSchedules && (
         <div className="appointments mt-10">
           <h3>Vos rendez vous</h3>
           <div className="appointments">
-            {schedules.map((schedule, indice) => (
+            {user.userSchedules.map((schedule, indice) => (
               <Appointment key={indice} schedule={schedule} />
             ))}
           </div>
