@@ -79,6 +79,7 @@ const api = {
       body: JSON.stringify(body),
     }).then((response) => response.json()),
 
+
   //body date et doctorId
   //récupérer les rdv d'un user
   getSchedulesOfDoctor: (doctorId) =>
@@ -89,6 +90,17 @@ const api = {
       },
       body: JSON.stringify(body),
     }).then((response) => response.json()),
+
+    addSchedule(appointment) {
+        return fetch(`${API_BASE_URL}/schedule`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: token,
+            },
+            body: JSON.stringify(appointment),
+        }).then((response) => response.json())
+    },
 
   //récupérer les rdv d'un docteur
   getAppointmentsYpeByDoctor: (doctorId) =>

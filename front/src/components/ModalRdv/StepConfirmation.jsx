@@ -1,9 +1,9 @@
-import {api} from '../../services/Api';
-import Button from '../Button/Button';
-import {useNavigate} from 'react-router-dom';
+import {api} from '../../services/Api'
+import Button from '../Button/Button'
+import {useNavigate} from 'react-router-dom'
 
 const StepConfirmation = (props) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     return (
         <>
             <h3 className="font-bold text-lg">
@@ -39,14 +39,14 @@ const StepConfirmation = (props) => {
                 <Button
                     text="Valider le rendez-vous"
                     onClick={() => {
-                        api.addSchedule(props.schedule);
-                        alert('Votre rendez-vous a été validé');
-                        navigate('/');
+                        api.addSchedule(props.schedule)
+                        alert('Votre rendez-vous a été validé')
+                        //navigate('/');
                     }}
                 />
             </div>
         </>
-    );
-};
+    )
+}
 
-export default StepConfirmation;
+export default StepConfirmation
