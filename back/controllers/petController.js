@@ -12,7 +12,20 @@ exports.createPet = async (req, res) => {
             height,
             birth_date,
             id_owner,
+            avatar
         } = req.body
+       
+        console.log(
+            name,
+            gender,
+            color,
+            specie,
+            weight,
+            height,
+            birth_date,
+            id_owner,
+            avatar
+        )
         const pet = await Pet.create({
             name,
             gender,
@@ -22,6 +35,7 @@ exports.createPet = async (req, res) => {
             height,
             birth_date,
             id_owner,
+            avatar
         })
         res.status(200).json(pet)
     } catch (error) {

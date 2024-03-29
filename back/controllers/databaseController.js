@@ -218,15 +218,15 @@ CALL InsertAppointmentType('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422l', 110.0, 'Test 
 CALL InsertAppointmentType('dc67f5e9-d1f6-4ba1-9b16-b0eaf526422m', 200.0, 'Consultation spécialiste', 90, 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h');
 `);
   await sequelize.query(`
-  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421w', '12:00:00', '13:00:00', 0, 1, 1, 1, 1, 1, 1, '08:00:00', '18:00:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f')
+  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421w', '13:00:00', '12:00:00', 0, 1, 1, 1, 1, 1, 1, '08:00:00', '18:00:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f')
 `);
 
   await sequelize.query(`
-  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421x', '13:00:00', '14:00:00', 0, 1, 1, 1, 1, 1, 1, '08:30:00', '17:30:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g')
+  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421x', '14:00:00', '13:00:00', 0, 1, 1, 1, 1, 1, 1, '08:30:00', '17:30:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421g')
 `);
 
   await sequelize.query(`
-  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421y', '12:30:00', '13:30:00', 0, 1, 1, 1, 1, 1, 1, '09:00:00', '18:00:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h')
+  CALL InsertCalendar('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421y', '13:30:00', '12:30:00', 0, 1, 1, 1, 1, 1, 1, '09:00:00', '18:00:00', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421h')
 `);
   await sequelize.query(`
 CALL InsertNotice('dc67f5e9-d1f6-4ba1-9b16-b0eaf526421z', 'Service excellent', "J'ai emmené mon chien pour un examen et le service était excellent. Le personnel était sympathique et professionnel. Hautement recommandé !", 5, 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421f', 'dc67f5e9-d1f6-4ba1-9b16-b0eaf526421i');
