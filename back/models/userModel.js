@@ -6,6 +6,7 @@ const Pet = require('./petModel')
 const AppointmentType = require('./appointmentTypeModel')
 const Schedule = require('./scheduleModel')
 const Calendar = require('./calendarModel')
+const Notice = require('./noticeModel')
 
 
 const User = sequelize.define(
@@ -132,6 +133,37 @@ Calendar.belongsTo(User, {
     as: 'doctor', // Alias for the doctor association
     onDelete: 'CASCADE',
 });
+
+// User can have many notice for single doctor,
+// doctor can have many 
+
+User.hasMany(Notice, {
+    foreignKey: 'userId',
+    as: 'doctorNotice',
+    onDelete: 'CASCADE',
+});
+
+Notice.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'doctor',
+    onDelete: 'CASCADE',
+});
+
+User.hasMany(Notice, {
+    foreignKey: 'doctorId',
+    as: 'userNotice',
+    onDelete: 'CASCADE',
+});
+
+Notice.belongsTo(User, {
+    foreignKey: 'doctorId',
+    as: 'user',
+    onDelete: 'CASCADE',
+});
+
+
+
+
 
 
 

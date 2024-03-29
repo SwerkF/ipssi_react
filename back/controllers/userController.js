@@ -5,6 +5,7 @@ const Pet = require('../models/petModel')
 const AppointmentType = require('../models/appointmentTypeModel')
 const schedule = require('../models/scheduleModel')
 const Calendar = require('../models/calendarModel')
+const notice = require('../models/noticeModel')
 
 //--------- Create a user ---------//
 
@@ -218,7 +219,8 @@ exports.getProfile = async(req, res) => {
             { model: schedule, as: 'doctorSchedules' },
             { model: AppointmentType, as: 'doctorAppointments' },
             { model: AppointmentType, as: 'userAppointments' },
-            { model: Calendar, as: 'doctorCalendar'}
+            { model: Calendar, as: 'doctorCalendar'},
+            { model: notice, as: 'doctorNotice'}
         ],
         });
         if (!user) {
@@ -230,3 +232,5 @@ exports.getProfile = async(req, res) => {
         res.status(500).json({ message: "Error recovering user" });
     }
 }
+
+
