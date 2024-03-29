@@ -40,7 +40,7 @@ function App() {
                         setUser(null)
                         return
                     } else {
-                        setUser(res)
+                        setUser(res);
                     }
                 })
         } else {

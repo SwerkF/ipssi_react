@@ -167,6 +167,16 @@ const api = {
       },
     }).then((response) => response.json());
   },
+  handleUpdateStatus(scheduleId, status) {
+    return fetch(`${API_BASE_URL}/schedule/update/${scheduleId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({ status }),
+    }).then((response) => console.log("udpated"));
+  }
 };
 
 export { api };
