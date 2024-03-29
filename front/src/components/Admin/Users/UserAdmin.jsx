@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './UserAdmin.scss';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../../../services/Api';
+import UserAdminItem from './UserItem/UserAdminItem';
 export default function UserAdmin() {
 
   const navigate = useNavigate();
@@ -8,27 +10,28 @@ export default function UserAdmin() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/all', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('token')
-      }
-    })
-    .then(res => res.json())
-    .then(res => {
+    api.getAllUsers().then(res => {
       setUsers(res);
-      console.log(res);
-    }).catch(err => {
-      navigate('/login');
     });
   }, []);
+
 
   const handleCheckAll = (e) => {
     const checkboxes = document.querySelectorAll('.checkbox');
     checkboxes.forEach(checkbox => {
       checkbox.checked = e.target.checked;
     });
+  }
+
+  const handleDeleteUser = (e) => {
+    api.deleteUser(e.target.id).then(res => {
+      api.getAllUsers().then(res => {
+        setUsers(res);
+      });
+    });
+  }
+
+  const handleUpdate = (e) => {
   }
 
 
@@ -46,41 +49,13 @@ export default function UserAdmin() {
               </th>
               <th>Name</th>
               <th>Email</th>
-              <th>Animals</th>
-              <th></th>
+              <th>Pets</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={index}>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{user.firstname} {user.lastname}</div>
-                      <div className="text-sm opacity-50 uppercase">{user.role}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  {user.email}
-                </td>
-                <td>
-                  
-                </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
+              <UserAdminItem key={index} user={user} onDelete={handleDeleteUser} onUpdate={handleUpdate}/>
             ))}
           </tbody>
           <tfoot>

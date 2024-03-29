@@ -23,19 +23,13 @@ const AppointmentType = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        doctorId: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            references: {
-              model: User,
-              key: "id",
-            },
-          },
-    },
+        },
     {
         sequelize,
         freezeTableName: true,
     }
 )
+
+AppointmentType.belongsTo(User, { foreignKey: 'doctorId' });
 
 module.exports = AppointmentType;

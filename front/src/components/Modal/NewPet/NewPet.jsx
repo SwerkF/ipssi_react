@@ -93,10 +93,7 @@ export default function NewPet({ ownerId, hideCardNewAnimal }) {
                            // onChange={(value) => setNewPet({ ...newPet, avatar: value })}
                         />
                     </div>
-                    
                     <button type='button' className='mt-5' onClick={e => createPet()}>Sauvegarder les informations</button>
-
-
                 </form>
             </div>
         </div>

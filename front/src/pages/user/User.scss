@@ -1,59 +1,58 @@
 .user {
-    background: #FFF6EA;
-    height: 100vh;
-    padding: 20px 50px;
-    .mr {
-        margin-right: 15px;;
+  background: #fff6ea;
+  padding: 20px 50px;
+  .mr {
+    margin-right: 15px;
+  }
+  h3 {
+    font-size: 43px;
+    font-family: Segoe UI;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 42.56px;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  form {
+    background: white;
+    padding: 20px;
+    width: 35%;
+    border-radius: 30px;
+
+    button {
+      background: #e0773c;
+      width: 100%;
+      padding: 10px;
+      gap: 4px;
+      border-radius: 8px;
+      opacity: 0px;
+      color: white;
+      font-size: 20px;
     }
-    h3 {
-        font-size: 43px;
-        font-family: Segoe UI;
-        font-size: 32px;
-        font-weight: 700;
-        line-height: 42.56px;
-        text-align: center;
+  }
+  .pets {
+    width: 55%;
+    background: white;
+    box-shadow: 4px 4px 0px 0px #00000040;
+    padding: 20px;
+    border-radius: 20px;
+
+    .animals {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: start;
+      justify-content: space-between; /* Alignement à gauche */
+
+      .card-animal {
         margin-bottom: 15px;
+      }
     }
-
-    form {
-        background: white;
-        padding: 20px;
-        width: 35%;
-        border-radius: 30px;
-
-        button  {
-            background: #E0773C;
-            width: 100%;
-            padding: 10px;
-            gap: 4px;
-            border-radius: 8px;
-            opacity: 0px;
-            color: white;
-            font-size: 20px;
-        }
-    }
-    .pets {
-        width: 55%;
-        background: white;
-        box-shadow: 4px 4px 0px 0px #00000040;
-        padding: 20px;
-        border-radius: 20px;
-
-        .animals {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: start;
-            justify-content: space-between; /* Alignement à gauche */
-            
-            .card-animal {
-                margin-bottom: 15px;
-            }
-        }
-    }
-    .appointments {
-        background: white;
-        box-shadow: 4px 4px 0px 0px #00000040;
-        padding: 20px;
-        border-radius: 20px;
-    }
+  }
+  .appointments {
+    background: white;
+    box-shadow: 4px 4px 0px 0px #00000040;
+    padding: 20px;
+    border-radius: 20px;
+  }
 }
