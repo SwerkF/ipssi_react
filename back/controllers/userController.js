@@ -7,7 +7,7 @@ const schedule = require("../models/scheduleModel");
 const Calendar = require("../models/calendarModel");
 const Notice = require("../models/noticeModel");
 const Office = require('../models/officeModel')
-
+const {Op} = require("sequelize")
 
 //--------- Create a user ---------//
 

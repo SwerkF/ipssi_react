@@ -99,15 +99,6 @@ const api = {
       },
     }).then((response) => response.json()),
 
-  //get all doctors
-  getAllDoctors: () =>
-    fetch(`${API_BASE_URL}/user/allDoctors`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((response) => response.json()),
-
   //get note of a doctor
   getNoticeUserDoctor: (userId, doctorId) =>
     fetch(`${API_BASE_URL}/notice/doctor/${doctorId}/${userId}`, {

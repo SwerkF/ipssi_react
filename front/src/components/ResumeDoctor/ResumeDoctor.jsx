@@ -26,7 +26,7 @@ const ResumeDoctor = ({ doctor }) => {
         <div className="img-content">
           <img
             src={`${API_BASE_URL}${doctor.avatar}`}
-            className="rounded-full"
+            className="rounded-full w-20"
             alt={`Avatar of Dr. ${doctor.firstname} ${doctor.lastname}`} // Add alt text
           />
         </div>
