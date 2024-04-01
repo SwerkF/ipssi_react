@@ -31,9 +31,6 @@ export default function Navbar() {
                     <Link to="/appointment" className="btn btn-ghost">
                         Prendre rendez-vous
                     </Link>
-                    <Link to="/contact" className="btn btn-ghost">
-                        Contact
-                    </Link>
                     {user && user.role === 'admin' ? (
                         <Link to="/admin" className="btn btn-ghost">
                             Admin
@@ -75,9 +72,6 @@ export default function Navbar() {
                     </Link>
                     <Link to="/appointment" className="btn btn-ghost">
                         Prendre rendez-vous
-                    </Link>
-                    <Link to="/contact" className="btn btn-ghost">
-                        Contact
                     </Link>
                     {user && user.role === 'admin' ? (
                         <Link to="/admin" className="btn btn-ghost">
