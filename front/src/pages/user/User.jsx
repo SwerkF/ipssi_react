@@ -4,6 +4,7 @@ import UserPage from "../../components/Admin/Users/UserPage/UserPage";
 import DoctorPage from "../../components/Admin/Users/DoctorPage/DoctorPage";
 import { UserContext } from "../../App";
 import { api } from "../../services/Api";
+import './User.scss'
 
 export default function User() {
   

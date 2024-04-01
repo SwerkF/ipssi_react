@@ -17,6 +17,10 @@ export default function Appointment({ schedule }) {
 
   const [doctorNotice, setDoctorNotice] = useState(null);
 
+  useEffect(() => {
+
+  }, [])
+
 
   
 
@@ -36,28 +40,30 @@ export default function Appointment({ schedule }) {
   };
 
   return (
-    <div className="appointment flex w-full my-20 py-3">
-      <div className="flex w-2/3 items-center">
+    <div className="appointment flex w-full lg:py-3 flex flex-col lg:flex-row justify-between">
+      <div className="flex flex-col lg:w-2/3 lg:flex-row justify-between">
         <ResumeDoctor doctor={schedule.doctor} />
         <div className="separation mx-10"></div>
-        <div className="flex flex-col w-full pr-20">
-          <div className="state flex justify-between">
-            <h6>Status</h6>
-            <p
-              className={
-                schedule.status === "booked"
-                  ? "badge badge-info text-white font-bold text-sm"
+        <div className="flex flex-col w-full lg:pr-20 lg:my-0 my-5">
+          <div className="state flex justify-between items-center">
+            <div className="flex items-center">
+              <h6 className="mr-2">Status</h6>
+              <p
+                className={
+                  schedule.status === "booked"
+                    ? "badge badge-info text-white font-bold text-sm"
+                    : schedule.status === "finished"
+                    ? "badge badge-success"
+                    : "badge badge-error"
+                }
+              >
+                {schedule.status === "booked"
+                  ? "À venir"
                   : schedule.status === "finished"
-                  ? "badge badge-success"
-                  : "badge badge-error"
-              }
-            >
-              {schedule.status === "booked"
-                ? "À venir"
-                : schedule.status === "finished"
-                ? "Effectué"
-                : "Annulé"}
-            </p>
+                  ? "Effectué"
+                  : "Annulé"}
+              </p>
+            </div>
             <p className="date">
               {`${new Date(schedule.date)
                 .getDate()
@@ -83,21 +89,22 @@ export default function Appointment({ schedule }) {
               </div>
             </div>
             <div className="flex flex-col">
-              <h6>Horaires:</h6>
-              <p className="hour-meeting p-3">
+              <h6 className="mb-5">Horaires:</h6>
+              <p className="hour-meeting px-5 py-3">
                 {handleSetHours(schedule.date)}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="notice flex flex-col w-1/3">
-        <div className="flex mb-5 items-center">
+      <div class="notice flex flex-col w-full lg:w-1/3">
+              <div className="flex mb-5 items-center">
           <h6 className="mr-3">Avis</h6>
           <Stars notation={2.4} size={"md"} />
         </div>
         <textarea
           className="p-5"
+          placeholder="Votre message"
           name=""
           id=""
           cols="30"
@@ -108,3 +115,4 @@ export default function Appointment({ schedule }) {
     </div>
   );
 }
+
