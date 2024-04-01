@@ -20,7 +20,10 @@ const UserPage = ({ user }) => {
   });
 
 useEffect(() => {
-  const schedules = api.getAllSchedulesOfUser(user.id).then(res => setSchedules(res));
+  api.getAllSchedulesOfUser(user.id).then(res => {
+    setSchedules(res);
+    console.log('Res',res);
+  });
 }, [user])
 
   return (
@@ -34,8 +37,8 @@ useEffect(() => {
           hideDisplayAnimal={setCardDisplayPetIsActive}
         />
       )}
-      <div className="flex justify-between">
-        <form>
+      <div className="flex flex-col lg:flex-row justify-between">
+        <form className="mr-5">
           <h3>Vos informations</h3>
           <div className="flex flex-row justify-between">
             <Input

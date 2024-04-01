@@ -182,50 +182,47 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
+
 exports.getAllDoctors = async (req, res) => {
   
-    // Nom dans les paramètres
-    const name = req.params.name || req.query.name;
-    // Conditions de recherche
-    const where = { role: 'doctor' };
-    if (name) {
-        // where lastname like in lowercase or firstname like lowercase
-        where[Op.or] = [
-            {
-                lastname: {
-                    [Op.iLike]: `%${name.toLowerCase()}%`, // Utilisation de Op.iLike pour la recherche insensible à la casse
-                },
-            },
-            {
-                firstname: {
-                    [Op.iLike]: `%${name.toLowerCase()}%`, // Utilisation de Op.iLike pour la recherche insensible à la casse
-                },
-            },
-        ]; 
-    };
-
-    // Requête de type Like
-    try {
-        const doctors = await User.findAll({
-            where: where,
-            include: [
-                {
-                    model: AppointmentType,
-                    as: 'doctorAppointments',
-                },
-                {
-                    model: Office,
-                    as: 'office',
-                }
-            ],
-        });
-        console.log('Doctors ->', doctors)
-        res.status(200).json(doctors);
-    } catch (error) {
-        res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
-    }
+  // Nom dans les paramètres
+  const name = req.params.name || req.query.name;
+  console.log('name ->.', name);
+  // Requête de type Like
+  try {
+      const doctors = await User.findAll({
+          where: {
+              role: 'doctor',
+              [Op.or]: [
+                  {
+                      lastname: {
+                          [Op.like]: `%${name}%`
+                      }
+                  },
+                  {
+                      firstname: {
+                          [Op.like]: `%${name}%`
+                      }
+                  }
+              ],
+          },
+          include: [
+              {
+                  model: AppointmentType,
+                  as: 'doctorAppointments',
+              },
+              {
+                  model: Office,
+                  as: 'office',
+              }
+          ],
+      });
+      console.log('Doctors ->', doctors)
+      res.status(200).json(doctors);
+  } catch (error) {
+      res.status(500).json({ message: "Erreur lors de la récupération des médecins" });
+  }
 };
-
 exports.getProfile = async (req, res) => {
     const token = req.headers.authorization;
     try {
